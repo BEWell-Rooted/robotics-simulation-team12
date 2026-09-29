@@ -10,12 +10,13 @@ high enough on uneven ground instead of learning a relative-height signal it wil
 import isaaclab.sim as sim_utils
 from isaaclab.managers import CurriculumTermCfg as CurrTerm
 from isaaclab.managers import EventTermCfg as EventTerm
+from isaaclab.managers import RewardTermCfg as RewTerm
 from isaaclab.managers import SceneEntityCfg
 from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils import configclass
 
 import isaaclab_tasks.manager_based.classic.humanoid.mdp as mdp
-from isaaclab_tasks.manager_based.classic.ant.ant_env_cfg import AntEnvCfg, EventCfg
+from isaaclab_tasks.manager_based.classic.ant.ant_env_cfg import AntEnvCfg, EventCfg, RewardsCfg
 
 from .lane_terrain import LaneTerrainGeneratorCfg, terrain_levels_progress
 from .terrains import ANT_ROUGH_TERRAINS_CFG
@@ -113,3 +114,23 @@ class AntRoughCurriculumEnvCfg(AntRoughEnvCfg):
             sub_terrains=gen.sub_terrains,
         )
         self.scene.terrain.max_init_terrain_level = 2
+
+
+@configclass
+class AntRoughStableRewardsCfg(RewardsCfg):
+    """Baseline reward terms + two stability penalties (training only; evaluation uses the baseline terms).
+
+    V1 learned a hopping gait that scores well on blocks but lands badly and flips on long flat stretches
+    (Eval-Flat fall rate 89%, torso z mean 0.71 / min 0.32). These penalize the vertical bounce and the roll/pitch
+    rates that precede a flip.
+    """
+
+    lin_vel_z = RewTerm(func=mdp.lin_vel_z_l2, weight=-0.1)
+    ang_vel_xy = RewTerm(func=mdp.ang_vel_xy_l2, weight=-0.02)
+
+
+@configclass
+class AntRoughStableEnvCfg(AntRoughEnvCfg):
+    """V4: V1 (same terrain mix and friction randomization) + anti-hop stability penalties."""
+
+    rewards: AntRoughStableRewardsCfg = AntRoughStableRewardsCfg()

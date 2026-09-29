@@ -86,6 +86,9 @@ def _rollout(env: RslRlVecEnvWrapper, policy) -> tuple[dict, dict[str, float]]:
     x_last = x_start.clone()
     y_last = robot.data.root_pos_w[:, 1].clone()
     z_last = robot.data.root_pos_w[:, 2].clone()
+    z_sum = torch.zeros(n, dtype=torch.float64, device=env.device)
+    z_min = torch.full((n,), float("inf"), device=env.device)
+    speed_sum = torch.zeros(n, dtype=torch.float64, device=env.device)
     for _ in range(int(base_env.max_episode_length) + 1):
         actions = policy(obs)
         obs, rewards, dones, extras = env.step(actions)
@@ -99,6 +102,10 @@ def _rollout(env: RslRlVecEnvWrapper, policy) -> tuple[dict, dict[str, float]]:
         x_last[still] = robot.data.root_pos_w[still, 0]
         y_last[still] = robot.data.root_pos_w[still, 1]
         z_last[still] = robot.data.root_pos_w[still, 2]
+        # torso height (world z) and forward speed statistics over the steps each env is still running
+        z_sum[still] += robot.data.root_pos_w[still, 2].double()
+        z_min[still] = torch.minimum(z_min[still], robot.data.root_pos_w[still, 2])
+        speed_sum[still] += robot.data.root_lin_vel_w[still, 0].double()
         fell |= active & done & ~time_outs
         finished |= done
         if finished.all():
@@ -110,6 +117,9 @@ def _rollout(env: RslRlVecEnvWrapper, policy) -> tuple[dict, dict[str, float]]:
         "fell": fell.cpu().numpy(),
         "x_start": x_start.cpu().numpy(),
         "xyz_last": torch.stack([x_last, y_last, z_last], dim=-1).cpu().numpy(),
+        "z_mean": (z_sum / steps.clamp(min=1)).cpu().numpy(),
+        "z_min": z_min.cpu().numpy(),
+        "vx_mean": (speed_sum / steps.clamp(min=1)).cpu().numpy(),
     }
     return per_env, {
         "reward_mean": rewards_sum.mean().item(),
