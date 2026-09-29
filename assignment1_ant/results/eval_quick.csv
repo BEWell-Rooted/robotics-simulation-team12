@@ -1,0 +1,7 @@
+task,split,checkpoint,seed,num_envs,reward_mean,reward_std,steps_mean,fall_rate,x_dist_mean,x_dist_std
+Isaac-Ant-Eval-Flat-v0,ID,baseline,24,256,57.8907,31.656,753.6445,0.3906,57.3113,31.4808
+Isaac-Ant-Eval-Flat-v0,ID,v1,24,256,22.4995,17.3764,447.4883,0.8906,20.814,16.195
+Isaac-Ant-Eval-Flat-v0,ID,v3,24,256,41.5025,20.2709,803.2344,0.2578,39.2858,19.5722
+Isaac-Ant-Eval-Grid-v0,ID,baseline,24,256,5.4477,3.5054,809.707,0.2734,3.2549,2.4411
+Isaac-Ant-Eval-Grid-v0,ID,v1,24,256,48.8932,18.8886,872.5312,0.1719,45.378,17.3907
+Isaac-Ant-Eval-Grid-v0,ID,v3,24,256,16.3974,9.256,824.332,0.1914,13.7798,8.1481

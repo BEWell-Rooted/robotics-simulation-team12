@@ -1,0 +1,5 @@
+task,split,checkpoint,seed,num_envs,reward_mean,reward_std,steps_mean,fall_rate,x_dist_mean,x_dist_std
+Isaac-Ant-v0,plane,baseline,24,256,129.8343,35.8761,899.7148,0.0703,131.496,36.4755
+Isaac-Ant-v0,plane,v1,24,256,70.7321,27.0182,824.8125,0.2422,67.3661,25.79
+Isaac-Ant-v0,plane,v4,24,256,64.6515,29.8306,767.0039,0.3828,62.018,28.8307
+Isaac-Ant-v0,plane,v2,24,256,78.345,21.6405,896.9609,0.1094,77.5141,21.4244
