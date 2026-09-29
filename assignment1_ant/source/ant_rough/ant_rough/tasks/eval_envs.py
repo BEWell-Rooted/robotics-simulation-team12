@@ -95,6 +95,32 @@ EVAL_SPECS: dict[str, tuple[str, dict, str]] = {
         dict(sub_terrain=terrain_gen.HfWaveTerrainCfg(proportion=1.0, amplitude_range=(0.1, 0.1), num_waves=4)),
         "sinusoidal waves, amplitude 0.1 m (type never trained)",
     ),
+    # held out from every training mix, including V5 (which adds stairs)
+    "Boxes": (
+        "OOD",
+        dict(
+            sub_terrain=terrain_gen.MeshRepeatedBoxesTerrainCfg(
+                proportion=1.0,
+                platform_width=1.5,
+                object_params_start=terrain_gen.MeshRepeatedBoxesTerrainCfg.ObjectCfg(
+                    num_objects=60, height=0.08, size=(0.5, 0.5), max_yx_angle=30.0, degrees=True
+                ),
+                object_params_end=terrain_gen.MeshRepeatedBoxesTerrainCfg.ObjectCfg(
+                    num_objects=60, height=0.08, size=(0.5, 0.5), max_yx_angle=30.0, degrees=True
+                ),
+            )
+        ),
+        "60 scattered boxes 0.5 m, h 0.08, tilted up to 30 deg (type never trained)",
+    ),
+    "Rails": (
+        "OOD",
+        dict(
+            sub_terrain=terrain_gen.MeshRailsTerrainCfg(
+                proportion=1.0, rail_thickness_range=(0.3, 0.3), rail_height_range=(0.08, 0.08), platform_width=2.0
+            )
+        ),
+        "square rails h 0.08 around each tile center (type never trained)",
+    ),
 }
 
 assert {k: v[0] for k, v in EVAL_SPECS.items()} == EVAL_SPLITS, "eval_names.EVAL_SPLITS out of sync with EVAL_SPECS"

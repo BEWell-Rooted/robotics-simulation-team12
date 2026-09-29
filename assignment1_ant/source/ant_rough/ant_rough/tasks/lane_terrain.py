@@ -43,6 +43,23 @@ class LaneTerrainGenerator(TerrainGenerator):
         spawn_cols = np.arange(cfg.num_cols) % cfg.num_spawn_cols
         self.terrain_origins = self.terrain_origins[:, spawn_cols].copy()
 
+    def _generate_curriculum_terrains(self):
+        if not self.cfg.random_tile_types:
+            return super()._generate_curriculum_terrains()
+        # difficulty per row (lane) as in the base class, but the sub-terrain type is drawn per tile by proportion.
+        # The base class assigns one type per column in proportion order, which along an x-lane puts the same type
+        # sequence in every lane (e.g. all flat tiles at the far end, rarely reached from the spawn segments).
+        cfgs = list(self.cfg.sub_terrains.values())
+        proportions = np.array([c.proportion for c in cfgs], dtype=float)
+        proportions /= proportions.sum()
+        lower, upper = self.cfg.difficulty_range
+        for sub_col in range(self.cfg.num_cols):
+            for sub_row in range(self.cfg.num_rows):
+                difficulty = lower + (upper - lower) * (sub_row + self.np_rng.uniform()) / self.cfg.num_rows
+                sub_cfg = cfgs[self.np_rng.choice(len(cfgs), p=proportions)]
+                mesh, origin = self._get_terrain_mesh(difficulty, sub_cfg)
+                self._add_sub_terrain(mesh, origin, sub_row, sub_col, sub_cfg)
+
     def _add_sub_terrain(self, mesh: trimesh.Trimesh, origin: np.ndarray, row: int, col: int, sub_terrain_cfg):
         # same as the base class with the placement axes swapped (column along x, row/level along y)
         transform = np.eye(4)
@@ -68,6 +85,8 @@ class LaneTerrainGeneratorCfg(TerrainGeneratorCfg):
     curriculum: bool = True
     num_spawn_cols: int = 4
     """Robots spawn in the first ``num_spawn_cols`` segments (x) of their lane."""
+    random_tile_types: bool = False
+    """Draw the sub-terrain type per tile (True) instead of one type per column in proportion order (base class)."""
 
 
 def terrain_levels_progress(

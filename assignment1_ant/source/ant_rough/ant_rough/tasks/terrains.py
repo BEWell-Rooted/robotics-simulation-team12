@@ -56,3 +56,38 @@ ANT_ROUGH_TERRAINS_CFG = TerrainGeneratorCfg(
     },
 )
 """Mixed rough terrain for V1 (plain domain randomization): every tile draws a random type and difficulty."""
+
+
+ANT_ROUGH_V5_SUB_TERRAINS = {
+    "grid_fine": terrain_gen.MeshRandomGridTerrainCfg(
+        proportion=0.12, grid_width=0.3, grid_height_range=(0.01, 0.07), platform_width=1.5
+    ),
+    "grid_mid": terrain_gen.MeshRandomGridTerrainCfg(
+        proportion=0.15, grid_width=0.45, grid_height_range=(0.02, 0.10), platform_width=1.5
+    ),
+    "grid_coarse": terrain_gen.MeshRandomGridTerrainCfg(
+        proportion=0.12, grid_width=0.95, grid_height_range=(0.02, 0.12), platform_width=1.5
+    ),
+    "uniform_noise": terrain_gen.HfRandomUniformTerrainCfg(
+        proportion=0.10, noise_range=(0.0, 0.06), noise_step=0.01, downsampled_scale=0.2
+    ),
+    "obstacles": terrain_gen.HfDiscreteObstaclesTerrainCfg(
+        proportion=0.08,
+        obstacle_height_mode="choice",
+        obstacle_width_range=(0.3, 1.0),
+        obstacle_height_range=(0.03, 0.12),
+        num_obstacles=40,
+        platform_width=1.5,
+    ),
+    "slope": terrain_gen.HfPyramidSlopedTerrainCfg(proportion=0.08, slope_range=(0.0, 0.25), platform_width=2.0),
+    # new in V5: stairs (up toward the tile center, then down), two tread widths
+    "stairs": terrain_gen.MeshPyramidStairsTerrainCfg(
+        proportion=0.08, step_height_range=(0.02, 0.08), step_width=0.4, platform_width=2.0
+    ),
+    "stairs_narrow": terrain_gen.MeshPyramidStairsTerrainCfg(
+        proportion=0.07, step_height_range=(0.02, 0.07), step_width=0.3, platform_width=2.0
+    ),
+    # more flat than V1/V2 (0.15 -> 0.20): long flat mesh stretches were the main failure mode
+    "flat": terrain_gen.MeshPlaneTerrainCfg(proportion=0.20),
+}
+"""V5 mix: V1/V2 terrain families + pyramid stairs, more flat. Tile types are drawn per tile (see lane_terrain)."""

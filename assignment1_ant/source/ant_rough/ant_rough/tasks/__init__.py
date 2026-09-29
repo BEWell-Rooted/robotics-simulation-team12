@@ -48,6 +48,16 @@ gym.register(
     },
 )
 
+gym.register(
+    id="Isaac-Ant-Rough-V5-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    disable_env_checker=True,
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.ant_rough_env_cfg:AntRoughV5EnvCfg",
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:AntRoughPPORunnerCfg",
+    },
+)
+
 ##
 # Self-made unseen evaluation environments: Isaac-Ant-Eval-<Name>-v0 (see eval_envs.py)
 ##

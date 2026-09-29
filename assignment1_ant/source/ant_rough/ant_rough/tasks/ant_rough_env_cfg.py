@@ -19,7 +19,7 @@ import isaaclab_tasks.manager_based.classic.humanoid.mdp as mdp
 from isaaclab_tasks.manager_based.classic.ant.ant_env_cfg import AntEnvCfg, EventCfg, RewardsCfg
 
 from .lane_terrain import LaneTerrainGeneratorCfg, terrain_levels_progress
-from .terrains import ANT_ROUGH_TERRAINS_CFG
+from .terrains import ANT_ROUGH_TERRAINS_CFG, ANT_ROUGH_V5_SUB_TERRAINS
 
 
 @configclass
@@ -134,3 +134,35 @@ class AntRoughStableEnvCfg(AntRoughEnvCfg):
     """V4: V1 (same terrain mix and friction randomization) + anti-hop stability penalties."""
 
     rewards: AntRoughStableRewardsCfg = AntRoughStableRewardsCfg()
+
+
+@configclass
+class AntRoughV5EventCfg(EventCfg):
+    """Wider friction than V1/V2: an evaluation-style ground (mu 1.0, static = dynamic) sat near the top of the
+    old range, where make_consistent (dynamic <= static) made high dynamic friction rare."""
+
+    robot_friction = EventTerm(
+        func=mdp.randomize_rigid_body_material,
+        mode="startup",
+        params={
+            "asset_cfg": SceneEntityCfg("robot", body_names=".*"),
+            "static_friction_range": (0.2, 2.0),
+            "dynamic_friction_range": (0.2, 2.0),
+            "restitution_range": (0.0, 0.1),
+            "num_buckets": 64,
+            "make_consistent": True,
+        },
+    )
+
+
+@configclass
+class AntRoughV5EnvCfg(AntRoughCurriculumEnvCfg):
+    """V5: V2's lane curriculum + per-tile random terrain types + stairs + more flat + wider friction."""
+
+    events: AntRoughV5EventCfg = AntRoughV5EventCfg()
+
+    def __post_init__(self):
+        super().__post_init__()
+        gen = self.scene.terrain.terrain_generator
+        gen.sub_terrains = ANT_ROUGH_V5_SUB_TERRAINS
+        gen.random_tile_types = True

@@ -13,6 +13,8 @@ EVAL_SPLITS = {
     "GridLowMu": "OOD",
     "GridHighMu": "OOD",
     "FlatIce": "OOD",
-    "Stairs": "OOD",
+    "Stairs": "OOD",  # unseen for V1-V4; V5 trains on stairs (step 0.02-0.08) -> in-distribution for V5
     "Wave": "OOD",
+    "Boxes": "OOD",
+    "Rails": "OOD",
 }
