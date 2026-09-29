@@ -1,0 +1,17 @@
+[package]
+version = "0.1.0"
+title = "Ant Rough — robust Ant locomotion on unseen terrains"
+description = "Isaac-Ant-v0 variants with terrain/friction randomization (Robotics Simulation, team 12, assignment 1)."
+author = "Robotics Simulation Team 12"
+maintainer = "Robotics Simulation Team 12"
+repository = "https://github.com/BEWell-Rooted/robotics-simulation-team12"
+keywords = ["isaaclab", "ant", "locomotion", "rough-terrain", "domain-randomization"]
+
+[dependencies]
+"isaaclab" = {}
+"isaaclab_assets" = {}
+"isaaclab_tasks" = {}
+"isaaclab_rl" = {}
+
+[[python.module]]
+name = "ant_rough"
