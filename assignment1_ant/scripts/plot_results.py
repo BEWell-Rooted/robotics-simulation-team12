@@ -36,7 +36,7 @@ ENTITY_LABELS = {
     "v2": "V2 Curriculum",
     "v3": "V3 Fine-tune",
     "v4": "V4 DR + stability",
-    "v5": "V5",
+    "v5": "V5 Curr + stairs",
     "final": "Final",
 }
 SURFACE = "#fcfcfb"
@@ -60,11 +60,26 @@ def style_axes(ax):
 
 
 def load_eval(csv_paths):
-    acc = defaultdict(list)  # (task, split, ckpt) -> rows
+    """(task, split, variant) -> list of per-checkpoint rows averaged over eval seeds.
+
+    Checkpoints named ``<variant>_s<seed>`` (training-seed replicates) are grouped under ``<variant>``, so a bar is
+    the mean over training seeds and its error bar the spread across them (across eval seeds if only one).
+    """
+    per_ckpt = defaultdict(list)  # (task, split, ckpt) -> rows over eval seeds
     for p in csv_paths:
         with open(p) as f:
             for row in csv.DictReader(f):
-                acc[(row["task"], row["split"], row["checkpoint"])].append(row)
+                per_ckpt[(row["task"], row["split"], row["checkpoint"])].append(row)
+    acc = defaultdict(list)
+    for (task, split, ckpt), rows in per_ckpt.items():
+        variant = ckpt.split("_s")[0]
+        if len(rows) > 1 and not any(ckpt.split("_s")[0] == c.split("_s")[0] and c != ckpt
+                                     for (t, s, c) in per_ckpt if (t, s) == (task, split)):  # fmt: skip
+            acc[(task, split, variant)].extend(rows)  # single training seed: keep eval-seed spread
+        else:
+            acc[(task, split, variant)].append(
+                {k: str(np.mean([float(r[k]) for r in rows])) for k in ("reward_mean", "fall_rate")}
+            )
     return acc
 
 
@@ -168,7 +183,7 @@ def main():
     present = {c for _, _, c in acc}
     ckpts = args.ckpts or [c for c in ENTITY_COLORS if c in present]
     grouped_bars(acc, "reward_mean", "episode reward (first episode)",
-                 "Episode reward on self-made evaluation terrains (mean ± sd over 3 seeds, 256 envs each)",
+                 "Episode reward on self-made evaluation terrains (mean ± sd over training seeds; 3 eval seeds × 256 envs each)",
                  os.path.join(args.out, "eval_reward.png"), ckpts)  # fmt: skip
     grouped_bars(acc, "fall_rate", "fall rate (%)", "Early termination (fall) rate on evaluation terrains",
                  os.path.join(args.out, "eval_fall_rate.png"), ckpts, percent=True)  # fmt: skip
