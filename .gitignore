@@ -1,0 +1,20 @@
+# 수업 자료 (재배포 금지 — 로컬 전용)
+classmaterial/
+
+# IsaacLab / 학습 산출물
+logs/
+outputs/
+videos/
+*.mp4
+wandb/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+.eggs/
+
+# 편집기
+.vscode/
+.idea/
