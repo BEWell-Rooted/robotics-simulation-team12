@@ -8,6 +8,7 @@ high enough on uneven ground instead of learning a relative-height signal it wil
 """
 
 import isaaclab.sim as sim_utils
+from isaaclab.managers import CurriculumTermCfg as CurrTerm
 from isaaclab.managers import EventTermCfg as EventTerm
 from isaaclab.managers import SceneEntityCfg
 from isaaclab.terrains import TerrainImporterCfg
@@ -16,6 +17,7 @@ from isaaclab.utils import configclass
 import isaaclab_tasks.manager_based.classic.humanoid.mdp as mdp
 from isaaclab_tasks.manager_based.classic.ant.ant_env_cfg import AntEnvCfg, EventCfg
 
+from .lane_terrain import LaneTerrainGeneratorCfg, terrain_levels_progress
 from .terrains import ANT_ROUGH_TERRAINS_CFG
 
 
@@ -77,3 +79,37 @@ class AntRoughEnvCfg_PLAY(AntRoughEnvCfg):
         # smaller terrain for quick visual checks
         self.scene.terrain.terrain_generator.num_rows = 20
         self.scene.terrain.terrain_generator.num_cols = 4
+
+
+@configclass
+class AntRoughCurriculumCfg:
+    terrain_levels = CurrTerm(func=terrain_levels_progress, params={"up_distance": 60.0, "down_distance": 20.0})
+
+
+@configclass
+class AntRoughCurriculumEnvCfg(AntRoughEnvCfg):
+    """V2: same terrain mix and friction randomization as V1, arranged as difficulty lanes with a progress curriculum.
+
+    10 lanes (levels) of 20 x 8 m segments each; a robot starts in lanes 0-2 and moves one lane up after running
+    > 60 m toward +x in an episode, one lane down after < 20 m.
+    """
+
+    curriculum: AntRoughCurriculumCfg = AntRoughCurriculumCfg()
+
+    def __post_init__(self):
+        super().__post_init__()
+        gen = ANT_ROUGH_TERRAINS_CFG
+        self.scene.terrain.terrain_generator = LaneTerrainGeneratorCfg(
+            size=gen.size,
+            border_width=gen.border_width,
+            num_rows=10,
+            num_cols=20,
+            num_spawn_cols=4,
+            horizontal_scale=gen.horizontal_scale,
+            vertical_scale=gen.vertical_scale,
+            slope_threshold=gen.slope_threshold,
+            difficulty_range=gen.difficulty_range,
+            use_cache=False,
+            sub_terrains=gen.sub_terrains,
+        )
+        self.scene.terrain.max_init_terrain_level = 2

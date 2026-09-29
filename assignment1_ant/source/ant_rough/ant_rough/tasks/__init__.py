@@ -27,3 +27,35 @@ gym.register(
         "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:AntRoughPPORunnerCfg",
     },
 )
+
+gym.register(
+    id="Isaac-Ant-Rough-Curriculum-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    disable_env_checker=True,
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.ant_rough_env_cfg:AntRoughCurriculumEnvCfg",
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:AntRoughPPORunnerCfg",
+    },
+)
+
+##
+# Self-made unseen evaluation environments: Isaac-Ant-Eval-<Name>-v0 (see eval_envs.py)
+##
+
+from .eval_envs import EVAL_SPECS, make_eval_cfg
+
+for _name, (_split, _kwargs, _desc) in EVAL_SPECS.items():
+
+    # a plain function (not functools.partial): the cfg loader calls inspect.getfile() on callable entry points
+    def _make_cfg(_kwargs=_kwargs):
+        return make_eval_cfg(**_kwargs)
+
+    gym.register(
+        id=f"Isaac-Ant-Eval-{_name}-v0",
+        entry_point="isaaclab.envs:ManagerBasedRLEnv",
+        disable_env_checker=True,
+        kwargs={
+            "env_cfg_entry_point": _make_cfg,
+            "rsl_rl_cfg_entry_point": "isaaclab_tasks.manager_based.classic.ant.agents.rsl_rl_ppo_cfg:AntPPORunnerCfg",
+        },
+    )
