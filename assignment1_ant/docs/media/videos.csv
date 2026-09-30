@@ -1,0 +1,8 @@
+clip,task,checkpoint,seed,reward,steps
+baseline_plane,Isaac-Ant-v0,baseline_flat/model_999.pt,24,140.13,960
+baseline_grid,Isaac-Ant-Eval-Grid-v0,baseline_flat/model_999.pt,24,7.695305,960
+v1_flat_hop_fail,Isaac-Ant-Eval-Flat-v0,v1_dr_mix_s42/model_2999.pt,24,3.47,93
+v2_grid,Isaac-Ant-Eval-Grid-v0,2026-09-29_19-13-05_v2_curr_mix_s44/model_2999.pt,24,67.405211,960
+v2_rails,Isaac-Ant-Eval-Rails-v0,2026-09-29_19-13-05_v2_curr_mix_s44/model_2999.pt,24,74.598457,960
+v2_plane,Isaac-Ant-v0,2026-09-29_19-13-05_v2_curr_mix_s44/model_2999.pt,24,92.556736,960
+v2_flat_fail,Isaac-Ant-Eval-Flat-v0,2026-09-29_19-13-05_v2_curr_mix_s44/model_2999.pt,26,16.000512,274
