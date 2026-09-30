@@ -18,6 +18,7 @@ from isaaclab.terrains import SubTerrainBaseCfg, TerrainGeneratorCfg, TerrainImp
 
 from isaaclab_tasks.manager_based.classic.ant.ant_env_cfg import AntEnvCfg
 
+from .custom_terrains import MeshSlopedGridTerrainCfg
 from .eval_names import EVAL_SPLITS
 
 
@@ -120,6 +121,32 @@ EVAL_SPECS: dict[str, tuple[str, dict, str]] = {
             )
         ),
         "square rails h 0.08 around each tile center (type never trained)",
+    ),
+    # report-only held-out (never used for checkpoint selection, see scripts/select_checkpoint.py)
+    "SlopedGrid": (
+        "REPORT",
+        dict(
+            sub_terrain=MeshSlopedGridTerrainCfg(
+                proportion=1.0, grid_width=0.45, grid_height_range=(0.06, 0.06), platform_width=1.5, slope=0.08
+            )
+        ),
+        "blocks w0.45 h+-0.06 on a pyramid slope 0.08 (blocks + slope mixed; never trained)",
+    ),
+    "Pyramids": (
+        "REPORT",
+        dict(
+            sub_terrain=terrain_gen.MeshRepeatedPyramidsTerrainCfg(
+                proportion=1.0,
+                platform_width=1.5,
+                object_params_start=terrain_gen.MeshRepeatedPyramidsTerrainCfg.ObjectCfg(
+                    num_objects=50, height=0.10, radius=0.5, max_yx_angle=20.0, degrees=True
+                ),
+                object_params_end=terrain_gen.MeshRepeatedPyramidsTerrainCfg.ObjectCfg(
+                    num_objects=50, height=0.10, radius=0.5, max_yx_angle=20.0, degrees=True
+                ),
+            )
+        ),
+        "50 scattered pyramids r0.5 h0.10, tilted up to 20 deg (never trained)",
     ),
 }
 

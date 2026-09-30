@@ -15,6 +15,11 @@ EVAL_SPLITS = {
     "FlatIce": "OOD",
     "Stairs": "OOD",  # unseen for V1-V4; V5 trains on stairs (step 0.02-0.08) -> in-distribution for V5
     "Wave": "OOD",
-    "Boxes": "OOD",
+    "Boxes": "OOD",  # also the checkpoint-SELECTION held-out set (with Rails), see scripts/select_checkpoint.py
     "Rails": "OOD",
+    # REPORT: held-out terrains used only for final reporting, never for selecting checkpoints
+    "SlopedGrid": "REPORT",
+    "Pyramids": "REPORT",
 }
+SELECTION_TASKS = ["Boxes", "Rails"]
+REPORT_TASKS = ["SlopedGrid", "Pyramids"]

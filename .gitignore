@@ -19,3 +19,6 @@ build/
 # 편집기
 .vscode/
 .idea/
+
+# 진단용 wrench 표본 원본 (대용량) — 요약은 results/diag_force_stats_summary.csv
+assignment1_ant/results/diag_force_stats/

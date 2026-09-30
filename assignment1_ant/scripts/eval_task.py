@@ -33,6 +33,15 @@ parser.add_argument("--seeds", type=int, nargs="+", default=[24])
 parser.add_argument("--split", type=str, default="", help="ID / OOD label written to the CSV")
 parser.add_argument("--out", type=str, required=True, help="CSV file to append to")
 parser.add_argument("--dump_dir", type=str, default=None, help="also save per-env arrays (.npz) here")
+# --- diagnosis options (docs/01_improvement_plan_0930.md, section 2); defaults leave the task unchanged ---
+parser.add_argument("--cond", type=str, default="", help="free-form condition label written to the CSV")
+parser.add_argument("--min_height", type=float, default=None, help="override torso_height termination threshold")
+parser.add_argument("--ground_friction", type=float, default=None, help="override ground static=dynamic friction")
+parser.add_argument("--ground_combine", type=str, default=None, help="override ground friction combine mode")
+parser.add_argument("--force_obs", choices=["none", "clip", "zero"], default="none",
+                    help="modify the 24-dim feet_body_forces observation before the policy sees it")  # fmt: skip
+parser.add_argument("--force_clip_dir", type=str, default=None, help="dir with <ckpt>.npz 'p99' bounds for clip")
+parser.add_argument("--obs_stats_dir", type=str, default=None, help="save feet_body_forces statistics per ckpt")
 cli_args.add_rsl_rl_args(parser)
 AppLauncher.add_app_launcher_args(parser)
 args_cli, hydra_args = parser.parse_known_args()
@@ -63,17 +72,23 @@ import ant_rough.tasks  # noqa: F401
 CSV_FIELDS = [
     "task", "split", "checkpoint", "seed", "num_envs",
     "reward_mean", "reward_std", "steps_mean", "fall_rate", "x_dist_mean", "x_dist_std",
+    "cond", "fall_upright_rate",
 ]  # fmt: skip
+FORCE_SLICE = slice(28, 52)  # feet_body_forces inside the 60-dim policy obs (see docs/00_codebase_notes.md, 2)
+UPRIGHT_COS = 0.7  # a fall with torso up-projection >= this counts as "upright but too low", else "tipped over"
 
 
-def run_first_episodes(env: RslRlVecEnvWrapper, policy) -> tuple[dict, dict[str, float]]:
-    """Reset all envs and roll out until every env has finished its first episode."""
+def run_first_episodes(env: RslRlVecEnvWrapper, policy, force_bound=None) -> tuple[dict, dict[str, float]]:
+    """Reset all envs and roll out until every env has finished its first episode.
+
+    ``force_bound``: None (unchanged), 0 (zero the force obs) or a (24,) tensor of |x| bounds to clip to.
+    """
     # everything (including reset) in inference mode: env buffers touched by step() become inference tensors
     with torch.inference_mode():
-        return _rollout(env, policy)
+        return _rollout(env, policy, force_bound)
 
 
-def _rollout(env: RslRlVecEnvWrapper, policy) -> tuple[dict, dict[str, float]]:
+def _rollout(env: RslRlVecEnvWrapper, policy, force_bound=None) -> tuple[dict, dict[str, float]]:
     base_env = env.unwrapped
     robot = base_env.scene["robot"]
     obs, _ = env.reset()
@@ -89,7 +104,17 @@ def _rollout(env: RslRlVecEnvWrapper, policy) -> tuple[dict, dict[str, float]]:
     z_sum = torch.zeros(n, dtype=torch.float64, device=env.device)
     z_min = torch.full((n,), float("inf"), device=env.device)
     speed_sum = torch.zeros(n, dtype=torch.float64, device=env.device)
-    for _ in range(int(base_env.max_episode_length) + 1):
+    up_last = torch.ones(n, device=env.device)
+    force_samples = []
+    for step in range(int(base_env.max_episode_length) + 1):
+        active_now = ~finished
+        if step % 4 == 0 and active_now.any():
+            force_samples.append(obs["policy"][active_now, FORCE_SLICE].clone())
+        if force_bound is not None:
+            f = obs["policy"][:, FORCE_SLICE]
+            obs["policy"][:, FORCE_SLICE] = torch.zeros_like(f) if isinstance(force_bound, int) else f.clamp(
+                -force_bound, force_bound
+            )
         actions = policy(obs)
         obs, rewards, dones, extras = env.step(actions)
         active = ~finished
@@ -106,6 +131,7 @@ def _rollout(env: RslRlVecEnvWrapper, policy) -> tuple[dict, dict[str, float]]:
         z_sum[still] += robot.data.root_pos_w[still, 2].double()
         z_min[still] = torch.minimum(z_min[still], robot.data.root_pos_w[still, 2])
         speed_sum[still] += robot.data.root_lin_vel_w[still, 0].double()
+        up_last[still] = -robot.data.projected_gravity_b[still, 2]
         fell |= active & done & ~time_outs
         finished |= done
         if finished.all():
@@ -120,6 +146,8 @@ def _rollout(env: RslRlVecEnvWrapper, policy) -> tuple[dict, dict[str, float]]:
         "z_mean": (z_sum / steps.clamp(min=1)).cpu().numpy(),
         "z_min": z_min.cpu().numpy(),
         "vx_mean": (speed_sum / steps.clamp(min=1)).cpu().numpy(),
+        "up_last": up_last.cpu().numpy(),
+        "force_samples": torch.cat(force_samples).cpu().numpy() if force_samples else np.zeros((0, 24)),
     }
     return per_env, {
         "reward_mean": rewards_sum.mean().item(),
@@ -128,6 +156,7 @@ def _rollout(env: RslRlVecEnvWrapper, policy) -> tuple[dict, dict[str, float]]:
         "fall_rate": fell.double().mean().item(),
         "x_dist_mean": x_dist.mean().item(),
         "x_dist_std": x_dist.std(unbiased=False).item(),
+        "fall_upright_rate": (fell & (up_last >= UPRIGHT_COS)).double().mean().item(),
     }
 
 
@@ -138,7 +167,19 @@ def main(env_cfg: ManagerBasedRLEnvCfg, agent_cfg: RslRlBaseRunnerCfg):
     env_cfg.seed = args_cli.seeds[0]
     env_cfg.sim.device = args_cli.device if args_cli.device is not None else env_cfg.sim.device
 
+    if args_cli.min_height is not None:
+        env_cfg.terminations.torso_height.params["minimum_height"] = args_cli.min_height
+    mat = env_cfg.scene.terrain.physics_material
+    if args_cli.ground_friction is not None:
+        mat.static_friction = mat.dynamic_friction = args_cli.ground_friction
+    if args_cli.ground_combine is not None:
+        mat.friction_combine_mode = args_cli.ground_combine
+
     env = RslRlVecEnvWrapper(gym.make(args_cli.task, cfg=env_cfg), clip_actions=agent_cfg.clip_actions)
+    # robot shape materials (static, dynamic, restitution) of env 0: needed to read the effective contact friction
+    robot_mat = env.unwrapped.scene["robot"].root_physx_view.get_material_properties()[0]
+    print(f"[EVAL] ground material: {mat.static_friction}/{mat.dynamic_friction} ({mat.friction_combine_mode}), "
+          f"robot shape materials (first 3): {robot_mat[:3].tolist()}", flush=True)  # fmt: skip
 
     os.makedirs(os.path.dirname(os.path.abspath(args_cli.out)), exist_ok=True)
     write_header = not os.path.exists(args_cli.out)
@@ -151,17 +192,33 @@ def main(env_cfg: ManagerBasedRLEnvCfg, agent_cfg: RslRlBaseRunnerCfg):
             runner = OnPolicyRunner(env, agent_cfg.to_dict(), log_dir=None, device=agent_cfg.device)
             runner.load(os.path.abspath(path))  # strict: fails if the network differs from the task's config
             policy = runner.get_inference_policy(device=env.unwrapped.device)
+            force_bound = None
+            if args_cli.force_obs == "zero":
+                force_bound = 0
+            elif args_cli.force_obs == "clip":
+                bound = np.load(os.path.join(args_cli.force_clip_dir, f"{name}.npz"))["p99"]
+                force_bound = torch.tensor(bound, dtype=torch.float, device=env.unwrapped.device)
+            all_forces = []
             for seed in args_cli.seeds:
                 env.unwrapped.seed(seed)
-                per_env, stats = run_first_episodes(env, policy)
+                per_env, stats = run_first_episodes(env, policy, force_bound)
+                all_forces.append(per_env.pop("force_samples"))
                 if args_cli.dump_dir:
                     os.makedirs(args_cli.dump_dir, exist_ok=True)
                     np.savez(os.path.join(args_cli.dump_dir, f"{args_cli.task}__{name}__s{seed}.npz"), **per_env)
                 row = {"task": args_cli.task, "split": args_cli.split, "checkpoint": name, "seed": seed,
-                       "num_envs": env.num_envs, **{k: round(v, 4) for k, v in stats.items()}}  # fmt: skip
+                       "num_envs": env.num_envs, "cond": args_cli.cond,
+                       **{k: round(v, 4) for k, v in stats.items()}}  # fmt: skip
                 writer.writerow(row)
                 f.flush()
                 print(f"[EVAL] {row}", flush=True)
+            if args_cli.obs_stats_dir:
+                # statistics of the observation the policy would receive (before any clip/zero)
+                x = np.abs(np.concatenate(all_forces))
+                os.makedirs(args_cli.obs_stats_dir, exist_ok=True)
+                idx = np.random.default_rng(0).choice(len(x), size=min(len(x), 20000), replace=False)
+                np.savez(os.path.join(args_cli.obs_stats_dir, f"{name}.npz"), mean=x.mean(0),
+                         p99=np.percentile(x, 99, axis=0), max=x.max(0), sample=x[idx])  # fmt: skip
 
     env.close()
 

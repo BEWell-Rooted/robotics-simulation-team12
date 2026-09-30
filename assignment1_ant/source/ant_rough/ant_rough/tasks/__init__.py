@@ -79,3 +79,26 @@ for _name, (_split, _kwargs, _desc) in EVAL_SPECS.items():
             "rsl_rl_cfg_entry_point": "isaaclab_tasks.manager_based.classic.ant.agents.rsl_rl_ppo_cfg:AntPPORunnerCfg",
         },
     )
+
+
+##
+# Diagnosis-only: identical block strip as box primitives vs one triangle mesh (see diag_envs.py)
+##
+
+from .diag_envs import make_box_mesh_cfg, make_box_mesh_flat_cfg, make_box_prim_cfg, make_box_prim_flat_cfg
+
+for _name, _factory in (
+    ("BoxPrim", make_box_prim_cfg),
+    ("BoxMesh", make_box_mesh_cfg),
+    ("BoxPrimFlat", make_box_prim_flat_cfg),
+    ("BoxMeshFlat", make_box_mesh_flat_cfg),
+):
+    gym.register(
+        id=f"Isaac-Ant-Diag-{_name}-v0",
+        entry_point="isaaclab.envs:ManagerBasedRLEnv",
+        disable_env_checker=True,
+        kwargs={
+            "env_cfg_entry_point": _factory,
+            "rsl_rl_cfg_entry_point": "isaaclab_tasks.manager_based.classic.ant.agents.rsl_rl_ppo_cfg:AntPPORunnerCfg",
+        },
+    )
