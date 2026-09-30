@@ -4,7 +4,7 @@
 
 | 폴더 | 내용 |
 |---|---|
-| `assignment1_ant/` | 실습 과제 1 — 처음 보는 환경에서도 잘 걷는 Ant (Isaac-Ant-v0, RSL-RL PPO) |
+| [`assignment1_ant/`](assignment1_ant/README.md) | 실습 과제 1 — 처음 보는 환경에서도 잘 걷는 Ant (Isaac-Ant-v0, RSL-RL PPO). 마감 10.06, 진행 중 (중간 보고 10.01) |
 
 ## 공통 환경
 

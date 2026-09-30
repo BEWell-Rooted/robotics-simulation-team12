@@ -1,0 +1,1 @@
+2026-09-29_19-13-05_v2_curr_mix_s44 (Isaac-Ant-Rough-Curriculum-v0, seed 44, iter 2999). Selected by scripts/select_checkpoint.py on Boxes/Rails (results/select_v2_ranking.csv).
