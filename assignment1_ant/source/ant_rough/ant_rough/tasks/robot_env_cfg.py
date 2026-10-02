@@ -200,6 +200,20 @@ class AntV1214RTrainEnvCfg(AntRoughV2REnvCfg):
 
 
 @configclass
+class AntV1214TrainEnvCfg(AntRoughCurriculumEnvCfg):
+    """V1214: V2 terrain (block-heavy lanes) + V12 sensing + V14 skin."""
+
+    events: EventCfg = EventCfg()
+
+    def __post_init__(self):
+        super().__post_init__()
+        add_contact_sensing(self, ContactHistoryObservationsCfg())
+        use_body_material(self)
+        self.scene.terrain.physics_material.friction_combine_mode = "average"
+        self.scene.terrain.physics_material.restitution_combine_mode = "average"
+
+
+@configclass
 class AntV1214DeployEnvCfg(AntEnvCfg):
     def __post_init__(self):
         super().__post_init__()

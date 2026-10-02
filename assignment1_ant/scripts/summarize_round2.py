@@ -20,11 +20,11 @@ ANALYSIS = ["Flat", "Grid", "FlatIce", "GridHighMu", "GridLowMu", "GridNarrow", 
 BLOCKS = ["Grid", "GridHighMu", "GridLowMu", "GridNarrow", "GridTall", "GridWide"]
 REPORT = ["SlopedGrid", "Pyramids"]
 ORDER = ["baseline", "baseline3000", "v1", "v2", "v3", "v4", "v5", "anopromo", "arand", "v2s", "v6c", "v10", "v11",
-         "v2r", "v2rs", "v12", "v12r", "v13", "v14", "v1214r"]  # fmt: skip
+         "v2r", "v2rs", "v12", "v12r", "v13", "v14", "v1214", "v1214r"]  # fmt: skip
 LABEL = {"baseline": "baseline (평지)", "baseline3000": "baseline 3000", "v1": "V1 DR", "v2": "V2 차선 커리큘럼",
          "v3": "V3 파인튜닝", "v4": "V4 안정성 페널티", "v5": "V5", "anopromo": "A-noPromo", "arand": "A-randDiff",
          "v2s": "V2S (+계단)", "v6c": "V6′ CaT 자세", "v10": "V10 push+기울기", "v11": "V11 레벨별 마찰",
-         "v12": "V12 접촉+히스토리", "v2r": "V2R 타일 랜덤", "v2rs": "V2RS (+계단)", "v12r": "V12R (V2R+V12)", "v13": "V13 LSTM", "v14": "V14 외피 μ0.4", "v1214r": "V1214R (V2R+V12+V14)"}  # fmt: skip
+         "v12": "V12 접촉+히스토리", "v2r": "V2R 타일 랜덤", "v2rs": "V2RS (+계단)", "v12r": "V12R (V2R+V12)", "v13": "V13 LSTM", "v14": "V14 외피 μ0.4", "v1214": "V1214 (V2+V12+V14)", "v1214r": "V1214R (V2R+V12+V14)"}  # fmt: skip
 
 
 def parse_ckpt(name, source):

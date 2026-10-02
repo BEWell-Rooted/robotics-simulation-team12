@@ -25,7 +25,7 @@ case "$run" in
   v12_*|v12r_*) deploy=(--deploy_task Isaac-Ant-Deploy-V12-v0) ;;
   v13_*) deploy=(--deploy_task Isaac-Ant-Deploy-V13-v0) ;;
   v14_*) deploy=(--deploy_task Isaac-Ant-Deploy-V14-v0) ;;
-  v1214r_*) deploy=(--deploy_task Isaac-Ant-Deploy-V1214-v0) ;;
+  v1214_*|v1214r_*) deploy=(--deploy_task Isaac-Ant-Deploy-V1214-v0) ;;
 esac
 echo "[AUTO] evaluating $run ($dir, final $final) ${deploy[*]}"
 python scripts/eval_suite.py --out results/eval_round2.csv --seeds 24 25 --num_envs 256 --log_dir logs/eval_round2/"$run" \
