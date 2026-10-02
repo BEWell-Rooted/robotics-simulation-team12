@@ -22,15 +22,15 @@ from .custom_terrains import MeshSlopedGridTerrainCfg
 from .eval_names import EVAL_SPLITS
 
 
-def make_eval_cfg(
-    sub_terrain: SubTerrainBaseCfg,
+def make_eval_terrain(
+    sub_terrain: SubTerrainBaseCfg | None = None,
     friction: float = 1.0,
     combine_mode: str = "average",
     num_cols: int = 4,
-) -> AntEnvCfg:
-    """Isaac-Ant-v0 with one terrain type at fixed difficulty and a given ground friction."""
-    cfg = AntEnvCfg()
-    cfg.scene.terrain = TerrainImporterCfg(
+    sub_terrains: dict[str, SubTerrainBaseCfg] | None = None,
+) -> TerrainImporterCfg:
+    """Evaluation terrain: one terrain type (``sub_terrain``) or a per-tile random mix (``sub_terrains``)."""
+    return TerrainImporterCfg(
         prim_path="/World/ground",
         terrain_type="generator",
         terrain_generator=TerrainGeneratorCfg(
@@ -45,7 +45,7 @@ def make_eval_cfg(
             curriculum=False,
             use_cache=False,
             seed=0,  # identical terrain for every checkpoint
-            sub_terrains={"eval": sub_terrain},
+            sub_terrains=sub_terrains if sub_terrains is not None else {"eval": sub_terrain},
         ),
         max_init_terrain_level=0,
         collision_group=-1,
@@ -58,8 +58,18 @@ def make_eval_cfg(
         ),
         debug_vis=False,
     )
+
+
+def apply_eval_terrain(cfg, **terrain_kwargs):
+    """Swap only the terrain of an Isaac-Ant-v0-style (deploy) config, as the TA does with our task."""
+    cfg.scene.terrain = make_eval_terrain(**terrain_kwargs)
     cfg.sim.physx.gpu_max_rigid_patch_count = 10 * 2**15
     return cfg
+
+
+def make_eval_cfg(base_cfg_cls=AntEnvCfg, **terrain_kwargs) -> AntEnvCfg:
+    """Isaac-Ant-v0 (or another deploy config) with an evaluation terrain."""
+    return apply_eval_terrain(base_cfg_cls(), **terrain_kwargs)
 
 
 def _grid(width: float, height: float) -> SubTerrainBaseCfg:
@@ -151,3 +161,47 @@ EVAL_SPECS: dict[str, tuple[str, dict, str]] = {
 }
 
 assert {k: v[0] for k, v in EVAL_SPECS.items()} == EVAL_SPLITS, "eval_names.EVAL_SPLITS out of sync with EVAL_SPECS"
+
+
+##
+# LOCKED final test environment (docs/02_weekend_plan_1002.md): never used for training, selection or variant
+# comparison; evaluated once with the official protocol (play_one_episode.py --seed 24 --num_envs 100).
+##
+
+TEST_SPECS: dict[str, dict] = {
+    "UnseenMix": dict(
+        sub_terrains={
+            # blocks beyond the training range (train: w 0.3-0.95, h <= 0.12)
+            "blocks_w06_h013": terrain_gen.MeshRandomGridTerrainCfg(
+                proportion=0.2, grid_width=0.6, grid_height_range=(0.13, 0.13), platform_width=1.5
+            ),
+            "pyramids": terrain_gen.MeshRepeatedPyramidsTerrainCfg(
+                proportion=0.2,
+                platform_width=1.5,
+                object_params_start=terrain_gen.MeshRepeatedPyramidsTerrainCfg.ObjectCfg(
+                    num_objects=50, height=0.10, radius=0.5, max_yx_angle=20.0, degrees=True
+                ),
+                object_params_end=terrain_gen.MeshRepeatedPyramidsTerrainCfg.ObjectCfg(
+                    num_objects=50, height=0.10, radius=0.5, max_yx_angle=20.0, degrees=True
+                ),
+            ),
+            "sloped_grid": MeshSlopedGridTerrainCfg(
+                proportion=0.2, grid_width=0.45, grid_height_range=(0.06, 0.06), platform_width=1.5, slope=0.08
+            ),
+            # never evaluated before this test
+            "cylinders": terrain_gen.MeshRepeatedCylindersTerrainCfg(
+                proportion=0.2,
+                platform_width=1.5,
+                object_params_start=terrain_gen.MeshRepeatedCylindersTerrainCfg.ObjectCfg(
+                    num_objects=40, height=0.08, radius=0.3, max_yx_angle=15.0, degrees=True
+                ),
+                object_params_end=terrain_gen.MeshRepeatedCylindersTerrainCfg.ObjectCfg(
+                    num_objects=40, height=0.08, radius=0.3, max_yx_angle=15.0, degrees=True
+                ),
+            ),
+            "flat": terrain_gen.MeshPlaneTerrainCfg(proportion=0.2),
+        },
+        friction=1.0,
+        combine_mode="average",
+    ),
+}

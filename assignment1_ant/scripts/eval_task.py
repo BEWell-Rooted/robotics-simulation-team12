@@ -35,6 +35,8 @@ parser.add_argument("--out", type=str, required=True, help="CSV file to append t
 parser.add_argument("--dump_dir", type=str, default=None, help="also save per-env arrays (.npz) here")
 # --- diagnosis options (docs/01_improvement_plan_0930.md, section 2); defaults leave the task unchanged ---
 parser.add_argument("--cond", type=str, default="", help="free-form condition label written to the CSV")
+parser.add_argument("--eval_terrain", type=str, default=None,
+                    help="swap the --task (deploy) config's terrain for this Isaac-Ant-Eval-* terrain (axis-2 variants)")  # fmt: skip
 parser.add_argument("--min_height", type=float, default=None, help="override torso_height termination threshold")
 parser.add_argument("--ground_friction", type=float, default=None, help="override ground static=dynamic friction")
 parser.add_argument("--ground_combine", type=str, default=None, help="override ground friction combine mode")
@@ -167,6 +169,12 @@ def main(env_cfg: ManagerBasedRLEnvCfg, agent_cfg: RslRlBaseRunnerCfg):
     env_cfg.seed = args_cli.seeds[0]
     env_cfg.sim.device = args_cli.device if args_cli.device is not None else env_cfg.sim.device
 
+    task_label = args_cli.task
+    if args_cli.eval_terrain is not None:
+        from ant_rough.tasks.eval_envs import EVAL_SPECS, apply_eval_terrain
+
+        apply_eval_terrain(env_cfg, **EVAL_SPECS[args_cli.eval_terrain][1])
+        task_label = f"Isaac-Ant-Eval-{args_cli.eval_terrain}-v0"
     if args_cli.min_height is not None:
         env_cfg.terminations.torso_height.params["minimum_height"] = args_cli.min_height
     mat = env_cfg.scene.terrain.physics_material
@@ -177,9 +185,10 @@ def main(env_cfg: ManagerBasedRLEnvCfg, agent_cfg: RslRlBaseRunnerCfg):
 
     env = RslRlVecEnvWrapper(gym.make(args_cli.task, cfg=env_cfg), clip_actions=agent_cfg.clip_actions)
     # robot shape materials (static, dynamic, restitution) of env 0: needed to read the effective contact friction
-    robot_mat = env.unwrapped.scene["robot"].root_physx_view.get_material_properties()[0]
+    robot_mats = env.unwrapped.scene["robot"].root_physx_view.get_material_properties()
     print(f"[EVAL] ground material: {mat.static_friction}/{mat.dynamic_friction} ({mat.friction_combine_mode}), "
-          f"robot shape materials (first 3): {robot_mat[:3].tolist()}", flush=True)  # fmt: skip
+          f"robot shape materials env0 (first 2): {robot_mats[0, :2].tolist()}, "
+          f"env{robot_mats.shape[0] - 1} (first 2): {robot_mats[-1, :2].tolist()}", flush=True)  # fmt: skip
 
     os.makedirs(os.path.dirname(os.path.abspath(args_cli.out)), exist_ok=True)
     write_header = not os.path.exists(args_cli.out)
@@ -201,12 +210,14 @@ def main(env_cfg: ManagerBasedRLEnvCfg, agent_cfg: RslRlBaseRunnerCfg):
             all_forces = []
             for seed in args_cli.seeds:
                 env.unwrapped.seed(seed)
+                if getattr(runner.alg.policy, "is_recurrent", False):
+                    runner.alg.policy.reset()  # fresh LSTM state per rollout (first episode starts from zeros)
                 per_env, stats = run_first_episodes(env, policy, force_bound)
                 all_forces.append(per_env.pop("force_samples"))
                 if args_cli.dump_dir:
                     os.makedirs(args_cli.dump_dir, exist_ok=True)
-                    np.savez(os.path.join(args_cli.dump_dir, f"{args_cli.task}__{name}__s{seed}.npz"), **per_env)
-                row = {"task": args_cli.task, "split": args_cli.split, "checkpoint": name, "seed": seed,
+                    np.savez(os.path.join(args_cli.dump_dir, f"{task_label}__{name}__s{seed}.npz"), **per_env)
+                row = {"task": task_label, "split": args_cli.split, "checkpoint": name, "seed": seed,
                        "num_envs": env.num_envs, "cond": args_cli.cond,
                        **{k: round(v, 4) for k, v in stats.items()}}  # fmt: skip
                 writer.writerow(row)

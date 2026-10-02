@@ -44,6 +44,8 @@ class LaneTerrainGenerator(TerrainGenerator):
         self.terrain_origins = self.terrain_origins[:, spawn_cols].copy()
 
     def _generate_curriculum_terrains(self):
+        if self.cfg.random_difficulty:
+            return self._generate_random_difficulty_lanes()
         if not self.cfg.random_tile_types:
             return super()._generate_curriculum_terrains()
         # difficulty per row (lane) as in the base class, but the sub-terrain type is drawn per tile by proportion.
@@ -59,6 +61,20 @@ class LaneTerrainGenerator(TerrainGenerator):
                 sub_cfg = cfgs[self.np_rng.choice(len(cfgs), p=proportions)]
                 mesh, origin = self._get_terrain_mesh(difficulty, sub_cfg)
                 self._add_sub_terrain(mesh, origin, sub_row, sub_col, sub_cfg)
+
+    def _generate_random_difficulty_lanes(self):
+        """Ablation (A-randDiff): same column-wise type order as the base class, but each tile draws its difficulty
+        uniformly instead of from its lane, so lanes no longer encode a difficulty level."""
+        cfgs = list(self.cfg.sub_terrains.values())
+        proportions = np.array([c.proportion for c in cfgs], dtype=float)
+        proportions /= proportions.sum()
+        lower, upper = self.cfg.difficulty_range
+        for sub_col in range(self.cfg.num_cols):
+            sub_index = np.min(np.where(sub_col / self.cfg.num_cols + 0.001 < np.cumsum(proportions))[0])
+            for sub_row in range(self.cfg.num_rows):
+                difficulty = self.np_rng.uniform(lower, upper)
+                mesh, origin = self._get_terrain_mesh(difficulty, cfgs[sub_index])
+                self._add_sub_terrain(mesh, origin, sub_row, sub_col, cfgs[sub_index])
 
     def _add_sub_terrain(self, mesh: trimesh.Trimesh, origin: np.ndarray, row: int, col: int, sub_terrain_cfg):
         # same as the base class with the placement axes swapped (column along x, row/level along y)
@@ -85,6 +101,8 @@ class LaneTerrainGeneratorCfg(TerrainGeneratorCfg):
     curriculum: bool = True
     num_spawn_cols: int = 4
     """Robots spawn in the first ``num_spawn_cols`` segments (x) of their lane."""
+    random_difficulty: bool = False
+    """Ablation: per-tile uniform difficulty (lanes keep the layout but lose their difficulty level)."""
     random_tile_types: bool = False
     """Draw the sub-terrain type per tile (True) instead of one type per column in proportion order (base class)."""
 

@@ -12,13 +12,15 @@ from isaaclab.managers import CurriculumTermCfg as CurrTerm
 from isaaclab.managers import EventTermCfg as EventTerm
 from isaaclab.managers import RewardTermCfg as RewTerm
 from isaaclab.managers import SceneEntityCfg
+from isaaclab.managers import TerminationTermCfg as DoneTerm
 from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils import configclass
 
 import isaaclab_tasks.manager_based.classic.humanoid.mdp as mdp
-from isaaclab_tasks.manager_based.classic.ant.ant_env_cfg import AntEnvCfg, EventCfg, RewardsCfg
+from isaaclab_tasks.manager_based.classic.ant.ant_env_cfg import AntEnvCfg, EventCfg, RewardsCfg, TerminationsCfg
 
 from .lane_terrain import LaneTerrainGeneratorCfg, terrain_levels_progress
+from .mdp_extra import cat_orientation_termination, level_friction
 from .terrains import ANT_ROUGH_TERRAINS_CFG, ANT_ROUGH_V5_SUB_TERRAINS
 
 
@@ -166,3 +168,98 @@ class AntRoughV5EnvCfg(AntRoughCurriculumEnvCfg):
         gen = self.scene.terrain.terrain_generator
         gen.sub_terrains = ANT_ROUGH_V5_SUB_TERRAINS
         gen.random_tile_types = True
+
+
+##
+# Round 2, axis 1: structure fixed, environment changes on top of V2 (docs/02_weekend_plan_1002.md)
+##
+
+
+@configclass
+class AntRoughANoPromoEnvCfg(AntRoughCurriculumEnvCfg):
+    """Ablation A-noPromo: V2's lanes, no promotion/demotion; robots start in uniformly random lanes and stay."""
+
+    curriculum = None
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.scene.terrain.max_init_terrain_level = None
+
+
+@configclass
+class AntRoughARandDiffEnvCfg(AntRoughANoPromoEnvCfg):
+    """Ablation A-randDiff: lanes and column type order kept, but tile difficulty is uniform random (no lane level)."""
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.scene.terrain.terrain_generator.random_difficulty = True
+
+
+@configclass
+class AntRoughV2SEnvCfg(AntRoughCurriculumEnvCfg):
+    """V2S: V2 + pyramid stairs as the only change (same two stair types as V5)."""
+
+    def __post_init__(self):
+        super().__post_init__()
+        subs = dict(self.scene.terrain.terrain_generator.sub_terrains)
+        subs["stairs"] = ANT_ROUGH_V5_SUB_TERRAINS["stairs"]
+        subs["stairs_narrow"] = ANT_ROUGH_V5_SUB_TERRAINS["stairs_narrow"]
+        self.scene.terrain.terrain_generator.sub_terrains = subs
+
+
+@configclass
+class AntRoughV6cTerminationsCfg(TerminationsCfg):
+    # Constraints-as-Terminations on the posture that precedes a flip; the absolute-z termination is kept as is
+    cat_orientation = DoneTerm(func=cat_orientation_termination, time_out=False)
+
+
+@configclass
+class AntRoughV6cEnvCfg(AntRoughCurriculumEnvCfg):
+    """V6': V2 + CaT stochastic termination on torso tilt (> 35 deg) and roll/pitch rate (> 3 rad/s)."""
+
+    terminations: AntRoughV6cTerminationsCfg = AntRoughV6cTerminationsCfg()
+
+
+@configclass
+class AntRoughV10EventCfg(AntRoughEventCfg):
+    push_robot = EventTerm(
+        func=mdp.push_by_setting_velocity,
+        mode="interval",
+        interval_range_s=(4.0, 8.0),
+        params={"velocity_range": {"x": (-0.6, 0.6), "y": (-0.6, 0.6)}},
+    )
+
+    def __post_init__(self):
+        # start from a tilted torso so that recovering from roll/pitch is part of the data (yaw kept at 0)
+        self.reset_base.params = {
+            "pose_range": {"roll": (-0.3, 0.3), "pitch": (-0.3, 0.3)},
+            "velocity_range": {"x": (-0.3, 0.3), "y": (-0.3, 0.3)},
+        }
+
+
+@configclass
+class AntRoughV10RewardsCfg(RewardsCfg):
+    # milder version of the V6' signal, as a penalty (training only)
+    flat_orientation = RewTerm(func=mdp.flat_orientation_l2, weight=-0.5)
+
+
+@configclass
+class AntRoughV10EnvCfg(AntRoughCurriculumEnvCfg):
+    """V10: V2 + horizontal pushes + tilted initial pose + mild torso-tilt penalty."""
+
+    events: AntRoughV10EventCfg = AntRoughV10EventCfg()
+    rewards: AntRoughV10RewardsCfg = AntRoughV10RewardsCfg()
+
+
+@configclass
+class AntRoughV11EventCfg(EventCfg):
+    """No startup friction draw; friction is re-drawn at every reset from a range set by the env's lane level."""
+
+    level_friction = EventTerm(func=level_friction, mode="reset", params={"w_min": 0.1, "w_max": 0.8})
+
+
+@configclass
+class AntRoughV11EnvCfg(AntRoughCurriculumEnvCfg):
+    """V11: V2 with friction in the curriculum: robot mu ~ U(1 - w, 1 + w), w 0.1 on lane 0 -> 0.8 on the top lane."""
+
+    events: AntRoughV11EventCfg = AntRoughV11EventCfg()

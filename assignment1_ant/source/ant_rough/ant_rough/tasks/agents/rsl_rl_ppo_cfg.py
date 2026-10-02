@@ -15,3 +15,41 @@ from isaaclab_tasks.manager_based.classic.ant.agents.rsl_rl_ppo_cfg import AntPP
 class AntRoughPPORunnerCfg(AntPPORunnerCfg):
     experiment_name = "ant_rough"
     max_iterations = 3000
+
+
+##
+# Round 2, axis 2: the policy may change because the TA loads our task config (docs/02_weekend_plan_1002.md)
+##
+
+from isaaclab_rl.rsl_rl import RslRlPpoActorCriticCfg, RslRlPpoActorCriticRecurrentCfg  # noqa: E402
+
+
+@configclass
+class AntV12PPORunnerCfg(AntRoughPPORunnerCfg):
+    """Same MLP, observation normalization on (inputs now mix joint states, contact forces and a 3-step history)."""
+
+    policy = RslRlPpoActorCriticCfg(
+        init_noise_std=1.0,
+        actor_obs_normalization=True,
+        critic_obs_normalization=True,
+        actor_hidden_dims=[400, 200, 100],
+        critic_hidden_dims=[400, 200, 100],
+        activation="elu",
+    )
+
+
+@configclass
+class AntV13PPORunnerCfg(AntRoughPPORunnerCfg):
+    """LSTM (256) in front of the same MLP heads; single-step observation, the recurrent state is the memory."""
+
+    policy = RslRlPpoActorCriticRecurrentCfg(
+        init_noise_std=1.0,
+        actor_obs_normalization=True,
+        critic_obs_normalization=True,
+        actor_hidden_dims=[400, 200, 100],
+        critic_hidden_dims=[400, 200, 100],
+        activation="elu",
+        rnn_type="lstm",
+        rnn_hidden_dim=256,
+        rnn_num_layers=1,
+    )

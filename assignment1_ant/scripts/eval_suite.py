@@ -40,6 +40,8 @@ def main():
     parser.add_argument("--out", type=str, required=True)
     parser.add_argument("--dump_dir", type=str, default=None)
     parser.add_argument("--log_dir", type=str, default="logs/eval_suite")
+    parser.add_argument("--deploy_task", type=str, default=None,
+                        help="evaluate in this deploy task with each eval terrain swapped in (axis-2 variants)")  # fmt: skip
     args = parser.parse_args()
     # child processes run with cwd=PROJECT: make every user path absolute w.r.t. the caller's cwd
     args.out = os.path.abspath(args.out)
@@ -51,14 +53,15 @@ def main():
     for name in args.tasks:
         split = EVAL_SPLITS[name]
         task = f"Isaac-Ant-Eval-{name}-v0"
-        cmd = [ISAACLAB_SH, "-p", os.path.join(HERE, "eval_task.py"), "--task", task, "--headless",
+        task_arg = ["--task", args.deploy_task, "--eval_terrain", name] if args.deploy_task else ["--task", task]
+        cmd = [ISAACLAB_SH, "-p", os.path.join(HERE, "eval_task.py"), *task_arg, "--headless",
                "--num_envs", str(args.num_envs), "--split", split, "--out", args.out,
                "--seeds", *map(str, args.seeds)]  # fmt: skip
         for c in args.ckpt:
             cmd += ["--ckpt", c]
         if args.dump_dir:
             cmd += ["--dump_dir", args.dump_dir]
-        log_path = os.path.join(args.log_dir, f"{task}.log")
+        log_path = os.path.join(args.log_dir, f"{task}{'__' + args.deploy_task if args.deploy_task else ''}.log")
         print(f"[SUITE] {task} ({split}) -> {log_path}", flush=True)
         with open(log_path, "w") as log:
             ret = subprocess.run(cmd, stdout=log, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, cwd=PROJECT)
