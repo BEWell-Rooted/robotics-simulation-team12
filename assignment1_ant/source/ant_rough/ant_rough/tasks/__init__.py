@@ -77,6 +77,8 @@ _ROUND2 = {
     "Rough-V11": ("ant_rough_env_cfg:AntRoughV11EnvCfg", "AntRoughPPORunnerCfg"),
     "Rough-V12": ("robot_env_cfg:AntV12TrainEnvCfg", "AntV12PPORunnerCfg"),
     "Rough-V12R": ("robot_env_cfg:AntV12RTrainEnvCfg", "AntV12PPORunnerCfg"),
+    "Rough-V1214R": ("robot_env_cfg:AntV1214RTrainEnvCfg", "AntV12PPORunnerCfg"),
+    "Deploy-V1214": ("robot_env_cfg:AntV1214DeployEnvCfg", "AntV12PPORunnerCfg"),
     "Rough-V13": ("robot_env_cfg:AntV13TrainEnvCfg", "AntV13PPORunnerCfg"),
     "Rough-V14": ("robot_env_cfg:AntV14TrainEnvCfg", "AntRoughPPORunnerCfg"),
     "Deploy-V12": ("robot_env_cfg:AntV12DeployEnvCfg", "AntV12PPORunnerCfg"),
@@ -144,9 +146,9 @@ for _name, _factory in (
 from .eval_envs import TEST_SPECS, apply_eval_terrain  # noqa: E402
 
 _DEPLOYS = {"": "isaaclab_tasks.manager_based.classic.ant.ant_env_cfg:AntEnvCfg"}
-_DEPLOYS.update({f"-{v}": f"{__name__}.robot_env_cfg:Ant{v}DeployEnvCfg" for v in ("V12", "V13", "V14")})
+_DEPLOYS.update({f"-{v}": f"{__name__}.robot_env_cfg:Ant{v}DeployEnvCfg" for v in ("V12", "V13", "V14", "V1214")})
 _DEPLOY_AGENTS = {"": "AntRoughPPORunnerCfg", "-V12": "AntV12PPORunnerCfg", "-V13": "AntV13PPORunnerCfg",
-                  "-V14": "AntRoughPPORunnerCfg"}  # fmt: skip
+                  "-V14": "AntRoughPPORunnerCfg", "-V1214": "AntV12PPORunnerCfg"}  # fmt: skip
 
 for _tname, _tkw in TEST_SPECS.items():
     for _dsuffix, _dpath in _DEPLOYS.items():

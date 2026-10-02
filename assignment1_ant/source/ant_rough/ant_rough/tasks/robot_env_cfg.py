@@ -182,3 +182,26 @@ class AntV14DeployEnvCfg(AntEnvCfg):
     def __post_init__(self):
         super().__post_init__()
         use_body_material(self)
+
+
+@configclass
+class AntV1214RTrainEnvCfg(AntRoughV2REnvCfg):
+    """V1214R: V2R terrain + V12 sensing (contacts, history, normalization) + V14 skin (mu 0.4, "min"), no friction
+    randomization (the skin sets the contact friction; see AntV14TrainEnvCfg)."""
+
+    events: EventCfg = EventCfg()
+
+    def __post_init__(self):
+        super().__post_init__()
+        add_contact_sensing(self, ContactHistoryObservationsCfg())
+        use_body_material(self)
+        self.scene.terrain.physics_material.friction_combine_mode = "average"
+        self.scene.terrain.physics_material.restitution_combine_mode = "average"
+
+
+@configclass
+class AntV1214DeployEnvCfg(AntEnvCfg):
+    def __post_init__(self):
+        super().__post_init__()
+        add_contact_sensing(self, ContactHistoryObservationsCfg())
+        use_body_material(self)
