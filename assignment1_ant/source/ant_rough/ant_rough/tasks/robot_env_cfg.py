@@ -219,3 +219,26 @@ class AntV1214DeployEnvCfg(AntEnvCfg):
         super().__post_init__()
         add_contact_sensing(self, ContactHistoryObservationsCfg())
         use_body_material(self)
+
+
+# ---------------------------------------------------------------- skin friction sweep (mu 0.3 / 0.6) on V1214R
+
+
+def _v1214r_mu(mu: float):
+    @configclass
+    class Train(AntV1214RTrainEnvCfg):
+        def __post_init__(self):
+            super().__post_init__()
+            use_body_material(self, mu)
+
+    @configclass
+    class Deploy(AntV1214DeployEnvCfg):
+        def __post_init__(self):
+            super().__post_init__()
+            use_body_material(self, mu)
+
+    return Train, Deploy
+
+
+AntV1214RMu03TrainEnvCfg, AntV1214Mu03DeployEnvCfg = _v1214r_mu(0.3)
+AntV1214RMu06TrainEnvCfg, AntV1214Mu06DeployEnvCfg = _v1214r_mu(0.6)
