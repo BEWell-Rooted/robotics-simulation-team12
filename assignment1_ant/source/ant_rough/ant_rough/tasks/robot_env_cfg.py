@@ -242,3 +242,4 @@ def _v1214r_mu(mu: float):
 
 AntV1214RMu03TrainEnvCfg, AntV1214Mu03DeployEnvCfg = _v1214r_mu(0.3)
 AntV1214RMu06TrainEnvCfg, AntV1214Mu06DeployEnvCfg = _v1214r_mu(0.6)
+AntV1214RMu02TrainEnvCfg, AntV1214Mu02DeployEnvCfg = _v1214r_mu(0.2)
