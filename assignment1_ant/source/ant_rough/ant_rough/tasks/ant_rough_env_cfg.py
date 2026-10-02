@@ -197,7 +197,33 @@ class AntRoughARandDiffEnvCfg(AntRoughANoPromoEnvCfg):
 
 @configclass
 class AntRoughV2SEnvCfg(AntRoughCurriculumEnvCfg):
-    """V2S: V2 + pyramid stairs as the only change (same two stair types as V5)."""
+    """V2S (not run): V2 + pyramid stairs. With V2's column-wise type order the stair columns land at the far end of
+    every lane and are rarely reached -- superseded by V2RS."""
+
+    def __post_init__(self):
+        super().__post_init__()
+        subs = dict(self.scene.terrain.terrain_generator.sub_terrains)
+        subs["stairs"] = ANT_ROUGH_V5_SUB_TERRAINS["stairs"]
+        subs["stairs_narrow"] = ANT_ROUGH_V5_SUB_TERRAINS["stairs_narrow"]
+        self.scene.terrain.terrain_generator.sub_terrains = subs
+
+
+@configclass
+class AntRoughV2REnvCfg(AntRoughCurriculumEnvCfg):
+    """V2R: V2 with per-tile random terrain types (lanes and their difficulty curriculum kept).
+
+    V2's column-wise type order puts slopes (cols 15-16) and flat (17-19) at the far end of every lane, ~100 m from
+    the spawn columns 0-3, so V2 barely trains on them (SlopedGrid 6-10 vs 50+ for patchwork-trained V1/V5).
+    """
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.scene.terrain.terrain_generator.random_tile_types = True
+
+
+@configclass
+class AntRoughV2RSEnvCfg(AntRoughV2REnvCfg):
+    """V2RS: V2R + pyramid stairs (replaces V2S, whose stair columns would sit unreached at the lane ends)."""
 
     def __post_init__(self):
         super().__post_init__()

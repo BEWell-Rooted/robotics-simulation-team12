@@ -70,6 +70,8 @@ _ROUND2 = {
     "Rough-ANoPromo": ("ant_rough_env_cfg:AntRoughANoPromoEnvCfg", "AntRoughPPORunnerCfg"),
     "Rough-ARandDiff": ("ant_rough_env_cfg:AntRoughARandDiffEnvCfg", "AntRoughPPORunnerCfg"),
     "Rough-V2S": ("ant_rough_env_cfg:AntRoughV2SEnvCfg", "AntRoughPPORunnerCfg"),
+    "Rough-V2R": ("ant_rough_env_cfg:AntRoughV2REnvCfg", "AntRoughPPORunnerCfg"),
+    "Rough-V2RS": ("ant_rough_env_cfg:AntRoughV2RSEnvCfg", "AntRoughPPORunnerCfg"),
     "Rough-V6c": ("ant_rough_env_cfg:AntRoughV6cEnvCfg", "AntRoughPPORunnerCfg"),
     "Rough-V10": ("ant_rough_env_cfg:AntRoughV10EnvCfg", "AntRoughPPORunnerCfg"),
     "Rough-V11": ("ant_rough_env_cfg:AntRoughV11EnvCfg", "AntRoughPPORunnerCfg"),
