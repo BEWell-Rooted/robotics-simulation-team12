@@ -27,7 +27,7 @@ from isaaclab.utils import configclass
 import isaaclab_tasks.manager_based.classic.humanoid.mdp as mdp
 from isaaclab_tasks.manager_based.classic.ant.ant_env_cfg import AntEnvCfg, EventCfg, ObservationsCfg
 
-from .ant_rough_env_cfg import AntRoughCurriculumEnvCfg
+from .ant_rough_env_cfg import AntRoughCurriculumEnvCfg, AntRoughV2REnvCfg
 
 FEET = ["front_left_foot", "front_right_foot", "left_back_foot", "right_back_foot"]
 
@@ -128,6 +128,15 @@ def use_body_material(cfg, mu: float = 0.4):
 
 @configclass
 class AntV12TrainEnvCfg(AntRoughCurriculumEnvCfg):
+    def __post_init__(self):
+        super().__post_init__()
+        add_contact_sensing(self, ContactHistoryObservationsCfg())
+
+
+@configclass
+class AntV12RTrainEnvCfg(AntRoughV2REnvCfg):
+    """V12R: V12's robot side (contacts + history + normalization) on V2R's terrain (per-tile random types)."""
+
     def __post_init__(self):
         super().__post_init__()
         add_contact_sensing(self, ContactHistoryObservationsCfg())
