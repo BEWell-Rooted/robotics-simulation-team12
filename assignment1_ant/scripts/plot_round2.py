@@ -97,7 +97,7 @@ def ladder(acc):
             ticks.append(x)
             labels.append(f"{label}\n(n={len(seeds)})")
             x += 1
-        ax.text((start + x - 1) / 2, -22, group, ha="center", fontproperties=KO_B, fontsize=9, color=color)
+        ax.text((start + x - 1) / 2, -29, group, ha="center", fontproperties=KO_B, fontsize=9, color=color)
         x += 0.6
     ax.set_xticks(ticks, labels, fontproperties=KO, fontsize=7.5)
     ax.set_ylabel("12종 평균 reward (최종 모델)", fontproperties=KO, color=TEXT_2)
@@ -105,7 +105,7 @@ def ladder(acc):
     ax.set_title("변형별 자체 평가 12종 평균 (막대 = 학습 seed 평균, 점 = seed별)", fontproperties=KO_B, fontsize=12,
                  loc="left", color=TEXT)  # fmt: skip
     fig.tight_layout()
-    fig.subplots_adjust(bottom=0.3)
+    fig.subplots_adjust(bottom=0.34)
     fig.savefig(os.path.join(OUT, "r2_ladder.png"), facecolor=SURFACE)
     plt.close(fig)
 
