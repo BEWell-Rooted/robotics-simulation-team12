@@ -1,0 +1,4 @@
+v8_s44@2999 (Isaac-Ant-Rough-V8-v0, seed 44, 3000 iter)
+original run folder: logs/rsl_rl/ant_rough/2026-10-03_20-39-02_v8_s44
+deploy / submission task: Isaac-Ant-Team12-v0 (= Deploy-V1214 robot + Isaac-Ant-v0 plane), agent AntV12PPORunnerCfg
+selected 2026-10-03 by Boxes+Rails held-out (111.5), see docs/log_1003.md
