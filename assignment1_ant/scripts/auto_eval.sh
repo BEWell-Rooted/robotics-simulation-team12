@@ -26,6 +26,8 @@ case "$run" in
   v13_*) deploy=(--deploy_task Isaac-Ant-Deploy-V13-v0) ;;
   v14_*) deploy=(--deploy_task Isaac-Ant-Deploy-V14-v0) ;;
   v1214rmu02_*) deploy=(--deploy_task Isaac-Ant-Deploy-V1214-Mu02-v0) ;;
+  v1214nohist_*) deploy=(--deploy_task Isaac-Ant-Deploy-V1214NoHist-v0) ;;
+  v1314_*) deploy=(--deploy_task Isaac-Ant-Deploy-V1314-v0) ;;
   v1214mu03_*) deploy=(--deploy_task Isaac-Ant-Deploy-V1214-Mu03-v0) ;;
   v1214rmu03_*) deploy=(--deploy_task Isaac-Ant-Deploy-V1214-Mu03-v0) ;;
   v1214rmu06_*) deploy=(--deploy_task Isaac-Ant-Deploy-V1214-Mu06-v0) ;;

@@ -252,3 +252,27 @@ class AntV1214Mu03TrainEnvCfg(AntV1214TrainEnvCfg):
     def __post_init__(self):
         super().__post_init__()
         use_body_material(self, 0.3)
+
+
+# ---------------------------------------------------------------- decomposing V12 on top of V1214
+
+
+@configclass
+class AntV1214NoHistTrainEnvCfg(AntV1214TrainEnvCfg):
+    """V1214 without the 3-step observation history (contacts + normalization only)."""
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.observations = ContactObservationsCfg()
+
+
+@configclass
+class AntV1214NoHistDeployEnvCfg(AntV1214DeployEnvCfg):
+    def __post_init__(self):
+        super().__post_init__()
+        self.observations = ContactObservationsCfg()
+
+
+# V1314: same env as V1214-noHist, LSTM policy instead of the stacked history (agent AntV13PPORunnerCfg)
+AntV1314TrainEnvCfg = AntV1214NoHistTrainEnvCfg
+AntV1314DeployEnvCfg = AntV1214NoHistDeployEnvCfg
