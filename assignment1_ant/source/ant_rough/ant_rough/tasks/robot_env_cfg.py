@@ -287,3 +287,12 @@ class AntV1214BTrainEnvCfg(AntV1214RTrainEnvCfg):
         from .terrains import ANT_ROUGH_BLOCKY_SUB_TERRAINS
 
         self.scene.terrain.terrain_generator.sub_terrains = ANT_ROUGH_BLOCKY_SUB_TERRAINS
+
+
+@configclass
+class AntV1214BMu03TrainEnvCfg(AntV1214BTrainEnvCfg):
+    """V1214B with the skin at mu 0.3 (deploy: Isaac-Ant-Deploy-V1214-Mu03-v0)."""
+
+    def __post_init__(self):
+        super().__post_init__()
+        use_body_material(self, 0.3)
