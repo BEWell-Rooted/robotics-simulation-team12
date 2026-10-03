@@ -14,8 +14,8 @@ while true; do
     grep -qx "$r" "$Q/evaluated.txt" || { run=$r; break; }
   done
   if [ -n "$run" ]; then break; fi
-  # nothing new: stop if training is over (both workers exited), else wait
-  [ "$(grep -c 'worker exits' "$Q/done.txt")" -ge 2 ] && { echo "[AUTO] all runs evaluated"; exit 0; }
+  # nothing new: stop if no queue worker is alive (training is over), else wait
+  pgrep -f "queue_runner.sh" > /dev/null || { echo "[AUTO] all runs evaluated"; exit 0; }
   sleep 60
 done
 dir=$(ls -d logs/rsl_rl/ant_rough/*_"$run" logs/rsl_rl/ant/*_"$run" 2>/dev/null | tail -1)
