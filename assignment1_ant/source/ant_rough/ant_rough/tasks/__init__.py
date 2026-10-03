@@ -173,3 +173,18 @@ for _tname, _tkw in TEST_SPECS.items():
             disable_env_checker=True,
             kwargs={"env_cfg_entry_point": _make_test_cfg, "rsl_rl_cfg_entry_point": f"{_AG}:{_DEPLOY_AGENTS[_dsuffix]}"},
         )
+
+
+##
+# Submission task (see submission_env_cfg.py): deploy config of the final model + Isaac-Ant-v0 flat terrain
+##
+
+gym.register(
+    id="Isaac-Ant-Team12-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    disable_env_checker=True,
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.submission_env_cfg:AntTeam12EnvCfg",
+        "rsl_rl_cfg_entry_point": f"{_AG}:AntV12PPORunnerCfg",
+    },
+)

@@ -1,0 +1,2 @@
+name,task,checkpoint,seed,num_envs,reward_mean,reward_std,steps_mean,steps_std,completed
+v1214_s42@2999,Isaac-Ant-Team12-v0,logs/rsl_rl/ant_rough/2026-10-02_23-13-19_v1214_s42/model_2999.pt,24,100,147.397575,7.572089,955.280000,36.281698,100/100
