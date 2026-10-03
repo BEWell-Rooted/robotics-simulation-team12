@@ -85,6 +85,7 @@ _ROUND2 = {
     "Rough-V1214B": ("robot_env_cfg:AntV1214BTrainEnvCfg", "AntV12PPORunnerCfg"),
     "Rough-V8": ("robot_env_cfg:AntV1214BTrainEnvCfg", "AntV8PPORunnerCfg"),  # V1214B + mirror augmentation
     "Rough-V8ML": ("robot_env_cfg:AntV1214BTrainEnvCfg", "AntV8MLPPORunnerCfg"),  # mirror loss only (ablation)
+    "Rough-V2Sym": ("ant_rough_env_cfg:AntRoughCurriculumEnvCfg", "AntRoughSymPPORunnerCfg"),  # V2 + mirror aug
     "Rough-V1214NoHist": ("robot_env_cfg:AntV1214NoHistTrainEnvCfg", "AntV12PPORunnerCfg"),
     "Deploy-V1214NoHist": ("robot_env_cfg:AntV1214NoHistDeployEnvCfg", "AntV12PPORunnerCfg"),
     "Rough-V1314": ("robot_env_cfg:AntV1314TrainEnvCfg", "AntV13PPORunnerCfg"),

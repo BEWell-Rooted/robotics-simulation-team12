@@ -82,3 +82,13 @@ class AntV8MLPPORunnerCfg(AntV12PPORunnerCfg):
             use_data_augmentation=False, use_mirror_loss=True, mirror_loss_coeff=1.0,
             data_augmentation_func=ant_mirror_augmentation,
         )  # fmt: skip
+
+
+@configclass
+class AntRoughSymPPORunnerCfg(AntRoughPPORunnerCfg):
+    """Ablation of V8 without the robot changes: baseline network and 60-dim observation + mirror augmentation."""
+
+    def __post_init__(self):
+        self.algorithm.symmetry_cfg = RslRlSymmetryCfg(
+            use_data_augmentation=True, use_mirror_loss=False, data_augmentation_func=ant_mirror_augmentation
+        )
