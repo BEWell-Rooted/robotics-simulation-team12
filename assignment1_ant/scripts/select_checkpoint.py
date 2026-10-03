@@ -28,9 +28,11 @@ _names = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_names)
 
 
-def run_suite(tasks, ckpts, out, seeds, num_envs, log_dir):
+def run_suite(tasks, ckpts, out, seeds, num_envs, log_dir, deploy_task=None):
     cmd = ["python", os.path.join(HERE, "eval_suite.py"), "--out", out, "--tasks", *tasks, "--seeds", *map(str, seeds),
            "--num_envs", str(num_envs), "--log_dir", log_dir]  # fmt: skip
+    if deploy_task:
+        cmd += ["--deploy_task", deploy_task]
     for name, path in ckpts:
         cmd += ["--ckpt", f"{name}={path}"]
     subprocess.run(cmd, check=True, cwd=PROJECT)
@@ -71,6 +73,7 @@ def main():
     parser.add_argument("--num_envs", type=int, default=256)
     parser.add_argument("--out_prefix", required=True)
     parser.add_argument("--skip_eval", action="store_true", help="only re-rank existing CSVs")
+    parser.add_argument("--deploy_task", default=None, help="deploy task for axis-2 runs (terrain swapped in)")
     args = parser.parse_args()
     prefix = os.path.abspath(args.out_prefix)
     log_dir = os.path.join(PROJECT, "logs", "select")
@@ -87,7 +90,7 @@ def main():
 
     select_csv = f"{prefix}_select.csv"
     if not args.skip_eval:
-        run_suite(_names.SELECTION_TASKS, candidates, select_csv, args.seeds, args.num_envs, log_dir)
+        run_suite(_names.SELECTION_TASKS, candidates, select_csv, args.seeds, args.num_envs, log_dir, args.deploy_task)
     ranking = summarize(select_csv)
     with open(f"{prefix}_ranking.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(ranking[0]))
@@ -102,7 +105,7 @@ def main():
     report_csv = f"{prefix}_report.csv"
     if not args.skip_eval:
         run_suite(_names.REPORT_TASKS, [(n, paths[n]) for n in report_names if n in paths], report_csv, args.seeds,
-                  args.num_envs, log_dir)  # fmt: skip
+                  args.num_envs, log_dir, args.deploy_task)  # fmt: skip
     print_table(f"REPORT held-out {_names.REPORT_TASKS} (selected = {best})", summarize(report_csv))
     print(f"\n[SELECT] selected checkpoint: {best} -> {paths[best]}")
 
