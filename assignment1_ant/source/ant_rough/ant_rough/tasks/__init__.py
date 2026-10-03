@@ -80,6 +80,7 @@ _ROUND2 = {
     "Rough-V1214": ("robot_env_cfg:AntV1214TrainEnvCfg", "AntV12PPORunnerCfg"),
     "Rough-V1214R": ("robot_env_cfg:AntV1214RTrainEnvCfg", "AntV12PPORunnerCfg"),
     "Deploy-V1214": ("robot_env_cfg:AntV1214DeployEnvCfg", "AntV12PPORunnerCfg"),
+    "Rough-V1214-Mu03": ("robot_env_cfg:AntV1214Mu03TrainEnvCfg", "AntV12PPORunnerCfg"),
     "Rough-V1214R-Mu02": ("robot_env_cfg:AntV1214RMu02TrainEnvCfg", "AntV12PPORunnerCfg"),
     "Deploy-V1214-Mu02": ("robot_env_cfg:AntV1214Mu02DeployEnvCfg", "AntV12PPORunnerCfg"),
     "Rough-V1214R-Mu03": ("robot_env_cfg:AntV1214RMu03TrainEnvCfg", "AntV12PPORunnerCfg"),
