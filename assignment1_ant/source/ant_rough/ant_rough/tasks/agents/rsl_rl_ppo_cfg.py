@@ -53,3 +53,21 @@ class AntV13PPORunnerCfg(AntRoughPPORunnerCfg):
         rnn_hidden_dim=256,
         rnn_num_layers=1,
     )
+
+
+from isaaclab_rl.rsl_rl import RslRlSymmetryCfg  # noqa: E402
+
+from ..symmetry import ant_mirror_augmentation  # noqa: E402
+
+
+@configclass
+class AntV8PPORunnerCfg(AntV12PPORunnerCfg):
+    """V12 network + left-right mirror data augmentation in the PPO update (Mittal et al., ICRA 2024).
+
+    Augmentation adds no parameters, so the checkpoint loads under the plain V12 agent (deploy = Deploy-V1214).
+    """
+
+    def __post_init__(self):
+        self.algorithm.symmetry_cfg = RslRlSymmetryCfg(
+            use_data_augmentation=True, use_mirror_loss=False, data_augmentation_func=ant_mirror_augmentation
+        )
