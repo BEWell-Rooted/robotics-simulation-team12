@@ -1,0 +1,75 @@
+# 발표 재료 (5분 PPT용) — 과제 1: 처음 보는 지형에서도 걷는 Ant
+
+- 초안: 2026.10.03 (토) · 최종 수치(잠금 테스트, 공식 프로토콜)는 10.05 (월) 오전에 채움
+- 근거: `log_0929.md` ~ `log_1004.md`, `results/summary_round2.md`, `docs/figures/`
+- 평가 기준(조교): 실험 설계·분석 40 / 발표 30 / 독창성 30 — reward 순위만으로 평가하지 않음
+
+## 1. 문제 정의 (1문장)
+
+Isaac-Ant-v0 정책이 **지형 형태와 마찰만 바뀐 처음 보는 지형**에서도 넘어지지 않고 전진하게 만든다.
+
+## 2. 실험 설계 (슬라이드 1~2장)
+
+- **평가부터 설계**: 학습과 분리된 3단 평가
+  1. 분석용 12종 (평지·블록 6종·계단·파도·빙판·상자·레일) — 변형 비교
+  2. 선택용 held-out (Boxes, Rails) — 체크포인트 선택에만 사용
+  3. **잠금 테스트** `UnseenMix` (블록 h±0.13 학습 범위 밖 / 피라미드 / 경사 위 블록 / 원기둥 / 평지) — 마지막에 1회
+- 모든 평가는 **원래 Isaac-Ant-v0 보상**, 첫 에피소드 누적 reward (조교 지표와 동일), 공식 수치는 `play_one_episode --seed 24 --num_envs 100`
+- **예산 공정성**: 1000 iter(= baseline)와 3000 iter 두 표. baseline 3000 iter도 학습 → 16.6 ≈ 16.3 (예산이 아니라 환경이 차이를 만든다)
+- 변형마다 학습 seed 2~3개 (평균 ± 표준편차)
+
+그림: `figures/terrains/terrain_overview.png` (평가 지형), `figures/terrains/train_layouts.png` (학습 지형 배치)
+
+## 3. 무엇을 바꿨나 (방법, 슬라이드 1장)
+
+두 축 — 정책 입출력은 조교가 우리 태스크 설정으로 로드하므로 자유롭게 설계
+
+| 축 | 변경 | 결과 (12종 평균, 최종) |
+|---|---|---|
+| 환경 | 지형 랜덤화(V1), 차선 커리큘럼(V2), 자세 제약 종료 CaT(V6′), 외란(V10), 레벨별 마찰(V11) | 44 ~ 48 (V6′·V10·V11은 V2 이하) |
+| 로봇: 감지 | 발 접촉 센서 + 관측 히스토리 3 step + 관측 정규화 (V12) | 53.1 |
+| 로봇: 물성 | **외피 재질 μ0.4, combine "min"** (V14) — 유효 접지 마찰 상한을 로봇이 정함 | 56.0 |
+| 결합 | V12 + V14 (V1214 / 차선 배치 V2 기반) | **74.7 ± 1.5** |
+
+그림: `figures/r2_ladder.png`
+
+## 4. 핵심 결과·분석 (슬라이드 2장)
+
+1. **"메시 평지에서 낙상" 진단** (`figures/diag_surface.png`, `diag_mu_grid.png`, `diag_threshold.png`)
+   - 낙상 = 뒤집힘 (종료 임계를 낮춰도 거리 회복 없음 → 높이 마진 가설 기각)
+   - 박스 prim 평지 ≈ 메시 평지, **해석적 평면만 예외적으로 관대** → 조교 블록 지형에서 그대로 문제
+   - 마찰이 높을수록 뒤집힘 ↑ (메시 μ0.2→0.5에서 baseline 5%→43%)
+2. **커리큘럼보다 지형 비중** (ablation, seed 2~3)
+   - V2 47.5 ≈ A-randDiff 47.9 ≈ A-noPromo 46.8 → 승급·강등과 난이도 정렬 효과는 미미
+   - V2의 우위는 차선 열 배치가 만든 **블록 위주 학습 분포** (배치를 섞은 V2R: 블록 ↓, 계단·경사 ↑)
+3. **로봇을 바꾸는 쪽이 가장 효과적**
+   - 외피 마찰 sweep: μ 0.2 71.5 / **0.3 73.6** / 0.4 71.7 / 0.6 67.7 → 내부 최적 (높으면 걸려 뒤집힘, 낮으면 미끄러짐) (`figures/r2_mu_sweep.png`)
+   - 감지 분해: 히스토리 제거 −8 (68.5), LSTM으로 대체 67.1 → 짧은 관측 히스토리 + MLP가 최선
+   - 감지 × 물성 시너지: V12 +6, V14 +9, 합치면 +27
+4. **선택 지형이 고르는 계열을 좌우**: Boxes·Rails 선택은 블록 위주 V1214 계열 1위, 보고용(경사·피라미드)은 V1214R 계열 우세
+
+그림: `figures/r2_heatmap.png`
+
+## 5. 최종 모델과 수치 (월요일 채움)
+
+- 선택 규칙(사전 고정): 선택용 held-out(Boxes·Rails) 1위 → 현재 `v1214_s42@2999`
+- 제출 태스크 `Isaac-Ant-Team12-v0`, 평면 공식 조건 147.40 ± 7.57 (baseline 134.90 ± 27.74)
+- **잠금 테스트 (공식 조건, seed 24, 100 envs)**: baseline ___ / V2 ___ / 최종 ___  ← 월요일
+- 평가 명령어: `eval_command.txt` (월요일)
+
+## 6. 한계와 다음 단계
+
+- 평면이 아닌 평지에서 낙상 ~67% 남음 (뒤집힘). 높은 블록(h±0.15) ~42
+- 블록 강점(V1214)과 경사·계단 일반화(V1214R) 사이 교환관계 — 학습 지형 비중으로 조절 (V1214B 진행 중)
+- 외피 재질은 조교가 지면 마찰을 바꿔도 유효 마찰 상한을 로봇이 정함 → "발바닥 재질 설계"로 명시
+
+## 7. 영상 (`docs/media/`, 월요일 최종 모델로 갱신 예정)
+
+- baseline 평면 / baseline 블록(정지) / V2 블록 / 최종 모델 블록·레일·계단·평지(실패 사례 포함)
+
+## 8. 참고문헌
+
+- Chane-Sane et al., CaT: Constraints as Terminations for Legged Locomotion Learning, IROS 2024
+- Rudin et al., Learning to Walk in Minutes Using Massively Parallel Deep RL, CoRL 2021
+- Cobbe et al., Quantifying Generalization in Reinforcement Learning, ICML 2019
+- Kumar et al., RMA: Rapid Motor Adaptation for Legged Robots, RSS 2021 (관측 히스토리로 환경 적응)
