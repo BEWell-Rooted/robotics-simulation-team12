@@ -276,3 +276,14 @@ class AntV1214NoHistDeployEnvCfg(AntV1214DeployEnvCfg):
 # V1314: same env as V1214-noHist, LSTM policy instead of the stacked history (agent AntV13PPORunnerCfg)
 AntV1314TrainEnvCfg = AntV1214NoHistTrainEnvCfg
 AntV1314DeployEnvCfg = AntV1214NoHistDeployEnvCfg
+
+
+@configclass
+class AntV1214BTrainEnvCfg(AntV1214RTrainEnvCfg):
+    """V1214B: V1214R (lanes, per-tile random types, sensing, skin mu 0.4) with block-weighted type proportions."""
+
+    def __post_init__(self):
+        super().__post_init__()
+        from .terrains import ANT_ROUGH_BLOCKY_SUB_TERRAINS
+
+        self.scene.terrain.terrain_generator.sub_terrains = ANT_ROUGH_BLOCKY_SUB_TERRAINS

@@ -91,3 +91,16 @@ ANT_ROUGH_V5_SUB_TERRAINS = {
     "flat": terrain_gen.MeshPlaneTerrainCfg(proportion=0.20),
 }
 """V5 mix: V1/V2 terrain families + pyramid stairs, more flat. Tile types are drawn per tile (see lane_terrain)."""
+
+
+ANT_ROUGH_BLOCKY_SUB_TERRAINS = {
+    # V1214B: per-tile random types weighted toward blocks (~what V2's spawn segments actually show the robot)
+    "grid_fine": ANT_ROUGH_TERRAINS_CFG.sub_terrains["grid_fine"].replace(proportion=0.20),
+    "grid_mid": ANT_ROUGH_TERRAINS_CFG.sub_terrains["grid_mid"].replace(proportion=0.30),
+    "grid_coarse": ANT_ROUGH_TERRAINS_CFG.sub_terrains["grid_coarse"].replace(proportion=0.20),
+    "uniform_noise": ANT_ROUGH_TERRAINS_CFG.sub_terrains["uniform_noise"].replace(proportion=0.05),
+    "obstacles": ANT_ROUGH_TERRAINS_CFG.sub_terrains["obstacles"].replace(proportion=0.05),
+    "slope": ANT_ROUGH_TERRAINS_CFG.sub_terrains["slope"].replace(proportion=0.10),
+    "flat": ANT_ROUGH_TERRAINS_CFG.sub_terrains["flat"].replace(proportion=0.10),
+}
+"""Blocks 70 % (same block types and heights as V1), slope 10 %, flat 10 %, noise + obstacles 10 %."""
