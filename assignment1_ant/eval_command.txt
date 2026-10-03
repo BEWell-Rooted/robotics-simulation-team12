@@ -1,0 +1,22 @@
+# Team 12 — Assignment 1 (Ant on unseen terrain): evaluation command
+#
+# Final checkpoint : assignment1_ant/checkpoints/final/model_2999.pt   (v8_s44@2999)
+# Task             : Isaac-Ant-Team12-v0   (registered by our package source/ant_rough)
+#
+# The checkpoint needs OUR task config (foot contact sensors + 3-step observation history + skin material, network
+# built from AntV12PPORunnerCfg with obs normalization). To evaluate on your unseen terrain, replace ONLY the
+# terrain block in assignment1_ant/source/ant_rough/ant_rough/tasks/submission_env_cfg.py (marked "TERRAIN").
+# Rewards and terminations are the original Isaac-Ant-v0 ones.
+
+# 1) once: install our task package into the course environment
+conda activate lerobot-arena
+pip install -e <repo>/assignment1_ant/source/ant_rough
+
+# 2) evaluate (our copy of the course play_one_episode.py; identical except `import ant_rough.tasks`)
+cd ~/IsaacLab_RS
+./isaaclab.sh -p <repo>/assignment1_ant/scripts/rsl_rl/play_one_episode.py \
+    --task Isaac-Ant-Team12-v0 --seed 24 --num_envs 100 --headless \
+    --checkpoint <repo>/assignment1_ant/checkpoints/final/model_2999.pt
+
+# Our result with the default terrain (Isaac-Ant-v0 flat plane, mu 1.0):
+#   Episode reward total: mean=174.73, std=12.67   (100/100 episodes completed)

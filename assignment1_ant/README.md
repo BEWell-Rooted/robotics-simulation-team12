@@ -1,21 +1,25 @@
 # 과제 1 — 처음 보는 지형에서도 걷는 Ant
 
 Isaac-Ant-v0 (Isaac Lab 2.3.0, RSL-RL PPO) 정책을 지형 형태·지형 파라미터(마찰 등)가 바뀐 unseen 환경에서도 걷게 만드는 과제.
-**정책 입출력 규격은 baseline과 동일하게 두고 학습 환경만 바꾼다** — 모든 체크포인트가 `--task Isaac-Ant-v0`로 그대로 로드된다.
+조교는 우리 태스크 설정으로 체크포인트를 로드하고 지형만 바꿔 평가하므로, **학습 환경 + 로봇(센서·물성) + 학습 방법**을 함께 설계했다.
 
-- 중간 보고: [`docs/interim_report_1001.md`](docs/interim_report_1001.md)
-- 작업 로그: [`docs/log_0929.md`](docs/log_0929.md), [`docs/log_0930.md`](docs/log_0930.md) · 코드 노트: [`docs/00_codebase_notes.md`](docs/00_codebase_notes.md)
-- 상태 (2026.09.30): 제출 후보 `checkpoints/candidate_v2_s44/model_2999.pt`. 최종 제출본은 10.06까지 확정.
+- **최종 제출**: `checkpoints/final/model_2999.pt` (`v8_s44@2999`), 태스크 `Isaac-Ant-Team12-v0`, 평가 명령 [`eval_command.txt`](eval_command.txt)
+- 발표 재료: [`docs/report_material.md`](docs/report_material.md) · 결과 표: [`results/summary_round2.md`](results/summary_round2.md)
+- 작업 로그: [`docs/log_0929.md`](docs/log_0929.md) ~ [`docs/log_1004.md`](docs/log_1004.md) · 계획: [`docs/02_weekend_plan_1002.md`](docs/02_weekend_plan_1002.md) · 중간 보고: [`docs/interim_report_1001.md`](docs/interim_report_1001.md)
 
 ## 결과 요약
 
-자체 unseen 평가 12종 평균 reward (3 eval seed × 256 envs, 원래 보상, 학습 seed 평균):
+자체 unseen 평가 12종 평균 reward (원래 Isaac-Ant-v0 보상, eval seed 24·25 × 256 envs, 학습 seed 평균 ± 표준편차):
 
-| baseline | V1 DR | **V2 커리큘럼** | V3 파인튜닝 | V4 안정성 페널티 | V5 |
+| baseline | V2 차선 커리큘럼 | V12 접촉+히스토리 | V14 외피 μ0.4 | V1214B 결합 | **V8 = V1214B + 좌우 대칭 증강** |
 |---|---|---|---|---|---|
-| 16.2 | 44.3 | **47.5** | 24.1 | 38.9 | 43.8 |
+| 16.3 | 47.5 ± 0.6 | 53.1 | 56.0 | 78.3 ± 2.1 | **91.2 ± 2.8** |
 
-![평가 결과](docs/figures/eval_reward.png)
+- 제출 태스크 공식 조건 (평면, `play_one_episode --seed 24 --num_envs 100`): **174.73 ± 12.67** (baseline 134.90 ± 27.74)
+- 대칭 ablation: 대칭 손실만 (V8-ML) 77.9 ± 1.1, 기본 로봇 + 증강 (V2Sym) 50.2 ± 2.7 → 이득은 거울 데이터 증강 × 로봇 변경의 상호작용
+- 잠금 테스트 `UnseenMix` (학습 범위 밖 블록·피라미드·경사 위 블록·원기둥·평지): 10.05 측정 예정
+
+![변형별 결과](docs/figures/r2_ladder.png)
 
 ## 설치
 
@@ -26,17 +30,19 @@ conda activate lerobot-arena
 pip install -e assignment1_ant/source/ant_rough   # 태스크 등록 (한 번만)
 ```
 
-## 제출 후보 체크포인트 실행 (수업 평가 명령 형식)
+## 최종 체크포인트 실행 (조교 평가 형식)
+
+[`eval_command.txt`](eval_command.txt) 참고. 조교 평가 지형은 `source/ant_rough/ant_rough/tasks/submission_env_cfg.py`의 TERRAIN 블록만 바꾸면 된다.
 
 ```bash
 cd ~/IsaacLab_RS
-./isaaclab.sh -p scripts/reinforcement_learning/rsl_rl/play_one_episode.py \
-    --task Isaac-Ant-v0 --seed 24 --num_envs 16 \
-    --checkpoint <repo>/assignment1_ant/checkpoints/candidate_v2_s44/model_2999.pt
+./isaaclab.sh -p <repo>/assignment1_ant/scripts/rsl_rl/play_one_episode.py \
+    --task Isaac-Ant-Team12-v0 --seed 24 --num_envs 100 --headless \
+    --checkpoint <repo>/assignment1_ant/checkpoints/final/model_2999.pt
 ```
 
-수업 포크 원본 스크립트로 로드 확인 (2026.09.30): 기본 평면 16 envs reward **95.0 ± 3.9**, 16/16 완주.
-네트워크 규격: 관측 60 / 행동 8 / actor·critic MLP [400, 200, 100] elu / 관측 정규화 없음 — `Isaac-Ant-v0`의 `AntPPORunnerCfg`와 state dict가 동일.
+`play_one_episode.py`는 수업 스크립트 복사본이며 `import ant_rough.tasks` 한 줄만 다르다.
+네트워크: 관측 204 (Isaac-Ant-v0 60 + 발 접촉 8 = 68, × 3 step 히스토리) / 행동 8 / MLP [400, 200, 100] elu / 관측 정규화.
 
 ## 태스크
 
@@ -48,7 +54,13 @@ cd ~/IsaacLab_RS
 | `Isaac-Ant-Rough-Curriculum-v0` | **V2**: 난이도 차선 커리큘럼 (`LaneTerrainGenerator`) |
 | `Isaac-Ant-Rough-Stable-v0` | V4: V1 + 수직·roll/pitch 속도 페널티 |
 | `Isaac-Ant-Rough-V5-v0` | V5: V2 + 타일별 랜덤 지형 + 계단 + 넓은 마찰 |
-| `Isaac-Ant-Eval-<Name>-v0` | 자체 unseen 평가 14종 (Isaac-Ant-v0에서 지형·지면 마찰만 교체), [`eval_names.py`](source/ant_rough/ant_rough/tasks/eval_names.py) |
+| `Isaac-Ant-Rough-V12/V14/V1214/V1214B-v0` | 로봇 변경: 발 접촉 센서 + 관측 히스토리 3 + 정규화 (V12), 외피 재질 μ0.4 combine min (V14), 결합 |
+| `Isaac-Ant-Rough-V8-v0` | **최종**: V1214B 환경 + PPO 좌우 대칭 데이터 증강 ([`symmetry.py`](source/ant_rough/ant_rough/tasks/symmetry.py), 검증 `scripts/check_symmetry.py`) |
+| `Isaac-Ant-Rough-V8ML-v0`, `-V2Sym-v0` | 대칭 ablation: 손실만 / 기본 로봇 + 증강 |
+| `Isaac-Ant-Deploy-<V>-v0` | 배포 설정 (학습 로봇 그대로 + Isaac-Ant-v0 평면) |
+| `Isaac-Ant-Team12-v0` | **제출 태스크** (= Deploy-V1214, 평면 μ1.0) |
+| `Isaac-Ant-Test-UnseenMix[-V1214]-v0` | 잠금 테스트 (마지막에 1회) |
+| `Isaac-Ant-Eval-<Name>[-Team12]-v0` | 자체 unseen 평가 14종 (Isaac-Ant-v0에서 지형·지면 마찰만 교체), [`eval_names.py`](source/ant_rough/ant_rough/tasks/eval_names.py) |
 | `Isaac-Ant-Diag-Box{Prim,Mesh}[Flat]-v0` | 진단용: 같은 블록 배열의 박스 prim vs 삼각 메시 |
 
 ## 명령
@@ -83,13 +95,13 @@ assignment1_ant/
 ├── source/ant_rough/          외부 확장 패키지 (태스크·지형·평가·진단 환경)
 ├── scripts/                   rsl_rl/{train,play,play_one_episode}.py 복사본 + 평가·선택·진단·그림·영상 스크립트
 ├── checkpoints/
+│   ├── final/                 **최종 제출** v8_s44@2999 (model_2999.pt, params/)
 │   ├── baseline_flat/         Isaac-Ant-v0 baseline (seed 42, model_999.pt)
-│   └── candidate_v2_s44/      제출 후보 V2 seed 44 (model_2999.pt, params/)
+│   └── candidate_v2_s44/      1차 후보 V2 seed 44 (비교용)
 ├── results/                   평가·진단·선택 CSV
 └── docs/                      로그, 코드 노트, 계획서, 중간 보고, figures/, media/(영상 목록)
 ```
 
 ## 남은 일 (10.06 제출까지)
 
-- 뒤집힘 대응 변형 (자세 CaT, 외란·초기 자세 랜덤화, 대칭성 증강) → 같은 선택 파이프라인으로 최종 체크포인트 확정
-- `checkpoints/final/`, 제출용 평가 명령어 txt, 발표 자료
+- 10.05 오전: 잠금 테스트 `UnseenMix` 1회 (최종·V1214B·V2·baseline), 발표 자료 수치 채우기

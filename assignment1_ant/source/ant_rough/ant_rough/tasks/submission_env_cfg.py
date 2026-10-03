@@ -6,7 +6,7 @@ actions, and the ORIGINAL Isaac-Ant-v0 rewards and terminations -- must stay as 
 (the network is built from this task's agent config and loaded with ``strict=True``).
 
     ./isaaclab.sh -p <repo>/assignment1_ant/scripts/rsl_rl/play_one_episode.py --task Isaac-Ant-Team12-v0 \
-        --seed 24 --num_envs 100 --checkpoint <repo>/assignment1_ant/checkpoints/final/model.pt
+        --seed 24 --num_envs 100 --checkpoint <repo>/assignment1_ant/checkpoints/final/model_2999.pt
 """
 
 import isaaclab.sim as sim_utils
@@ -15,7 +15,7 @@ from isaaclab.utils import configclass
 
 from .robot_env_cfg import AntV1214DeployEnvCfg
 
-# final model family (see docs/log_1004.md); its agent config is registered with the task in __init__.py
+# final model v8_s44@2999 = V1214 deploy robot (see docs/log_1003.md); its agent config is registered with the task in __init__.py
 FinalDeployEnvCfg = AntV1214DeployEnvCfg
 
 
