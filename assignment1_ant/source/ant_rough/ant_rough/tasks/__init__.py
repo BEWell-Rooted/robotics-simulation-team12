@@ -132,6 +132,19 @@ for _name, (_split, _kwargs, _desc) in EVAL_SPECS.items():
         },
     )
 
+    # same terrain with the submission robot (Isaac-Ant-Team12-v0 deploy config), for play_one_episode videos
+    def _make_team_cfg(_kwargs=_kwargs):
+        from .submission_env_cfg import FinalDeployEnvCfg
+
+        return make_eval_cfg(FinalDeployEnvCfg, **_kwargs)
+
+    gym.register(
+        id=f"Isaac-Ant-Eval-{_name}-Team12-v0",
+        entry_point="isaaclab.envs:ManagerBasedRLEnv",
+        disable_env_checker=True,
+        kwargs={"env_cfg_entry_point": _make_team_cfg, "rsl_rl_cfg_entry_point": f"{_AG}:AntV12PPORunnerCfg"},
+    )
+
 
 ##
 # Diagnosis-only: identical block strip as box primitives vs one triangle mesh (see diag_envs.py)

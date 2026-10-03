@@ -4,7 +4,8 @@
 # A clip whose name ends in "_fail" retries eval seeds until the episode ends early (a fall), so the failure mode
 # is actually shown; every clip's seed, reward and steps go to docs/media/videos.csv.
 #
-#   conda activate lerobot-arena && cd assignment1_ant && bash scripts/capture_videos.sh
+#   conda activate lerobot-arena && cd assignment1_ant && bash scripts/capture_videos.sh [final]
+#   ("final": only the submission model checkpoints/final on Isaac-Ant-Eval-<Name>-Team12-v0 terrains)
 set -u
 cd "$(dirname "$0")/.."
 R=logs/rsl_rl/ant_rough
@@ -32,6 +33,18 @@ capture() {  # name task ckpt seeds...
   done
   echo "[CAPTURE] $name: no qualifying seed"
 }
+
+if [ "${1:-}" = final ]; then
+  F=checkpoints/final/model_2999.pt
+  capture final_plane Isaac-Ant-Team12-v0 "$F" 24
+  capture final_grid Isaac-Ant-Eval-Grid-Team12-v0 "$F" 24
+  capture final_rails Isaac-Ant-Eval-Rails-Team12-v0 "$F" 24
+  capture final_stairs Isaac-Ant-Eval-Stairs-Team12-v0 "$F" 24
+  capture final_pyramids Isaac-Ant-Eval-Pyramids-Team12-v0 "$F" 24
+  capture final_flat Isaac-Ant-Eval-Flat-Team12-v0 "$F" 24
+  capture final_flat_fail Isaac-Ant-Eval-Flat-Team12-v0 "$F" 24 25 26 27 28 29
+  exit 0
+fi
 
 capture baseline_grid Isaac-Ant-Eval-Grid-v0 "$BASE" 24
 capture v2_grid Isaac-Ant-Eval-Grid-v0 "$V2" 24
