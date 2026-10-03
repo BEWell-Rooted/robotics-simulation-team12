@@ -71,3 +71,14 @@ class AntV8PPORunnerCfg(AntV12PPORunnerCfg):
         self.algorithm.symmetry_cfg = RslRlSymmetryCfg(
             use_data_augmentation=True, use_mirror_loss=False, data_augmentation_func=ant_mirror_augmentation
         )
+
+
+@configclass
+class AntV8MLPPORunnerCfg(AntV12PPORunnerCfg):
+    """Ablation of V8: no augmented PPO samples, only a mirror loss pulling pi(mirror(o)) toward mirror(pi(o))."""
+
+    def __post_init__(self):
+        self.algorithm.symmetry_cfg = RslRlSymmetryCfg(
+            use_data_augmentation=False, use_mirror_loss=True, mirror_loss_coeff=1.0,
+            data_augmentation_func=ant_mirror_augmentation,
+        )  # fmt: skip
