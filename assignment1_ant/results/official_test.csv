@@ -1,0 +1,5 @@
+name,task,checkpoint,seed,num_envs,reward_mean,reward_std,steps_mean,steps_std,completed
+v8_s44@2999,Isaac-Ant-Test-UnseenMix-V1214-v0,checkpoints/final/model_2999.pt,24,100,113.648944,29.033983,938.090000,111.937223,100/100
+v1214b_s43@2999,Isaac-Ant-Test-UnseenMix-V1214-v0,logs/rsl_rl/ant_rough/2026-10-03_14-29-33_v1214b_s43/model_2999.pt,24,100,100.185300,22.108326,945.910000,88.794042,100/100
+v2_s44@2999,Isaac-Ant-Test-UnseenMix-v0,checkpoints/candidate_v2_s44/model_2999.pt,24,100,46.697555,30.170519,862.830000,264.794564,100/100
+baseline,Isaac-Ant-Test-UnseenMix-v0,checkpoints/baseline_flat/model_999.pt,24,100,9.510464,7.516078,761.200000,320.960870,100/100
