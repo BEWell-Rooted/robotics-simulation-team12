@@ -107,6 +107,11 @@ def _rollout(env: RslRlVecEnvWrapper, policy, force_bound=None) -> tuple[dict, d
     z_min = torch.full((n,), float("inf"), device=env.device)
     speed_sum = torch.zeros(n, dtype=torch.float64, device=env.device)
     up_last = torch.ones(n, device=env.device)
+    # generated terrains are centred at the world origin and surrounded by a flat border: count steps spent outside
+    tg = getattr(base_env.cfg.scene.terrain, "terrain_generator", None)
+    half = (tg.num_rows * tg.size[0] / 2, tg.num_cols * tg.size[1] / 2) if tg is not None else (float("inf"),) * 2
+    off_steps = torch.zeros(n, dtype=torch.long, device=env.device)
+    y_absmax = robot.data.root_pos_w[:, 1].abs().clone()
     force_samples = []
     for step in range(int(base_env.max_episode_length) + 1):
         active_now = ~finished
@@ -134,6 +139,10 @@ def _rollout(env: RslRlVecEnvWrapper, policy, force_bound=None) -> tuple[dict, d
         z_min[still] = torch.minimum(z_min[still], robot.data.root_pos_w[still, 2])
         speed_sum[still] += robot.data.root_lin_vel_w[still, 0].double()
         up_last[still] = -robot.data.projected_gravity_b[still, 2]
+        pos = robot.data.root_pos_w
+        off = (pos[:, 0].abs() > half[0]) | (pos[:, 1].abs() > half[1])
+        off_steps[still & off] += 1
+        y_absmax[still] = torch.maximum(y_absmax[still], pos[still, 1].abs())
         fell |= active & done & ~time_outs
         finished |= done
         if finished.all():
@@ -149,6 +158,9 @@ def _rollout(env: RslRlVecEnvWrapper, policy, force_bound=None) -> tuple[dict, d
         "z_min": z_min.cpu().numpy(),
         "vx_mean": (speed_sum / steps.clamp(min=1)).cpu().numpy(),
         "up_last": up_last.cpu().numpy(),
+        "off_steps": off_steps.cpu().numpy(),
+        "y_absmax": y_absmax.cpu().numpy(),
+        "terrain_half": np.array(half),
         "force_samples": torch.cat(force_samples).cpu().numpy() if force_samples else np.zeros((0, 24)),
     }
     return per_env, {
@@ -159,6 +171,8 @@ def _rollout(env: RslRlVecEnvWrapper, policy, force_bound=None) -> tuple[dict, d
         "x_dist_mean": x_dist.mean().item(),
         "x_dist_std": x_dist.std(unbiased=False).item(),
         "fall_upright_rate": (fell & (up_last >= UPRIGHT_COS)).double().mean().item(),
+        "off_terrain_frac": (off_steps.double().sum() / steps.double().sum().clamp(min=1)).item(),
+        "off_terrain_envs": (off_steps > 0).double().mean().item(),
     }
 
 
@@ -193,7 +207,7 @@ def main(env_cfg: ManagerBasedRLEnvCfg, agent_cfg: RslRlBaseRunnerCfg):
     os.makedirs(os.path.dirname(os.path.abspath(args_cli.out)), exist_ok=True)
     write_header = not os.path.exists(args_cli.out)
     with open(args_cli.out, "a", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
+        writer = csv.DictWriter(f, fieldnames=CSV_FIELDS, extrasaction="ignore")  # off-terrain stats: printed only
         if write_header:
             writer.writeheader()
         for spec in args_cli.ckpt:
