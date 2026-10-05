@@ -22,7 +22,7 @@ dir=$(ls -d logs/rsl_rl/ant_rough/*_"$run" logs/rsl_rl/ant/*_"$run" 2>/dev/null 
 final=$(ls "$dir"/model_*.pt | sed 's/.*model_//; s/\.pt//' | sort -n | tail -1)
 deploy=()
 case "$run" in
-  v12_*|v12r_*) deploy=(--deploy_task Isaac-Ant-Deploy-V12-v0) ;;
+  v12_*|v12r_*|v12b_*|v8n_*) deploy=(--deploy_task Isaac-Ant-Deploy-V12-v0) ;;
   v13_*) deploy=(--deploy_task Isaac-Ant-Deploy-V13-v0) ;;
   v14_*) deploy=(--deploy_task Isaac-Ant-Deploy-V14-v0) ;;
   v1214rmu02_*) deploy=(--deploy_task Isaac-Ant-Deploy-V1214-Mu02-v0) ;;

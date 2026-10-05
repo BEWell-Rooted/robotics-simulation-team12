@@ -296,3 +296,18 @@ class AntV1214BMu03TrainEnvCfg(AntV1214BTrainEnvCfg):
     def __post_init__(self):
         super().__post_init__()
         use_body_material(self, 0.3)
+
+
+# ---------------------------------------------------------------- no skin material (10.05 rule: only sensors / control)
+
+
+@configclass
+class AntV12BTrainEnvCfg(AntV12RTrainEnvCfg):
+    """V12B: V1214B without the V14 skin material -- V12 sensing (contacts + history + normalization) on the
+    block-weighted lane terrain, default robot material (training friction randomization kept from V1/V2R)."""
+
+    def __post_init__(self):
+        super().__post_init__()
+        from .terrains import ANT_ROUGH_BLOCKY_SUB_TERRAINS
+
+        self.scene.terrain.terrain_generator.sub_terrains = ANT_ROUGH_BLOCKY_SUB_TERRAINS
