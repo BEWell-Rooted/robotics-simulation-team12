@@ -5,8 +5,12 @@
 - 수치 출처: `results/summary_round2.md` 우선, 그다음 `docs/report_material.md`·`log_1002.md`·`log_1003.md`. 형식 "평균 ± 표준편차 (n = 학습 seed 수)",
   seed 1개는 "(n=1)". 값은 자체 unseen 평가 12종 평균 reward (원래 Isaac-Ant-v0 보상) — 다른 지표면 따로 적음
 - 흐름: 브리프의 12장 순서를 그대로 두고, 조교 평가 기준(연구 문제 → 가설 → 검증)이 보이도록 각 결과 슬라이드 제목에 가설(H1~H5)과 판정을 붙임
-- 폰트: Noto Sans KR이 이 워크스테이션에 없어 **맑은 고딕**으로 지정 (제목 Bold, 본문 Regular). Noto Sans KR이 있으면 바꿔도 됨
-- 판정 표기: 슬라이드에서는 이모지(✅❌) 대신 "지지/기각" 글자 (렌더러에 따라 이모지가 깨짐)
+- **디자인 v1 (현재)**: `docs/assignment1_slides_v1.pptx` (생성 `scripts/make_slides.py`) — 중간보고 웹 페이지와 같은 디자인
+  (따뜻한 종이색 배경, 적갈색 #7a2e2e 섹션 표시, 얇은 구분선, 숫자는 고정폭, 그림 번호·캡션, 판정은 색 점 + "지지/기각/부분")
+  - 폰트: 제목 **Noto Serif KR** Bold · 본문 **Pretendard** · 숫자 **JetBrains Mono** (모두 무료).
+    발표 PC에 설치 필요: Noto Serif KR·JetBrains Mono는 Google Fonts, Pretendard는 github.com/orioncactus/pretendard.
+    PowerPoint 저장 시 "파일의 글꼴 포함"을 켜면 다른 PC에서도 그대로 보임
+  - v0 (`assignment1_slides_v0.pptx`, 맑은 고딕, `scripts/make_slides_v0.py`)은 이전 초안 — 내용은 같음
 - 비어 있는 칸: 1번 슬라이드 구성원 이름 `[구성원]`, 11번 슬라이드 영상 썸네일 (경로만 있음)
 
 ---
