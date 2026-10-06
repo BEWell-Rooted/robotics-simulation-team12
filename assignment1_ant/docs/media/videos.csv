@@ -13,3 +13,9 @@ final_stairs,Isaac-Ant-Eval-Stairs-Team12-v0,final/model_2999.pt,24,101.860959,9
 final_pyramids,Isaac-Ant-Eval-Pyramids-Team12-v0,final/model_2999.pt,24,105.842201,960
 final_flat,Isaac-Ant-Eval-Flat-Team12-v0,final/model_2999.pt,24,143.974249,960
 final_flat_fail,Isaac-Ant-Eval-Flat-Team12-v0,final/model_2999.pt,27,100.734986,713
+final_rails_wide,Isaac-Ant-Eval-Rails-Team12-Wide-v0,final/model_2999.pt,24,128.795235,960
+final_stairs_wide,Isaac-Ant-Eval-Stairs-Team12-Wide-v0,final/model_2999.pt,24,48.355415,960
+final_grid_wide,Isaac-Ant-Eval-Grid-Team12-Wide-v0,final/model_2999.pt,24,57.319204,627
+final_pyramids_wide,Isaac-Ant-Eval-Pyramids-Team12-Wide-v0,final/model_2999.pt,24,112.023949,960
+final_grid_wide_s25,Isaac-Ant-Eval-Grid-Team12-Wide-v0,final/model_2999.pt,25,99.998693,960
+final_grid_wide_s26,Isaac-Ant-Eval-Grid-Team12-Wide-v0,final/model_2999.pt,26,95.745101,960

@@ -5,7 +5,8 @@
 # is actually shown; every clip's seed, reward and steps go to docs/media/videos.csv.
 #
 #   conda activate lerobot-arena && cd assignment1_ant && bash scripts/capture_videos.sh [final]
-#   ("final": only the submission model checkpoints/final on Isaac-Ant-Eval-<Name>-Team12-v0 terrains)
+#   ("final": only the submission model checkpoints/final on Isaac-Ant-Eval-<Name>-Team12-v0 terrains;
+#    "final_wide": the same model on 96 m wide terrains, centre-column spawn, play_one_episode_video.py)
 set -u
 cd "$(dirname "$0")/.."
 R=logs/rsl_rl/ant_rough
@@ -20,8 +21,9 @@ capture() {  # name task ckpt seeds...
   local dir=logs/video_ckpt/$name
   for seed in "$@"; do
     rm -rf "$dir"; mkdir -p "$dir"; cp "$ckpt" "$dir/model.pt"
-    ~/IsaacLab_RS/isaaclab.sh -p scripts/rsl_rl/play_one_episode.py --task "$task" --seed "$seed" --num_envs 1 \
-      --headless --checkpoint "$dir/model.pt" --video --video_length 960 < /dev/null > "$dir/play.log" 2>&1
+    ~/IsaacLab_RS/isaaclab.sh -p "${PLAY_SCRIPT:-scripts/rsl_rl/play_one_episode.py}" --task "$task" --seed "$seed" \
+      --num_envs 1 --headless --checkpoint "$dir/model.pt" --video --video_length 960 ${PLAY_EXTRA:-} \
+      < /dev/null > "$dir/play.log" 2>&1
     local reward steps
     reward=$(grep -a "Episode reward total" "$dir/play.log" | grep -o '[-0-9.]*$')
     steps=$(grep -a "Episode steps" "$dir/play.log" | grep -o '[0-9]*$')
@@ -33,6 +35,18 @@ capture() {  # name task ckpt seeds...
   done
   echo "[CAPTURE] $name: no qualifying seed"
 }
+
+if [ "${1:-}" = final_wide ]; then
+  # Wide (96 m) terrains + centre-column spawn so the Ant stays on the terrain for all 960 steps
+  # (docs/04_video_recapture_patch.md). Separate _wide names keep the original final_*.mp4 (drift examples).
+  F=checkpoints/final/model_2999.pt
+  export PLAY_SCRIPT=scripts/rsl_rl/play_one_episode_video.py PLAY_EXTRA="--center_spawn"
+  capture final_rails_wide    Isaac-Ant-Eval-Rails-Team12-Wide-v0    "$F" 24
+  capture final_stairs_wide   Isaac-Ant-Eval-Stairs-Team12-Wide-v0   "$F" 24
+  capture final_grid_wide     Isaac-Ant-Eval-Grid-Team12-Wide-v0     "$F" 24
+  capture final_pyramids_wide Isaac-Ant-Eval-Pyramids-Team12-Wide-v0 "$F" 24
+  exit 0
+fi
 
 if [ "${1:-}" = final ]; then
   F=checkpoints/final/model_2999.pt

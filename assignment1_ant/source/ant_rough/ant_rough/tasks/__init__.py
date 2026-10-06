@@ -147,6 +147,20 @@ for _name, (_split, _kwargs, _desc) in EVAL_SPECS.items():
         kwargs={"env_cfg_entry_point": _make_team_cfg, "rsl_rl_cfg_entry_point": f"{_AG}:AntV12PPORunnerCfg"},
     )
 
+    # wide (num_cols=12, 96 m) version of the same terrain, spawn-centred by play_one_episode_video.py --center_spawn:
+    # video-only task so the Ant cannot drift off the 32 m evaluation terrain within 960 steps
+    def _make_team_wide_cfg(_kwargs=_kwargs):
+        from .submission_env_cfg import FinalDeployEnvCfg
+
+        return make_eval_cfg(FinalDeployEnvCfg, **{**_kwargs, "num_cols": 12})
+
+    gym.register(
+        id=f"Isaac-Ant-Eval-{_name}-Team12-Wide-v0",
+        entry_point="isaaclab.envs:ManagerBasedRLEnv",
+        disable_env_checker=True,
+        kwargs={"env_cfg_entry_point": _make_team_wide_cfg, "rsl_rl_cfg_entry_point": f"{_AG}:AntV12PPORunnerCfg"},
+    )
+
 
 ##
 # Diagnosis-only: identical block strip as box primitives vs one triangle mesh (see diag_envs.py)
