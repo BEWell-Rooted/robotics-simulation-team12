@@ -4,7 +4,7 @@ Isaac-Ant-v0 (Isaac Lab 2.3.0, RSL-RL PPO) 정책을 지형 형태·지형 파�
 조교는 우리 태스크 설정으로 체크포인트를 로드하고 지형만 바꿔 평가하므로, **학습 환경 + 로봇(센서·물성) + 학습 방법**을 함께 설계했다.
 
 - **최종 제출**: `checkpoints/final/model_2999.pt` (`v8_s44@2999`), 태스크 `Isaac-Ant-Team12-v0`, 평가 명령 [`eval_command.txt`](eval_command.txt)
-- 발표 자료: [`docs/assignment1_slides_final.pptx`](docs/assignment1_slides_final.pptx) · 발표 재료: [`docs/report_material.md`](docs/report_material.md) · 결과 표: [`results/summary_round2.md`](results/summary_round2.md)
+- 발표 자료: LMS 제출본 참조 (레포에는 넣지 않음) · 발표 재료: [`docs/report_material.md`](docs/report_material.md) · 결과 표: [`results/summary_round2.md`](results/summary_round2.md)
 - 작업 로그: [`docs/log_0929.md`](docs/log_0929.md) ~ [`docs/log_1006.md`](docs/log_1006.md) · 설계 메모: [`docs/01_improvement_plan_0930.md`](docs/01_improvement_plan_0930.md) · 평가 기준 리뷰: [`docs/03_review_new_criteria_1005.md`](docs/03_review_new_criteria_1005.md) · 영상 재녹화 패치: [`docs/04_video_recapture_patch.md`](docs/04_video_recapture_patch.md)
 
 ## 결과 요약
