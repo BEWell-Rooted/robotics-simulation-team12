@@ -4,8 +4,8 @@ Isaac-Ant-v0 (Isaac Lab 2.3.0, RSL-RL PPO) 정책을 지형 형태·지형 파�
 조교는 우리 태스크 설정으로 체크포인트를 로드하고 지형만 바꿔 평가하므로, **학습 환경 + 로봇(센서·물성) + 학습 방법**을 함께 설계했다.
 
 - **최종 제출**: `checkpoints/final/model_2999.pt` (`v8_s44@2999`), 태스크 `Isaac-Ant-Team12-v0`, 평가 명령 [`eval_command.txt`](eval_command.txt)
-- 발표 재료: [`docs/report_material.md`](docs/report_material.md) · 결과 표: [`results/summary_round2.md`](results/summary_round2.md)
-- 작업 로그: [`docs/log_0929.md`](docs/log_0929.md) ~ [`docs/log_1004.md`](docs/log_1004.md) · 계획: [`docs/02_weekend_plan_1002.md`](docs/02_weekend_plan_1002.md) · 중간 보고: [`docs/interim_report_1001.md`](docs/interim_report_1001.md)
+- 발표 자료: [`docs/assignment1_slides_final.pptx`](docs/assignment1_slides_final.pptx) · 발표 재료: [`docs/report_material.md`](docs/report_material.md) · 결과 표: [`results/summary_round2.md`](results/summary_round2.md)
+- 작업 로그: [`docs/log_0929.md`](docs/log_0929.md) ~ [`docs/log_1006.md`](docs/log_1006.md) · 설계 메모: [`docs/01_improvement_plan_0930.md`](docs/01_improvement_plan_0930.md) · 평가 기준 리뷰: [`docs/03_review_new_criteria_1005.md`](docs/03_review_new_criteria_1005.md) · 영상 재녹화 패치: [`docs/04_video_recapture_patch.md`](docs/04_video_recapture_patch.md)
 
 ## 결과 요약
 
@@ -18,6 +18,8 @@ Isaac-Ant-v0 (Isaac Lab 2.3.0, RSL-RL PPO) 정책을 지형 형태·지형 파�
 - 제출 태스크 공식 조건 (평면, `play_one_episode --seed 24 --num_envs 100`): **174.73 ± 12.67** (baseline 134.90 ± 27.74)
 - 대칭 ablation: 대칭 손실만 (V8-ML) 77.9 ± 1.1, 기본 로봇 + 증강 (V2Sym) 50.2 ± 2.7 → 이득은 거울 데이터 증강 × 로봇 변경의 상호작용
 - **잠금 테스트 `UnseenMix`** (학습 범위 밖 블록·피라미드·경사 위 블록·원기둥·평지, 공식 조건 1회): baseline 9.51 ± 7.52 / V2 46.70 ± 30.17 / V1214B 100.19 ± 22.11 / **최종 V8 113.65 ± 29.03**
+
+- 수치의 한계: 평가 지형 폭 32 m에서 빠른 정책 약 27%가 지형 밖으로 이탈(바깥 두 열이 가장자리 4 m에서 스폰) — 지형 안 로봇만 비교해도 순위 동일, [`docs/log_1005.md`](docs/log_1005.md)
 
 ![변형별 결과](docs/figures/r2_ladder.png)
 
@@ -61,6 +63,7 @@ cd ~/IsaacLab_RS
 | `Isaac-Ant-Team12-v0` | **제출 태스크** (= Deploy-V1214, 평면 μ1.0) |
 | `Isaac-Ant-Test-UnseenMix[-V1214]-v0` | 잠금 테스트 (마지막에 1회) |
 | `Isaac-Ant-Eval-<Name>[-Team12]-v0` | 자체 unseen 평가 14종 (Isaac-Ant-v0에서 지형·지면 마찰만 교체), [`eval_names.py`](source/ant_rough/ant_rough/tasks/eval_names.py) |
+| `Isaac-Ant-Eval-<Name>-Team12-Wide-v0` | 영상용 넓은 지형 (12열 96 m), `scripts/rsl_rl/play_one_episode_video.py --center_spawn`과 함께 사용 |
 | `Isaac-Ant-Diag-Box{Prim,Mesh}[Flat]-v0` | 진단용: 같은 블록 배열의 박스 prim vs 삼각 메시 |
 
 ## 명령
@@ -86,6 +89,7 @@ cd scripts && python plot_diag.py --csv ../results/diag_meshflat.csv --out ../do
 
 # 보고용 영상 (docs/media/, mp4는 gitignore)
 bash scripts/capture_videos.sh
+bash scripts/capture_videos.sh final_wide   # 최종 모델, 넓은 지형
 ```
 
 ## 폴더
@@ -96,12 +100,7 @@ assignment1_ant/
 ├── scripts/                   rsl_rl/{train,play,play_one_episode}.py 복사본 + 평가·선택·진단·그림·영상 스크립트
 ├── checkpoints/
 │   ├── final/                 **최종 제출** v8_s44@2999 (model_2999.pt, params/)
-│   ├── baseline_flat/         Isaac-Ant-v0 baseline (seed 42, model_999.pt)
-│   └── candidate_v2_s44/      1차 후보 V2 seed 44 (비교용)
+│   └── baseline_flat/         Isaac-Ant-v0 baseline (seed 42, model_999.pt)
 ├── results/                   평가·진단·선택 CSV
-└── docs/                      로그, 코드 노트, 계획서, 중간 보고, figures/, media/(영상 목록)
+└── docs/                      로그, 코드 노트, 설계·리뷰 메모, 발표 자료, figures/, media/(영상 목록)
 ```
-
-## 남은 일 (10.06 제출까지)
-
-- 팀 리뷰 반영, 발표 자료

@@ -171,7 +171,7 @@ class AntRoughV5EnvCfg(AntRoughCurriculumEnvCfg):
 
 
 ##
-# Round 2, axis 1: structure fixed, environment changes on top of V2 (docs/02_weekend_plan_1002.md)
+# Round 2, axis 1: structure fixed, environment changes on top of V2 (docs/log_1002.md)
 ##
 
 

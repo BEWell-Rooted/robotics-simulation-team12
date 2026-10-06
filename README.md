@@ -4,7 +4,7 @@
 
 | 폴더 | 내용 |
 |---|---|
-| [`assignment1_ant/`](assignment1_ant/README.md) | 실습 과제 1 — 처음 보는 환경에서도 잘 걷는 Ant (Isaac-Ant-v0, RSL-RL PPO). 마감 10.06, 진행 중 (중간 보고 10.01) |
+| [`assignment1_ant/`](assignment1_ant/README.md) | 실습 과제 1 — 처음 보는 환경에서도 잘 걷는 Ant (Isaac-Ant-v0, RSL-RL PPO). 10.06 제출 완료 · 10.08 발표. 최종 모델 `assignment1_ant/checkpoints/final/model_2999.pt`, 평가 명령 `assignment1_ant/eval_command.txt` |
 
 ## 공통 환경
 

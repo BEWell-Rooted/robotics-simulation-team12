@@ -164,7 +164,7 @@ assert {k: v[0] for k, v in EVAL_SPECS.items()} == EVAL_SPLITS, "eval_names.EVAL
 
 
 ##
-# LOCKED final test environment (docs/02_weekend_plan_1002.md): never used for training, selection or variant
+# LOCKED final test environment (docs/log_1002.md): never used for training, selection or variant
 # comparison; evaluated once with the official protocol (play_one_episode.py --seed 24 --num_envs 100).
 ##
 

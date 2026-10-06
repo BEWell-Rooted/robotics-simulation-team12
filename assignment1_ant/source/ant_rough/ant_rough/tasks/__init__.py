@@ -59,7 +59,7 @@ gym.register(
 )
 
 ##
-# Round 2 (docs/02_weekend_plan_1002.md). Axis 1: environment changes on V2, baseline network.
+# Round 2 (docs/log_1002.md). Axis 1: environment changes on V2, baseline network.
 # Axis 2: robot-side changes; each has a TRAIN task and a DEPLOY task (Isaac-Ant-v0 + the robot change) whose
 # terrain the evaluation / the TA swaps.
 ##

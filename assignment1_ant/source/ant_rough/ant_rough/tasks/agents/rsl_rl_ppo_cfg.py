@@ -18,7 +18,7 @@ class AntRoughPPORunnerCfg(AntPPORunnerCfg):
 
 
 ##
-# Round 2, axis 2: the policy may change because the TA loads our task config (docs/02_weekend_plan_1002.md)
+# Round 2, axis 2: the policy may change because the TA loads our task config (docs/log_1002.md)
 ##
 
 from isaaclab_rl.rsl_rl import RslRlPpoActorCriticCfg, RslRlPpoActorCriticRecurrentCfg  # noqa: E402
