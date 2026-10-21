@@ -1,0 +1,532 @@
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /home/cai/anaconda3/envs/lerobot-arena/bin/python
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/cai/IsaacLab_RS/apps/isaaclab.python.headless.kit
+Loading user config located at: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20261021_201216.log
+2026-10-21T11:12:16Z [0ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/1fca3d3d-90f5-47e1-08935cbb-09f79d9e.dmp'
+2026-10-21T11:12:16Z [1ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/e9f33ebc-780b-434b-2bd902a8-4c2cf164.dmp'
+2026-10-21T11:12:16Z [1ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/87cf2840-32cd-4d65-6cd95d87-997bf5d3.dmp'
+2026-10-21T11:12:16Z [1ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/86b8070d-c551-410d-08a55885-05d2f477.dmp'
+2026-10-21T11:12:16Z [96ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-10-21T11:12:16Z [387ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-10-21T11:12:16Z [587ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-21T11:12:17Z [803ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 595.99.02     | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA RTX 6000 Ada Generation   | Yes: 0 |     | 49386   MB | 10de      | 0          |
+|     |                                  |        |     |            | 26b1      | 3b781420.. |
+|     |                                  |        |     |            | ac        |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| Processor: Intel(R) Xeon(R) w5-3435X
+| Cores: 16 | Logical Cores: 32
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 256974 | Free Memory: 239079
+| Total Page/Swap (MB): 2047 | Free Page/Swap: 2047
+|---------------------------------------------------------------------------------------------|
+2026-10-21T11:12:21Z [5,640ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-10-21T11:12:21Z [5,650ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+ROBOMIMIC WARNING(
+    No private macro file found!
+    It is recommended to use a private macro file
+    To setup, run: python /home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/robomimic/scripts/setup_macros.py
+)
+2026-10-21T11:12:22Z [6,358ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-21T11:12:22Z [6,358ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 595.99.02     | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA RTX 6000 Ada Generation   | Yes: 0 |     | 49386   MB | 10de      | 0          |
+|     |                                  |        |     |            | 26b1      | 3b781420.. |
+|     |                                  |        |     |            | ac        |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| Processor: Intel(R) Xeon(R) w5-3435X
+| Cores: 16 | Logical Cores: 32
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 256974 | Free Memory: 238861
+| Total Page/Swap (MB): 2047 | Free Page/Swap: 2047
+|---------------------------------------------------------------------------------------------|
+2026-10-21T11:12:23Z [6,798ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-10-21T11:12:23Z [6,800ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-21T11:12:23Z [7,022ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-21T11:12:23Z [7,022ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-21T11:12:23Z [7,041ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-21T11:12:23Z [7,042ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-21T11:12:23Z [7,051ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-21T11:12:23Z [7,051ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-21T11:12:23Z [7,060ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-21T11:12:23Z [7,060ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-21T11:12:23Z [7,062ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-21T11:12:23Z [7,062ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-21T11:12:23Z [7,063ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-21T11:12:23Z [7,063ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-21T11:12:23Z [7,599ms] [Warning] [omni.graph.visualization.nodes._impl.extension] No Viewport Window to add omni.graph.visualization.nodes-2.1.3 scene to
+Loading configuration for task: Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0
+dict_keys(['CartPole-v0', 'CartPole-v1', 'MountainCar-v0', 'MountainCarContinuous-v0', 'Pendulum-v1', 'Acrobot-v1', 'phys2d/CartPole-v0', 'phys2d/CartPole-v1', 'phys2d/Pendulum-v0', 'LunarLander-v3', 'LunarLanderContinuous-v3', 'BipedalWalker-v3', 'BipedalWalkerHardcore-v3', 'CarRacing-v3', 'Blackjack-v1', 'FrozenLake-v1', 'FrozenLake8x8-v1', 'CliffWalking-v1', 'CliffWalkingSlippery-v1', 'Taxi-v3', 'tabular/Blackjack-v0', 'tabular/CliffWalking-v0', 'Reacher-v2', 'Reacher-v4', 'Reacher-v5', 'Pusher-v2', 'Pusher-v4', 'Pusher-v5', 'InvertedPendulum-v2', 'InvertedPendulum-v4', 'InvertedPendulum-v5', 'InvertedDoublePendulum-v2', 'InvertedDoublePendulum-v4', 'InvertedDoublePendulum-v5', 'HalfCheetah-v2', 'HalfCheetah-v3', 'HalfCheetah-v4', 'HalfCheetah-v5', 'Hopper-v2', 'Hopper-v3', 'Hopper-v4', 'Hopper-v5', 'Swimmer-v2', 'Swimmer-v3', 'Swimmer-v4', 'Swimmer-v5', 'Walker2d-v2', 'Walker2d-v3', 'Walker2d-v4', 'Walker2d-v5', 'Ant-v2', 'Ant-v3', 'Ant-v4', 'Ant-v5', 'Humanoid-v2', 'Humanoid-v3', 'Humanoid-v4', 'Humanoid-v5', 'HumanoidStandup-v2', 'HumanoidStandup-v4', 'HumanoidStandup-v5', 'GymV21Environment-v0', 'GymV26Environment-v0', 'Isaac-Repose-Cube-Allegro-Direct-v0', 'Isaac-Ant-Direct-v0', 'Isaac-Velocity-Flat-Anymal-C-Direct-v0', 'Isaac-Velocity-Rough-Anymal-C-Direct-v0', 'Isaac-AutoMate-Assembly-Direct-v0', 'Isaac-AutoMate-Disassembly-Direct-v0', 'Isaac-Cart-Double-Pendulum-Direct-v0', 'Isaac-Cartpole-Direct-v0', 'Isaac-Cartpole-RGB-Camera-Direct-v0', 'Isaac-Cartpole-Depth-Camera-Direct-v0', 'Isaac-Cartpole-Showcase-Box-Box-Direct-v0', 'Isaac-Cartpole-Showcase-Box-Discrete-Direct-v0', 'Isaac-Cartpole-Showcase-Box-MultiDiscrete-Direct-v0', 'Isaac-Cartpole-Showcase-Discrete-Box-Direct-v0', 'Isaac-Cartpole-Showcase-Discrete-Discrete-Direct-v0', 'Isaac-Cartpole-Showcase-Discrete-MultiDiscrete-Direct-v0', 'Isaac-Cartpole-Showcase-MultiDiscrete-Box-Direct-v0', 'Isaac-Cartpole-Showcase-MultiDiscrete-Discrete-Direct-v0', 'Isaac-Cartpole-Showcase-MultiDiscrete-MultiDiscrete-Direct-v0', 'Isaac-Cartpole-Showcase-Dict-Box-Direct-v0', 'Isaac-Cartpole-Showcase-Dict-Discrete-Direct-v0', 'Isaac-Cartpole-Showcase-Dict-MultiDiscrete-Direct-v0', 'Isaac-Cartpole-Showcase-Tuple-Box-Direct-v0', 'Isaac-Cartpole-Showcase-Tuple-Discrete-Direct-v0', 'Isaac-Cartpole-Showcase-Tuple-MultiDiscrete-Direct-v0', 'Isaac-Cartpole-Camera-Showcase-Box-Box-Direct-v0', 'Isaac-Cartpole-Camera-Showcase-Box-Discrete-Direct-v0', 'Isaac-Cartpole-Camera-Showcase-Box-MultiDiscrete-Direct-v0', 'Isaac-Cartpole-Camera-Showcase-Dict-Box-Direct-v0', 'Isaac-Cartpole-Camera-Showcase-Dict-Discrete-Direct-v0', 'Isaac-Cartpole-Camera-Showcase-Dict-MultiDiscrete-Direct-v0', 'Isaac-Cartpole-Camera-Showcase-Tuple-Box-Direct-v0', 'Isaac-Cartpole-Camera-Showcase-Tuple-Discrete-Direct-v0', 'Isaac-Cartpole-Camera-Showcase-Tuple-MultiDiscrete-Direct-v0', 'Isaac-Factory-PegInsert-Direct-v0', 'Isaac-Factory-GearMesh-Direct-v0', 'Isaac-Factory-NutThread-Direct-v0', 'Isaac-Forge-PegInsert-Direct-v0', 'Isaac-Forge-GearMesh-Direct-v0', 'Isaac-Forge-NutThread-Direct-v0', 'Isaac-Franka-Cabinet-Direct-v0', 'Isaac-Humanoid-Direct-v0', 'Isaac-Humanoid-AMP-Dance-Direct-v0', 'Isaac-Humanoid-AMP-Run-Direct-v0', 'Isaac-Humanoid-AMP-Walk-Direct-v0', 'Isaac-Quadcopter-Direct-v0', 'Isaac-Repose-Cube-Shadow-Direct-v0', 'Isaac-Repose-Cube-Shadow-OpenAI-FF-Direct-v0', 'Isaac-Repose-Cube-Shadow-OpenAI-LSTM-Direct-v0', 'Isaac-Repose-Cube-Shadow-Vision-Direct-v0', 'Isaac-Repose-Cube-Shadow-Vision-Direct-Play-v0', 'Isaac-Shadow-Hand-Over-Direct-v0', 'Isaac-Ant-v0', 'Isaac-Cartpole-v0', 'Isaac-Cartpole-RGB-v0', 'Isaac-Cartpole-Depth-v0', 'Isaac-Cartpole-RGB-ResNet18-v0', 'Isaac-Cartpole-RGB-TheiaTiny-v0', 'Isaac-Humanoid-v0', 'Isaac-Tracking-LocoManip-Digit-v0', 'Isaac-Tracking-LocoManip-Digit-Play-v0', 'Isaac-Velocity-Flat-Unitree-A1-v0', 'Isaac-Velocity-Flat-Unitree-A1-Play-v0', 'Isaac-Velocity-Rough-Unitree-A1-v0', 'Isaac-Velocity-Rough-Unitree-A1-Play-v0', 'Isaac-Velocity-Flat-Anymal-B-v0', 'Isaac-Velocity-Flat-Anymal-B-Play-v0', 'Isaac-Velocity-Rough-Anymal-B-v0', 'Isaac-Velocity-Rough-Anymal-B-Play-v0', 'Isaac-Velocity-Flat-Anymal-C-v0', 'Isaac-Velocity-Flat-Anymal-C-Play-v0', 'Isaac-Velocity-Rough-Anymal-C-v0', 'Isaac-Velocity-Rough-Anymal-C-Play-v0', 'Isaac-Velocity-Flat-Anymal-D-v0', 'Isaac-Velocity-Flat-Anymal-D-Play-v0', 'Isaac-Velocity-Rough-Anymal-D-v0', 'Isaac-Velocity-Rough-Anymal-D-Play-v0', 'Isaac-Velocity-Flat-Cassie-v0', 'Isaac-Velocity-Flat-Cassie-Play-v0', 'Isaac-Velocity-Rough-Cassie-v0', 'Isaac-Velocity-Rough-Cassie-Play-v0', 'Isaac-Velocity-Flat-Digit-v0', 'Isaac-Velocity-Flat-Digit-Play-v0', 'Isaac-Velocity-Rough-Digit-v0', 'Isaac-Velocity-Rough-Digit-Play-v0', 'Isaac-Velocity-Rough-G1-v0', 'Isaac-Velocity-Rough-G1-Play-v0', 'Isaac-Velocity-Flat-G1-v0', 'Isaac-Velocity-Flat-G1-Play-v0', 'Isaac-Velocity-Flat-Unitree-Go1-v0', 'Isaac-Velocity-Flat-Unitree-Go1-Play-v0', 'Isaac-Velocity-Rough-Unitree-Go1-v0', 'Isaac-Velocity-Rough-Unitree-Go1-Play-v0', 'Isaac-Velocity-Flat-Unitree-Go2-v0', 'Isaac-Velocity-Flat-Unitree-Go2-Play-v0', 'Isaac-Velocity-Rough-Unitree-Go2-v0', 'Isaac-Velocity-Rough-Unitree-Go2-Play-v0', 'Isaac-Velocity-Rough-H1-v0', 'Isaac-Velocity-Rough-H1-Play-v0', 'Isaac-Velocity-Flat-H1-v0', 'Isaac-Velocity-Flat-H1-Play-v0', 'Isaac-Velocity-Flat-Spot-v0', 'Isaac-Velocity-Flat-Spot-Play-v0', 'Isaac-Open-Drawer-Franka-v0', 'Isaac-Open-Drawer-Franka-Play-v0', 'Isaac-Open-Drawer-Franka-IK-Abs-v0', 'Isaac-Open-Drawer-Franka-IK-Rel-v0', 'Isaac-Deploy-Reach-UR10e-v0', 'Isaac-Deploy-Reach-UR10e-Play-v0', 'Isaac-Deploy-Reach-UR10e-ROS-Inference-v0', 'Isaac-Dexsuite-Kuka-Allegro-Reorient-v0', 'Isaac-Dexsuite-Kuka-Allegro-Reorient-Play-v0', 'Isaac-Dexsuite-Kuka-Allegro-Lift-v0', 'Isaac-Dexsuite-Kuka-Allegro-Lift-Play-v0', 'Isaac-Repose-Cube-Allegro-v0', 'Isaac-Repose-Cube-Allegro-Play-v0', 'Isaac-Repose-Cube-Allegro-NoVelObs-v0', 'Isaac-Repose-Cube-Allegro-NoVelObs-Play-v0', 'Isaac-Lift-Cube-Franka-v0', 'Isaac-Lift-Cube-Franka-Play-v0', 'Isaac-Lift-Cube-Franka-IK-Abs-v0', 'Isaac-Lift-Teddy-Bear-Franka-IK-Abs-v0', 'Isaac-Lift-Cube-Franka-IK-Rel-v0', 'Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0', 'Isaac-Place-Mug-Agibot-Left-Arm-RmpFlow-v0', 'Isaac-Reach-Franka-v0', 'Isaac-Reach-Franka-Play-v0', 'Isaac-Reach-Franka-IK-Abs-v0', 'Isaac-Reach-Franka-IK-Rel-v0', 'Isaac-Reach-Franka-OSC-v0', 'Isaac-Reach-Franka-OSC-Play-v0', 'Isaac-Reach-UR10-v0', 'Isaac-Reach-UR10-Play-v0', 'Isaac-Stack-Cube-Franka-v0', 'Isaac-Stack-Cube-Instance-Randomize-Franka-v0', 'Isaac-Stack-Cube-Franka-IK-Rel-v0', 'Isaac-Stack-Cube-Franka-IK-Rel-Visuomotor-v0', 'Isaac-Stack-Cube-Franka-IK-Rel-Visuomotor-Cosmos-v0', 'Isaac-Stack-Cube-Franka-IK-Abs-v0', 'Isaac-Stack-Cube-Instance-Randomize-Franka-IK-Rel-v0', 'Isaac-Stack-Cube-Franka-IK-Rel-Blueprint-v0', 'Isaac-Stack-Cube-Franka-IK-Rel-Skillgen-v0', 'Isaac-Stack-Cube-Bin-Franka-IK-Rel-Mimic-v0', 'Isaac-Stack-Cube-Galbot-Left-Arm-Gripper-RmpFlow-v0', 'Isaac-Stack-Cube-Galbot-Right-Arm-Suction-RmpFlow-v0', 'Isaac-Stack-Cube-Galbot-Left-Arm-Gripper-Visuomotor-v0', 'Isaac-Stack-Cube-Galbot-Left-Arm-Gripper-Visuomotor-Joint-Position-Play-v0', 'Isaac-Stack-Cube-Galbot-Left-Arm-Gripper-Visuomotor-RmpFlow-Play-v0', 'Isaac-Stack-Cube-UR10-Long-Suction-IK-Rel-v0', 'Isaac-Stack-Cube-UR10-Short-Suction-IK-Rel-v0', 'Isaac-Navigation-Flat-Anymal-C-v0', 'Isaac-Navigation-Flat-Anymal-C-Play-v0', 'Isaac-PickPlace-GR1T2-Abs-v0', 'Isaac-NutPour-GR1T2-Pink-IK-Abs-v0', 'Isaac-ExhaustPipe-GR1T2-Pink-IK-Abs-v0', 'Isaac-PickPlace-GR1T2-WaistEnabled-Abs-v0', 'Isaac-PickPlace-G1-InspireFTP-Abs-v0', 'Isaac-PickPlace-Locomanipulation-G1-Abs-v0', 'Isaac-PickPlace-FixedBaseUpperBodyIK-G1-Abs-v0'])
+ 
+
+============= New Training Run with Config =============
+{
+    "algo_name": "bc",
+    "experiment": {
+        "name": "_smoke_bc_1021",
+        "validate": false,
+        "logging": {
+            "terminal_output_to_txt": true,
+            "log_tb": true,
+            "log_wandb": false,
+            "wandb_proj_name": "debug"
+        },
+        "save": {
+            "enabled": true,
+            "every_n_seconds": null,
+            "every_n_epochs": 100,
+            "epochs": [],
+            "on_best_validation": false,
+            "on_best_rollout_return": false,
+            "on_best_rollout_success_rate": true
+        },
+        "epoch_every_n_steps": 100,
+        "validation_epoch_every_n_steps": 10,
+        "env": null,
+        "additional_envs": null,
+        "render": false,
+        "render_video": false,
+        "keep_all_videos": false,
+        "video_skip": 5,
+        "rollout": {
+            "enabled": false,
+            "n": 50,
+            "horizon": 400,
+            "rate": 50,
+            "warmstart": 0,
+            "terminate_on_success": true
+        }
+    },
+    "train": {
+        "data": "./datasets/ta_ref/_smoke_mimic_4.hdf5",
+        "output_dir": "/home/cai/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0",
+        "num_data_workers": 4,
+        "hdf5_cache_mode": "all",
+        "hdf5_use_swmr": true,
+        "hdf5_load_next_obs": false,
+        "hdf5_normalize_obs": false,
+        "hdf5_filter_key": null,
+        "hdf5_validation_filter_key": null,
+        "seq_length": 10,
+        "pad_seq_length": true,
+        "frame_stack": 1,
+        "pad_frame_stack": true,
+        "dataset_keys": [
+            "actions"
+        ],
+        "goal_mode": null,
+        "cuda": true,
+        "batch_size": 100,
+        "num_epochs": 2000,
+        "seed": 101
+    },
+    "algo": {
+        "optim_params": {
+            "policy": {
+                "optimizer_type": "adam",
+                "learning_rate": {
+                    "initial": 0.001,
+                    "decay_factor": 0.1,
+                    "epoch_schedule": [],
+                    "scheduler_type": "multistep"
+                },
+                "regularization": {
+                    "L2": 0.0
+                }
+            }
+        },
+        "loss": {
+            "l2_weight": 1.0,
+            "l1_weight": 0.0,
+            "cos_weight": 0.0
+        },
+        "actor_layer_dims": [],
+        "gaussian": {
+            "enabled": false,
+            "fixed_std": false,
+            "init_std": 0.1,
+            "min_std": 0.01,
+            "std_activation": "softplus",
+            "low_noise_eval": true
+        },
+        "gmm": {
+            "enabled": true,
+            "num_modes": 5,
+            "min_std": 0.0001,
+            "std_activation": "softplus",
+            "low_noise_eval": true
+        },
+        "vae": {
+            "enabled": false,
+            "latent_dim": 14,
+            "latent_clip": null,
+            "kl_weight": 1.0,
+            "decoder": {
+                "is_conditioned": true,
+                "reconstruction_sum_across_elements": false
+            },
+            "prior": {
+                "learn": false,
+                "is_conditioned": false,
+                "use_gmm": false,
+                "gmm_num_modes": 10,
+                "gmm_learn_weights": false,
+                "use_categorical": false,
+                "categorical_dim": 10,
+                "categorical_gumbel_softmax_hard": false,
+                "categorical_init_temp": 1.0,
+                "categorical_temp_anneal_step": 0.001,
+                "categorical_min_temp": 0.3
+            },
+            "encoder_layer_dims": [
+                300,
+                400
+            ],
+            "decoder_layer_dims": [
+                300,
+                400
+            ],
+            "prior_layer_dims": [
+                300,
+                400
+            ]
+        },
+        "rnn": {
+            "enabled": true,
+            "horizon": 10,
+            "hidden_dim": 400,
+            "rnn_type": "LSTM",
+            "num_layers": 2,
+            "open_loop": false,
+            "kwargs": {
+                "bidirectional": false
+            }
+        },
+        "transformer": {
+            "enabled": false,
+            "context_length": 10,
+            "embed_dim": 512,
+            "num_layers": 6,
+            "num_heads": 8,
+            "emb_dropout": 0.1,
+            "attn_dropout": 0.1,
+            "block_output_dropout": 0.1,
+            "sinusoidal_embedding": false,
+            "activation": "gelu",
+            "supervise_all_steps": false,
+            "nn_parameter_for_timesteps": true
+        }
+    },
+    "observation": {
+        "modalities": {
+            "obs": {
+                "low_dim": [
+                    "eef_pos",
+                    "eef_quat",
+                    "gripper_pos",
+                    "toy_truck_positions",
+                    "toy_truck_orientations",
+                    "box_positions",
+                    "box_orientations"
+                ],
+                "rgb": [],
+                "depth": [],
+                "scan": []
+            },
+            "goal": {
+                "low_dim": [],
+                "rgb": [],
+                "depth": [],
+                "scan": []
+            }
+        },
+        "encoder": {
+            "low_dim": {
+                "core_class": null,
+                "core_kwargs": {},
+                "obs_randomizer_class": null,
+                "obs_randomizer_kwargs": {}
+            },
+            "rgb": {
+                "core_class": "VisualCore",
+                "core_kwargs": {},
+                "obs_randomizer_class": null,
+                "obs_randomizer_kwargs": {}
+            },
+            "depth": {
+                "core_class": "VisualCore",
+                "core_kwargs": {},
+                "obs_randomizer_class": null,
+                "obs_randomizer_kwargs": {}
+            },
+            "scan": {
+                "core_class": "ScanCore",
+                "core_kwargs": {},
+                "obs_randomizer_class": null,
+                "obs_randomizer_kwargs": {}
+            }
+        }
+    },
+    "meta": {
+        "hp_base_config_file": null,
+        "hp_keys": [],
+        "hp_values": []
+    }
+}
+
+>>> Saving logs into directory: /home/cai/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/_smoke_bc_1021/20261021201224/logs
+>>> Saving checkpoints into directory: /home/cai/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/_smoke_bc_1021/20261021201224/models
+>>> Saving videos into directory: /home/cai/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/_smoke_bc_1021/20261021201224/videos
+STDOUT will be forked to /home/cai/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/_smoke_bc_1021/20261021201224/logs/log.txt
+
+============= Initialized Observation Utils with Obs Spec =============
+
+using obs modality: low_dim with keys: ['box_positions', 'toy_truck_orientations', 'toy_truck_positions', 'eef_pos', 'box_orientations', 'gripper_pos', 'eef_quat']
+using obs modality: rgb with keys: []
+using obs modality: depth with keys: []
+using obs modality: scan with keys: []
+
+============= Loaded Environment Metadata =============
+obs key box_orientations with shape (4,)
+obs key box_positions with shape (3,)
+obs key eef_pos with shape (3,)
+obs key eef_quat with shape (4,)
+obs key gripper_pos with shape (2,)
+obs key toy_truck_orientations with shape (4,)
+obs key toy_truck_positions with shape (3,)
+
+
+============= Model Summary =============
+ObservationKeyToModalityDict: mean not found, adding mean to mapping with assumed low_dim modality!
+ObservationKeyToModalityDict: scale not found, adding scale to mapping with assumed low_dim modality!
+ObservationKeyToModalityDict: logits not found, adding logits to mapping with assumed low_dim modality!
+BC_RNN_GMM (
+  ModuleDict(
+    (policy): RNNGMMActorNetwork(
+        action_dim=7, std_activation=softplus, low_noise_eval=True, num_nodes=5, min_std=0.0001
+  
+        encoder=ObservationGroupEncoder(
+            group=obs
+            ObservationEncoder(
+                Key(
+                    name=box_orientations
+                    shape=[4]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                Key(
+                    name=box_positions
+                    shape=[3]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                Key(
+                    name=eef_pos
+                    shape=[3]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                Key(
+                    name=eef_quat
+                    shape=[4]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                Key(
+                    name=gripper_pos
+                    shape=[2]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                Key(
+                    name=toy_truck_orientations
+                    shape=[4]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                Key(
+                    name=toy_truck_positions
+                    shape=[3]
+                    modality=low_dim
+                    randomizer=None
+                    net=None
+                    sharing_from=None
+                )
+                output_shape=[23]
+            )
+        )
+  
+        rnn=RNN_Base(
+          (per_step_net): ObservationDecoder(
+              Key(
+                  name=mean
+                  shape=(5, 7)
+                  modality=low_dim
+                  net=(Linear(in_features=400, out_features=35, bias=True))
+              )
+              Key(
+                  name=scale
+                  shape=(5, 7)
+                  modality=low_dim
+                  net=(Linear(in_features=400, out_features=35, bias=True))
+              )
+              Key(
+                  name=logits
+                  shape=(5,)
+                  modality=low_dim
+                  net=(Linear(in_features=400, out_features=5, bias=True))
+              )
+          )
+          (nets): LSTM(23, 400, num_layers=2, batch_first=True)
+        )
+    )
+  )
+)
+
+SequenceDataset: loading dataset into memory...
+  0%|          | 0/4 [00:00<?, ?it/s]100%|##########| 4/4 [00:00<00:00, 548.47it/s]
+SequenceDataset: caching get_item calls...
+  0%|          | 0/2320 [00:00<?, ?it/s] 86%|########6 | 2004/2320 [00:00<00:00, 20031.09it/s]100%|##########| 2320/2320 [00:00<00:00, 20126.80it/s]
+
+============= Training Dataset =============
+SequenceDataset (
+	path=./datasets/ta_ref/_smoke_mimic_4.hdf5
+	obs_keys=('box_orientations', 'box_positions', 'eef_pos', 'eef_quat', 'gripper_pos', 'toy_truck_orientations', 'toy_truck_positions')
+	seq_length=10
+	filter_key=none
+	frame_stack=1
+	pad_seq_length=True
+	pad_frame_stack=True
+	goal_mode=none
+	cache_mode=all
+	num_demos=4
+	num_sequences=2320
+)
+
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|1         | 1/100 [00:00<00:59,  1.65it/s]  7%|7         | 7/100 [00:00<00:07, 12.40it/s] 14%|#4        | 14/100 [00:00<00:03, 23.38it/s] 22%|##2       | 22/100 [00:00<00:02, 34.21it/s] 28%|##8       | 28/100 [00:01<00:02, 26.79it/s] 35%|###5      | 35/100 [00:01<00:01, 33.55it/s] 41%|####1     | 41/100 [00:01<00:01, 38.81it/s] 47%|####6     | 47/100 [00:01<00:01, 28.71it/s] 54%|#####4    | 54/100 [00:01<00:01, 34.90it/s] 60%|######    | 60/100 [00:02<00:01, 38.48it/s] 66%|######6   | 66/100 [00:02<00:00, 41.58it/s] 71%|#######1  | 71/100 [00:02<00:00, 29.54it/s] 77%|#######7  | 77/100 [00:02<00:00, 34.05it/s] 82%|########2 | 82/100 [00:02<00:00, 36.30it/s] 89%|########9 | 89/100 [00:02<00:00, 41.78it/s] 94%|#########3| 94/100 [00:03<00:00, 29.55it/s] 98%|#########8| 98/100 [00:03<00:00, 30.98it/s]100%|##########| 100/100 [00:03<00:00, 30.40it/s]
+Train Epoch 1
+{
+    "Log_Likelihood": 3.171910057310015,
+    "Loss": -3.171910057310015,
+    "Optimizer/policy0_lr": 0.0010000000000000002,
+    "Policy_Grad_Norms": 151970.5615394849,
+    "Time_Data_Loading": 0.004510732491811117,
+    "Time_Epoch": 0.057301398118336996,
+    "Time_Log_Info": 0.00026522080103556317,
+    "Time_Process_Batch": 0.003886620203653971,
+    "Time_Train_Batch": 0.031289076805114745
+}
+
+Epoch 1 Memory Usage: 3725 MB
+
+  0%|          | 0/100 [00:00<?, ?it/s]  5%|5         | 5/100 [00:00<00:02, 41.37it/s] 12%|#2        | 12/100 [00:00<00:01, 51.89it/s] 18%|#8        | 18/100 [00:00<00:01, 51.14it/s] 24%|##4       | 24/100 [00:00<00:02, 28.59it/s] 32%|###2      | 32/100 [00:00<00:01, 37.85it/s] 37%|###7      | 37/100 [00:00<00:01, 39.15it/s] 44%|####4     | 44/100 [00:01<00:01, 45.12it/s] 50%|#####     | 50/100 [00:01<00:01, 29.28it/s] 57%|#####6    | 57/100 [00:01<00:01, 35.22it/s] 64%|######4   | 64/100 [00:01<00:00, 40.89it/s] 70%|#######   | 70/100 [00:02<00:01, 29.86it/s] 77%|#######7  | 77/100 [00:02<00:00, 35.84it/s] 85%|########5 | 85/100 [00:02<00:00, 42.85it/s] 91%|#########1| 91/100 [00:02<00:00, 44.76it/s] 97%|#########7| 97/100 [00:02<00:00, 31.47it/s]100%|##########| 100/100 [00:02<00:00, 37.01it/s]
+Train Epoch 2
+{
+    "Log_Likelihood": 14.649488368034362,
+    "Loss": -14.649488368034362,
+    "Optimizer/policy0_lr": 0.0010000000000000002,
+    "Policy_Grad_Norms": 168387.11790529097,
+    "Time_Data_Loading": 0.004359968503316243,
+    "Time_Epoch": 0.04775680700937907,
+    "Time_Log_Info": 0.00016404390335083007,
+    "Time_Process_Batch": 0.005323084195454916,
+    "Time_Train_Batch": 0.019920225938161215
+}
+
+Epoch 2 Memory Usage: 3726 MB
+
+  0%|          | 0/100 [00:00<?, ?it/s]  5%|5         | 5/100 [00:00<00:02, 43.84it/s] 12%|#2        | 12/100 [00:00<00:01, 53.79it/s] 19%|#9        | 19/100 [00:00<00:01, 55.10it/s] 25%|##5       | 25/100 [00:00<00:02, 29.67it/s] 32%|###2      | 32/100 [00:00<00:01, 36.67it/s] 39%|###9      | 39/100 [00:00<00:01, 42.47it/s] 45%|####5     | 45/100 [00:01<00:01, 45.11it/s] 51%|#####1    | 51/100 [00:01<00:01, 30.15it/s] 58%|#####8    | 58/100 [00:01<00:01, 36.23it/s] 65%|######5   | 65/100 [00:01<00:00, 41.73it/s] 71%|#######1  | 71/100 [00:01<00:00, 30.61it/s] 82%|########2 | 82/100 [00:02<00:00, 42.92it/s] 89%|########9 | 89/100 [00:02<00:00, 46.83it/s] 95%|#########5| 95/100 [00:02<00:00, 32.69it/s]100%|##########| 100/100 [00:02<00:00, 37.89it/s]
+Train Epoch 3
+{
+    "Log_Likelihood": 18.582038440704345,
+    "Loss": -18.582038440704345,
+    "Optimizer/policy0_lr": 0.0010000000000000002,
+    "Policy_Grad_Norms": 126546.77442362763,
+    "Time_Data_Loading": 0.004250415166219075,
+    "Time_Epoch": 0.04671833515167236,
+    "Time_Log_Info": 0.00018047491709391277,
+    "Time_Process_Batch": 0.004469847679138184,
+    "Time_Train_Batch": 0.020018458366394043
+}
+
+Epoch 3 Memory Usage: 3726 MB
+
+  0%|          | 0/100 [00:00<?, ?it/s]  3%|3         | 3/100 [00:00<00:03, 29.74it/s]  7%|7         | 7/100 [00:00<00:02, 33.55it/s] 11%|#1        | 11/100 [00:00<00:02, 35.23it/s] 16%|#6        | 16/100 [00:00<00:02, 38.45it/s] 20%|##        | 20/100 [00:00<00:02, 37.65it/s] 24%|##4       | 24/100 [00:00<00:03, 20.83it/s] 30%|###       | 30/100 [00:01<00:02, 27.67it/s] 37%|###7      | 37/100 [00:01<00:01, 35.49it/s] 42%|####2     | 42/100 [00:01<00:01, 38.13it/s] 47%|####6     | 47/100 [00:01<00:02, 23.49it/s] 52%|#####2    | 52/100 [00:01<00:01, 26.49it/s] 56%|#####6    | 56/100 [00:01<00:01, 28.37it/s] 61%|######1   | 61/100 [00:02<00:01, 31.70it/s] 67%|######7   | 67/100 [00:02<00:00, 37.39it/s] 72%|#######2  | 72/100 [00:02<00:01, 26.25it/s] 79%|#######9  | 79/100 [00:02<00:00, 33.02it/s] 87%|########7 | 87/100 [00:02<00:00, 40.97it/s] 93%|#########3| 93/100 [00:02<00:00, 31.19it/s]100%|##########| 100/100 [00:03<00:00, 36.96it/s]100%|##########| 100/100 [00:03<00:00, 32.13it/s]
+Train Epoch 4
+{
+    "Log_Likelihood": 18.93817995071411,
+    "Loss": -18.93817995071411,
+    "Optimizer/policy0_lr": 0.0010000000000000002,
+    "Policy_Grad_Norms": 126864.9744385481,
+    "Time_Data_Loading": 0.004311994711558024,
+    "Time_Epoch": 0.05460637410481771,
+    "Time_Log_Info": 0.0003842830657958984,
+    "Time_Process_Batch": 0.008243036270141602,
+    "Time_Train_Batch": 0.023200162251790366
+}
+
+Epoch 4 Memory Usage: 3726 MB
+
+  0%|          | 0/100 [00:00<?, ?it/s]  4%|4         | 4/100 [00:00<00:02, 33.49it/s] 11%|#1        | 11/100 [00:00<00:01, 48.62it/s] 18%|#8        | 18/100 [00:00<00:01, 53.99it/s] 24%|##4       | 24/100 [00:00<00:02, 31.00it/s] 29%|##9       | 29/100 [00:00<00:02, 33.77it/s] 36%|###6      | 36/100 [00:00<00:01, 41.06it/s] 43%|####3     | 43/100 [00:01<00:01, 46.44it/s] 49%|####9     | 49/100 [00:01<00:01, 30.38it/s] 55%|#####5    | 55/100 [00:01<00:01, 34.46it/s] 62%|######2   | 62/100 [00:01<00:00, 40.16it/s] 70%|#######   | 70/100 [00:01<00:00, 31.24it/s] 77%|#######7  | 77/100 [00:02<00:00, 36.62it/s] 84%|########4 | 84/100 [00:02<00:00, 42.76it/s] 90%|######### | 90/100 [00:02<00:00, 45.33it/s] 96%|#########6| 96/100 [00:02<00:00, 31.32it/s]100%|##########| 100/100 [00:02<00:00, 36.81it/s]
+Train Epoch 5
+{
+    "Log_Likelihood": 18.139501447677613,
+    "Loss": -18.139501447677613,
+    "Optimizer/policy0_lr": 0.0010000000000000002,
+    "Policy_Grad_Norms": 206275.22372447888,
+    "Time_Data_Loading": 0.004332534472147624,
+    "Time_Epoch": 0.04810493389765422,
+    "Time_Log_Info": 0.00016057888666788737,
+    "Time_Process_Batch": 0.0055986444155375166,
+    "Time_Train_Batch": 0.019871270656585692
+}
+
+Epoch 5 Memory Usage: 3726 MB
+
+  0%|          | 0/100 [00:00<?, ?it/s]  3%|3         | 3/100 [00:00<00:03, 26.43it/s] 10%|#         | 10/100 [00:00<00:01, 46.27it/s] 16%|#6        | 16/100 [00:00<00:01, 51.04it/s] 24%|##4       | 24/100 [00:00<00:02, 34.57it/s] 37%|###7      | 37/100 [00:00<00:01, 54.10it/s] 45%|####5     | 45/100 [00:00<00:00, 57.85it/s] 52%|#####2    | 52/100 [00:01<00:01, 35.76it/s] 59%|#####8    | 59/100 [00:01<00:01, 40.52it/s] 67%|######7   | 67/100 [00:01<00:00, 46.55it/s] 73%|#######3  | 73/100 [00:01<00:00, 33.27it/s] 80%|########  | 80/100 [00:01<00:00, 38.44it/s] 87%|########7 | 87/100 [00:02<00:00, 43.34it/s] 93%|#########3| 93/100 [00:02<00:00, 31.30it/s]100%|##########| 100/100 [00:02<00:00, 36.72it/s]100%|##########| 100/100 [00:02<00:00, 39.76it/s]
+Train Epoch 6
+{
+    "Log_Likelihood": 17.67530372619629,
+    "Loss": -17.67530372619629,
+    "Optimizer/policy0_lr": 0.0010000000000000002,
+    "Policy_Grad_Norms": 178263.5585258128,
+    "Time_Data_Loading": 0.004224908351898193,
+    "Time_Epoch": 0.04469842513402303,
+    "Time_Log_Info": 0.00017309983571370442,
+    "Time_Process_Batch": 0.004048550128936767,
+    "Time_Train_Batch": 0.018280216058095298
+}
+
+Epoch 6 Memory Usage: 3726 MB
+
+  0%|          | 0/100 [00:00<?, ?it/s]  5%|5         | 5/100 [00:00<00:02, 45.05it/s] 12%|#2        | 12/100 [00:00<00:01, 52.76it/s] 18%|#8        | 18/100 [00:00<00:01, 50.63it/s] 24%|##4       | 24/100 [00:00<00:02, 30.98it/s] 32%|###2      | 32/100 [00:00<00:01, 40.02it/s] 38%|###8      | 38/100 [00:00<00:01, 44.47it/s]

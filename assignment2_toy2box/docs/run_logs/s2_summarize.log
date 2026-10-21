@@ -1,0 +1,22 @@
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /home/cai/anaconda3/envs/lerobot-arena/bin/python
+episodes: 20 | total: 10891
+demo_0   len= 634 (31.7s) sw= 2 idle=40% ok=1
+demo_1   len= 662 (33.1s) sw= 6 idle=35% ok=1
+demo_2   len= 668 (33.4s) sw= 6 idle=29% ok=1
+demo_3   len= 519 (25.9s) sw= 2 idle=30% ok=1
+demo_4   len= 624 (31.2s) sw=12 idle=38% ok=1
+demo_5   len= 818 (40.9s) sw= 6 idle=27% ok=1
+demo_6   len= 532 (26.6s) sw= 4 idle=32% ok=1
+demo_7   len= 512 (25.6s) sw= 2 idle=29% ok=1
+demo_8   len= 653 (32.6s) sw= 2 idle=21% ok=1
+demo_9   len= 581 (29.1s) sw= 2 idle=30% ok=1
+demo_10  len= 602 (30.1s) sw= 2 idle=23% ok=1
+demo_11  len= 501 (25.1s) sw= 6 idle=30% ok=1
+demo_12  len= 350 (17.5s) sw= 2 idle=25% ok=1
+demo_13  len= 546 (27.3s) sw= 2 idle=24% ok=1
+demo_14  len= 578 (28.9s) sw= 2 idle=27% ok=1
+demo_15  len= 339 (16.9s) sw= 2 idle=20% ok=1
+demo_16  len= 417 (20.9s) sw= 2 idle=20% ok=1
+demo_17  len= 457 (22.9s) sw= 4 idle=28% ok=1
+demo_18  len= 444 (22.2s) sw= 2 idle=23% ok=1
+demo_19  len= 454 (22.7s) sw= 3 idle=22% ok=1

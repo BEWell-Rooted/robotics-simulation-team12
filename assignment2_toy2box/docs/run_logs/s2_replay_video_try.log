@@ -1,0 +1,14 @@
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /home/cai/anaconda3/envs/lerobot-arena/bin/python
+usage: replay_demos.py [-h] [--num_envs NUM_ENVS] [--task TASK]
+                       [--select_episodes SELECT_EPISODES [SELECT_EPISODES ...]]
+                       [--dataset_file DATASET_FILE] [--validate_states]
+                       [--enable_pinocchio] [--headless]
+                       [--livestream {0,1,2}] [--enable_cameras] [--xr]
+                       [--device DEVICE] [--verbose] [--info]
+                       [--experience EXPERIENCE]
+                       [--rendering_mode {quality,balanced,performance}]
+                       [--kit_args KIT_ARGS] [--anim_recording_enabled]
+                       [--anim_recording_start_time ANIM_RECORDING_START_TIME]
+                       [--anim_recording_stop_time ANIM_RECORDING_STOP_TIME]
+replay_demos.py: error: unrecognized arguments: --video --video_folder ./videos/ta_ref_replay
+RC=2 19:33:53
