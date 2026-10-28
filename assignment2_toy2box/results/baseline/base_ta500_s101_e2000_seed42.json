@@ -1,0 +1,30 @@
+{
+  "base_ta500_s101_e2000_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "transport": 24,
+      "success": 37,
+      "approach": 21,
+      "place": 7,
+      "grasp": 11
+    },
+    "subtypes": {
+      "transport/dropped_near_box": 1,
+      "transport/stall": 7,
+      "approach/far": 13,
+      "place/released_outside": 6,
+      "grasp/miss": 6,
+      "transport/released_near_box": 5,
+      "approach/knocked": 5,
+      "grasp/slip": 4,
+      "transport/dropped": 3,
+      "transport/released_early": 6,
+      "approach/to_box_without_truck": 1,
+      "transport/box_knocked_over": 1,
+      "place/no_release": 1,
+      "grasp/pushed_off_table": 1,
+      "approach/close_misaligned": 2,
+      "transport/box_collision_dropped": 1
+    }
+  }
+}
