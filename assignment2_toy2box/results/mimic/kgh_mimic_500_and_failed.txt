@@ -1,0 +1,48 @@
+## kgh_mimic_500.hdf5  (n=500)
+  성공  success    500 (100.0%)  
+  접근  approach     0 ( 0.0%)  
+  파지  grasp        0 ( 0.0%)  
+  운반  transport    0 ( 0.0%)  
+  배치  place        0 ( 0.0%)  
+  성공 중앙값: T 394, t_grasp 254, t_lift 266, t_over 361, 그리퍼 전환 2회
+## kgh_mimic_s1_100_failed.hdf5  (n=154)
+  성공  success      0 ( 0.0%)  
+  접근  approach    23 (14.9%)  to_box_without_truck 17, close_misaligned 3, knocked 2, wrong_object 1
+  파지  grasp       12 ( 7.8%)  slip 8, miss 4
+  운반  transport   90 (58.4%)  released_near_box 49, box_knocked_over 20, dropped 12, dropped_near_box 5, box_collision_dropped 2, box_collision_released 2
+  배치  place       29 (18.8%)  released_outside 24, dropped_outside 3, in_box_offcenter 2
+  실패 154건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 7
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 2회, idle 0%, 손끝 이동 4.51 m
+## kgh_mimic_s2_100_failed.hdf5  (n=103)
+  성공  success      0 ( 0.0%)  
+  접근  approach    12 (11.7%)  to_box_without_truck 10, close_misaligned 1, wrong_object 1
+  파지  grasp        6 ( 5.8%)  slip 4, miss 2
+  운반  transport   71 (68.9%)  released_near_box 32, box_knocked_over 17, dropped 13, dropped_near_box 6, box_collision_dropped 3
+  배치  place       14 (13.6%)  released_outside 13, in_box_offcenter 1
+  실패 103건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 0
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 2회, idle 0%, 손끝 이동 4.55 m
+## kgh_mimic_s3_100_failed.hdf5  (n=120)
+  성공  success      0 ( 0.0%)  
+  접근  approach    27 (22.5%)  to_box_without_truck 19, close_misaligned 4, far 1, hover 1, knocked 1, wrong_object 1
+  파지  grasp        9 ( 7.5%)  slip 6, miss 3
+  운반  transport   58 (48.3%)  released_near_box 26, box_knocked_over 14, dropped_near_box 9, dropped 4, box_collision_released 2, box_collision_dropped 2, released_early 1
+  배치  place       26 (21.7%)  released_outside 24, in_box_offcenter 2
+  실패 120건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 2
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 2회, idle 0%, 손끝 이동 4.49 m
+## kgh_mimic_s4_100_failed.hdf5  (n=130)
+  성공  success      0 ( 0.0%)  
+  접근  approach    20 (15.4%)  to_box_without_truck 16, wrong_object 2, close_misaligned 1, far 1
+  파지  grasp       15 (11.5%)  slip 10, miss 5
+  운반  transport   72 (55.4%)  released_near_box 35, box_knocked_over 15, dropped 10, dropped_near_box 7, box_collision_dropped 3, box_collision_released 2
+  배치  place       23 (17.7%)  released_outside 20, in_box_offcenter 2, dropped_outside 1
+  실패 130건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 0
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 2회, idle 0%, 손끝 이동 4.49 m
+## kgh_mimic_s5_100_failed.hdf5  (n=123)
+  성공  success      0 ( 0.0%)  
+  접근  approach    13 (10.6%)  to_box_without_truck 12, close_misaligned 1
+  파지  grasp        9 ( 7.3%)  slip 7, miss 2
+  운반  transport   74 (60.2%)  released_near_box 44, box_knocked_over 12, dropped 8, dropped_near_box 6, box_collision_dropped 4
+  배치  place       27 (22.0%)  released_outside 26, in_box_offcenter 1
+  실패 123건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 1
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 2회, idle 0%, 손끝 이동 4.63 m
+wrote 1130 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/mimic/kgh_mimic_500_and_failed.csv

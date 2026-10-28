@@ -1,0 +1,985 @@
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /home/cai/anaconda3/envs/lerobot-arena/bin/python
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/cai/IsaacLab_RS/apps/isaaclab.python.headless.kit
+Loading user config located at: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20261028_191345.log
+2026-10-28T10:13:45Z [2ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/94f484ee-586a-4559-8bb30991-e9159087.dmp'
+2026-10-28T10:13:45Z [2ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/1fca3d3d-90f5-47e1-08935cbb-09f79d9e.dmp'
+2026-10-28T10:13:45Z [3ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/e9f33ebc-780b-434b-2bd902a8-4c2cf164.dmp'
+2026-10-28T10:13:45Z [3ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/87cf2840-32cd-4d65-6cd95d87-997bf5d3.dmp'
+2026-10-28T10:13:45Z [3ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: '/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/86b8070d-c551-410d-08a55885-05d2f477.dmp'
+2026-10-28T10:13:45Z [94ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-10-28T10:13:46Z [552ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-28T10:13:46Z [727ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 595.99.02     | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA RTX 6000 Ada Generation   | Yes: 0 |     | 49386   MB | 10de      | 0          |
+|     |                                  |        |     |            | 26b1      | 3b781420.. |
+|     |                                  |        |     |            | ac        |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| XServer Vendor: The X.Org Foundation, XServer Version: 12101004 (1.21.1.4)
+| Processor: Intel(R) Xeon(R) w5-3435X
+| Cores: 16 | Logical Cores: 32
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 256974 | Free Memory: 238594
+| Total Page/Swap (MB): 2047 | Free Page/Swap: 2046
+|---------------------------------------------------------------------------------------------|
+2026-10-28T10:13:50Z [5,128ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-10-28T10:13:50Z [5,137ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/gymnasium/envs/registration.py:636: UserWarning: [33mWARN: Overriding environment Isaac-Stack-Cube-Franka-IK-Rel-Skillgen-v0 already in registry.[0m
+  logger.warn(f"Overriding environment {new_spec.id} already in registry.")
+/home/cai/anaconda3/envs/lerobot-arena/lib/python3.11/site-packages/gymnasium/envs/registration.py:636: UserWarning: [33mWARN: Overriding environment Isaac-Stack-Cube-Bin-Franka-IK-Rel-Mimic-v0 already in registry.[0m
+  logger.warn(f"Overriding environment {new_spec.id} already in registry.")
+2026-10-28T10:13:51Z [5,768ms] [Warning] [carb.windowing-glfw.gamepad] Joystick with unknown remapping detected (will be ignored):  RDMCTMZT ATK YOGO 75 PRO Dongle System Control [030000003b370000ff11000011010000]
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 595.99.02     | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA RTX 6000 Ada Generation   | Yes: 0 |     | 49386   MB | 10de      | 0          |
+|     |                                  |        |     |            | 26b1      | 3b781420.. |
+|     |                                  |        |     |            | ac        |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| XServer Vendor: The X.Org Foundation, XServer Version: 12101004 (1.21.1.4)
+| Processor: Intel(R) Xeon(R) w5-3435X
+| Cores: 16 | Logical Cores: 32
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 256974 | Free Memory: 238243
+| Total Page/Swap (MB): 2047 | Free Page/Swap: 2046
+|---------------------------------------------------------------------------------------------|
+2026-10-28T10:13:51Z [6,157ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-10-28T10:13:51Z [6,165ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-28T10:13:53Z [7,396ms] [Warning] [omni.graph.visualization.nodes._impl.extension] No Viewport Window to add omni.graph.visualization.nodes-2.1.3 scene to
+[INFO]: Parsing configuration from: isaaclab_mimic.envs.agibot_place_toy2box_mimic_env_cfg:RmpFlowAgibotPlaceToy2BoxMimicEnvCfg
+[generate_seed] datagen_config.seed 1 -> 1
+2026-10-28T10:13:53Z [7,602ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.016666666666666666
+	Rendering step-size   : 0.1
+	Environment step-size : 0.05
+[INFO]: Time taken for scene creation : 2.053955 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 50
+	Environment spacing   : 3.0
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : []
+	Replicate physics     : False
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+2026-10-28T10:14:00Z [14,379ms] [Error] [omni.physx.tensors.plugin] Filter pattern '/World/envs/env_*/ToyTruck' did not match the correct number of entries (expected 100, found 50)
+2026-10-28T10:14:00Z [14,380ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/ContactSensor.
+[INFO]: Time taken for simulation start : 4.500062 seconds
+[INFO] Command Manager:  <CommandManager> contains 0 active terms.
++------------------------+
+|  Active Command Terms  |
++--------+-------+-------+
+| Index  | Name  |  Type |
++--------+-------+-------+
++--------+-------+-------+
+
+[INFO] Event Manager:  <EventManager> contains 1 active terms.
++------------------------------------+
+| Active Event Terms in Mode: 'reset' |
++---------+--------------------------+
+|  Index  | Name                     |
++---------+--------------------------+
+|    0    | reset_all                |
+|    1    | init_toy_position        |
+|    2    | init_box_position        |
++---------+--------------------------+
+
+[INFO] Recorder Manager:  <RecorderManager> contains 5 active terms.
++--------------------------------------------------+
+|              Active Recorder Terms               |
++-------+------------------------------------------+
+| Index | Name                                     |
++-------+------------------------------------------+
+|   0   | record_initial_state                     |
+|   1   | record_post_step_states                  |
+|   2   | record_pre_step_actions                  |
+|   3   | record_pre_step_flat_policy_observations |
+|   4   | record_post_step_processed_actions       |
++-------+------------------------------------------+
+
+[INFO]: Loading RMPFlow controller URDF from: https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/IsaacLab/Controllers/RmpFlowAssets/agibot/agibot.urdf
+[INFO] Action Manager:  <ActionManager> contains 2 active terms.
++------------------------------------+
+|   Active Action Terms (shape: 7)   |
++-------+----------------+-----------+
+| Index | Name           | Dimension |
++-------+----------------+-----------+
+|   0   | arm_action     |         6 |
+|   1   | gripper_action |         1 |
++-------+----------------+-----------+
+
+[INFO] Observation Manager: <ObservationManager> contains 2 groups.
++----------------------------------------------+
+| Active Observation Terms in Group: 'policy'  |
++--------+----------------------------+--------+
+| Index  | Name                       | Shape  |
++--------+----------------------------+--------+
+|   0    | actions                    |  (7,)  |
+|   1    | joint_pos                  | (34,)  |
+|   2    | joint_vel                  | (34,)  |
+|   3    | toy_truck_positions        |  (3,)  |
+|   4    | toy_truck_orientations     |  (4,)  |
+|   5    | box_positions              |  (3,)  |
+|   6    | box_orientations           |  (4,)  |
+|   7    | eef_pos                    |  (3,)  |
+|   8    | eef_quat                   |  (4,)  |
+|   9    | gripper_pos                |  (2,)  |
++--------+----------------------------+--------+
++--------------------------------------------+
+| Active Observation Terms in Group: 'subtask_terms' |
++--------------+--------------+--------------+
+|    Index     | Name         |    Shape     |
++--------------+--------------+--------------+
+|      0       | grasp        |      ()      |
++--------------+--------------+--------------+
+
+[INFO] Termination Manager:  <TerminationManager> contains 0 active terms.
++----------------------------+
+|  Active Termination Terms  |
++--------+-------+-----------+
+| Index  | Name  |  Time Out |
++--------+-------+-----------+
++--------+-------+-----------+
+
+[INFO] Reward Manager:  <RewardManager> contains 0 active terms.
++-----------------------+
+|  Active Reward Terms  |
++-------+------+--------+
+| Index | Name | Weight |
++-------+------+--------+
++-------+------+--------+
+
+[INFO] Curriculum Manager:  <CurriculumManager> contains 0 active terms.
++----------------------+
+| Active Curriculum Terms |
++-----------+----------+
+|   Index   | Name     |
++-----------+----------+
++-----------+----------+
+
+[INFO]: Completed setting up the environment...
+Loaded 20 to datagen info pool
+
+************************************************** [K
+0/1 (0.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+2/5 (40.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+3/8 (37.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+4/11 (36.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+7/15 (46.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+10/22 (45.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+10/26 (38.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+10/29 (34.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+11/30 (36.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+11/31 (35.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+11/32 (34.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+12/35 (34.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+12/36 (33.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+14/39 (35.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+14/40 (35.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+16/45 (35.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+18/50 (36.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+18/51 (35.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+19/52 (36.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+19/54 (35.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+20/55 (36.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+23/58 (39.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+23/59 (39.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+24/60 (40.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+24/61 (39.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+24/62 (38.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+24/63 (38.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+26/65 (40.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+26/66 (39.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+27/67 (40.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+28/68 (41.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+28/69 (40.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+29/70 (41.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+29/71 (40.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+29/72 (40.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+30/73 (41.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+31/74 (41.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+31/75 (41.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+32/77 (41.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+34/79 (43.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+34/80 (42.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+34/81 (42.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+35/82 (42.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+35/83 (42.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+36/84 (42.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+38/86 (44.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+39/88 (44.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+40/91 (44.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+41/92 (44.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+41/93 (44.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+41/94 (43.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+42/95 (44.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+42/96 (43.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+42/97 (43.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+42/98 (42.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+42/100 (42.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+42/101 (41.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+42/102 (41.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+42/103 (40.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+43/104 (41.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+43/105 (41.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+44/106 (41.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+45/108 (41.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+46/109 (42.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+46/110 (41.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+47/111 (42.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+48/112 (42.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+48/113 (42.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+49/114 (43.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+50/115 (43.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+51/116 (44.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+51/117 (43.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+51/118 (43.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+51/119 (42.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+52/120 (43.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+53/121 (43.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+53/122 (43.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+54/123 (43.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+55/124 (44.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+56/125 (44.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+56/126 (44.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+57/127 (44.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+57/128 (44.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+57/129 (44.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+58/130 (44.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+58/131 (44.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+58/132 (43.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+58/133 (43.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+58/134 (43.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+59/135 (43.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+61/137 (44.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+62/138 (44.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+62/140 (44.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+62/141 (44.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+62/142 (43.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+62/143 (43.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+63/144 (43.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+63/145 (43.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+63/146 (43.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+63/147 (42.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+64/148 (43.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+64/149 (43.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+65/150 (43.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+65/151 (43.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+65/152 (42.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+66/153 (43.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+66/154 (42.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+67/155 (43.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+67/156 (42.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+68/157 (43.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+69/159 (43.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+69/160 (43.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+70/161 (43.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+71/162 (43.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+72/163 (44.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+72/164 (43.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+73/165 (44.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+73/167 (43.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+73/168 (43.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+74/169 (43.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+74/171 (43.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+74/172 (43.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+74/173 (42.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+75/174 (43.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+75/175 (42.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+75/176 (42.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+75/177 (42.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+75/178 (42.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+75/179 (41.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+76/180 (42.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+76/181 (42.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+76/182 (41.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+76/183 (41.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+76/184 (41.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+76/185 (41.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/186 (41.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/187 (41.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/188 (41.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/189 (40.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/190 (40.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/191 (40.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/192 (40.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/193 (39.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/194 (39.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/195 (39.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/196 (39.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+77/197 (39.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/198 (39.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/199 (39.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/200 (39.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/201 (38.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/202 (38.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/203 (38.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/204 (38.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/205 (38.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/206 (37.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+78/207 (37.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+79/208 (38.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+80/209 (38.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+80/210 (38.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+80/211 (37.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+80/212 (37.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+80/213 (37.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+81/214 (37.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+82/215 (38.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+83/216 (38.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+84/217 (38.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+85/218 (39.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+86/219 (39.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+86/220 (39.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+86/221 (38.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+87/222 (39.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+88/223 (39.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+88/224 (39.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+88/225 (39.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+90/227 (39.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+90/228 (39.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+92/230 (40.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+92/231 (39.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+92/232 (39.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+93/233 (39.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+93/234 (39.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+93/235 (39.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+93/236 (39.4%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+94/238 (39.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+94/239 (39.3%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+94/240 (39.2%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+94/241 (39.0%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+94/242 (38.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+94/243 (38.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+95/244 (38.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+95/245 (38.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+95/246 (38.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+95/247 (38.5%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+96/248 (38.7%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+96/249 (38.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+97/250 (38.8%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+97/251 (38.6%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+98/252 (38.9%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+99/253 (39.1%) successful demos generated by mimic[K
+************************************************** [K
+
+************************************************** [K
+100/254 (39.4%) successful demos generated by mimic[K
+************************************************** [K
+Reached 100 successes/attempts. Exiting.
+Remaining async tasks cancelled and cleaned up.
+RC=0
+END 2026-10-28 19:46:15
