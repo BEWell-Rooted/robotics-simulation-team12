@@ -1,0 +1,27 @@
+{
+  "base_reach4_s111_e2000_seed43.hdf5": {
+    "n": 100,
+    "counts": {
+      "place": 5,
+      "success": 64,
+      "transport": 21,
+      "grasp": 7,
+      "approach": 3
+    },
+    "subtypes": {
+      "place/released_outside": 3,
+      "transport/released_near_box": 9,
+      "transport/dropped": 5,
+      "place/in_box_not_open": 2,
+      "grasp/no_close": 1,
+      "transport/box_knocked_over": 1,
+      "transport/released_early": 3,
+      "grasp/miss": 2,
+      "grasp/pushed_off_table": 2,
+      "approach/far": 2,
+      "grasp/slip": 2,
+      "approach/to_box_without_truck": 1,
+      "transport/dropped_near_box": 3
+    }
+  }
+}

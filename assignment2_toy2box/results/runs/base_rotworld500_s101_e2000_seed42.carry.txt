@@ -1,0 +1,15 @@
+## base_rotworld500_s101_e2000_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.109        59.170         0.091         0.112         8.515        14.330         8.655         0.227         0.232        89.000         0.010           25%           10%
+fail_approach         3             —             —             —             —             —             —             —             —             —             —             —           33%            0%
+fail_grasp            5             —             —             —             —             —             —             —             —             —             —             —            0%            0%
+fail_place            4         0.166        64.115         0.159         0.090        21.415        23.370        16.440         0.177         0.188        70.000         0.010            0%            0%
+fail_post_lift       29         0.254        73.050         0.200         0.161        15.810        18.470         9.980         0.235         0.025        70.000         0.011           62%           28%
+fail_transport       25         0.336        73.050         0.200         0.162        13.590        15.810         9.060         0.239         0.022             —         0.011           72%           32%
+success              63         0.084        49.470         0.077         0.098         7.930        13.050         7.910         0.225         0.240        89.000         0.010           10%            3%
+귀속 attr_ii (들기 이후 실패 29): collision 11 · self_release 1 · slip 11 · other 6
+귀속 attr_i (들기 이후 실패 29): collision 1 · self_release 3 · slip 14 · other 11
+귀속 attr_iii (들기 이후 실패 29): collision 18 · self_release 0 · slip 6 · other 5
+시간 초과(horizon) 실패: 35
+
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/runs/base_rotworld500_s101_e2000_seed42.carry.csv

@@ -1,0 +1,26 @@
+{
+  "base_translate500_s101_e1800_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 83,
+      "transport": 10,
+      "grasp": 4,
+      "approach": 3
+    },
+    "subtypes": {
+      "transport/released_early": 3,
+      "grasp/miss": 1,
+      "approach/far": 1,
+      "transport/dropped": 3,
+      "grasp/no_close": 1,
+      "transport/box_knocked_over": 1,
+      "grasp/slip": 1,
+      "approach/hover": 1,
+      "transport/box_collision_dropped": 1,
+      "transport/dropped_near_box": 1,
+      "approach/close_misaligned": 1,
+      "grasp/pushed_off_table": 1,
+      "transport/stall": 1
+    }
+  }
+}

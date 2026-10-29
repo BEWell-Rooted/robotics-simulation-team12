@@ -1,0 +1,36 @@
+$ -I tools/paired_compare.py --require_carry --label_a baseline --label_b B3' --json results/judge_1029/B3p_vs_base.json --a results/baseline/base_kgh500_s101_e2000_seed42.csv results/baseline/base_kgh500_s101_e2000_seed43.csv results/baseline/base_kgh500_s111_e2000_seed42.csv results/baseline/base_kgh500_s111_e2000_seed43.csv --b results/runs/base_dirorig_magb2_s101_e2000_seed42.csv results/runs/base_dirorig_magb2_s101_e2000_seed43.csv results/runs/base_dirorig_magb2_s111_e2000_seed42.csv results/runs/base_dirorig_magb2_s111_e2000_seed43.csv
+
+[짝] 시작 상태가 밀려 짝이 없는 rollout: s101/seed42 A 3 · B 3 (dropped 0·5) · s101/seed43 A 2 · B 2 (dropped 2·2) · s111/seed42 A 1 · B 1 (dropped 0·2) · s111/seed43 A 5 · B 5 (dropped 0·5)
+짝 389개 (학습 seed [101, 111], 평가 seed [42, 43]): baseline 263 (67.6%) vs B3' 155 (39.8%), Δ -27.8%p
+불일치 baseline만 성공 142 : B3'만 성공 34 · 정확 McNemar 양측 p = 0.0000, 단측(B>A) p = 1.0000
+Δ 군집 부트스트랩(시작 상태 군집 201개): 95% [-33.8, -21.7] · 90% [-32.8, -22.7]
+학습 seed 별 Δ: s101 -28.2 · s111 -27.3
+표적 묶음 category ∈ ['place', 'transport']: baseline 88 → B3' 165 · A에서만 46 : B에서만 123 · 단측(B에서 줄어듦) p = 1.0000, 양측 p = 0.0000
+
+범주 이동 (행 = baseline, 열 = B3')
+               success  approach     grasp transport     place
+   success         121        18        22        83        19
+  approach           1         3         4         8         4
+     grasp           4         1         4         9         0
+ transport          20         6         7        24         6
+     place           9         1         3        10         2
+
+          rot60_after_lift 중앙값: 0.115 → 0.077
+              box_disp_max 중앙값: 0.011 → 0.001
+   min_cheb_box_after_lift 중앙값: 0.042 → 0.069
+범주 합계: success 263→155 · approach 20→29 · grasp 18→40 · transport 63→134 · place 25→31
+
+상태 매개 지표 (carry_metrics, prereg 4절): A → B (차)
+    push_carry (건): 28 → 19 (-9)
+  low_approach (건): 55 → 46 (-9)
+     collision (건): 28 → 19 (-9)
+  self_release (건): 33 → 48 (+15)
+          hold (건): 8 → 71 (+63)
+    approach_z (중앙값): 0.2387 → 0.2211 (-0.0176)
+   rot60_state (중앙값): 66.5 → 46.7 (-19.8)
+ carry_yaw_net (중앙값): 33.94 → 34.08 (+0.145)
+          xy30 (중앙값): 0.1941 → 0.1212 (-0.07295)
+   carry_speed (중앙값): 0.01048 → 0.00582 (-0.00466)
+   carry_steps (중앙값): 85.5 → 143 (+57.5)
+      box_push (건): 82 → 57 (-25)
+ pre_lift_fail (건): 38 → 69 (+31)

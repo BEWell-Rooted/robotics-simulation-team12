@@ -1,0 +1,22 @@
+{
+  "base_translate500_s101_e2000_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 84,
+      "transport": 9,
+      "grasp": 5,
+      "approach": 2
+    },
+    "subtypes": {
+      "transport/off_table": 1,
+      "transport/dropped": 4,
+      "grasp/miss": 3,
+      "transport/released_early": 2,
+      "grasp/no_close": 2,
+      "approach/far": 1,
+      "transport/stall": 1,
+      "transport/box_knocked_over": 1,
+      "approach/close_misaligned": 1
+    }
+  }
+}

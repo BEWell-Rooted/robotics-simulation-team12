@@ -1,0 +1,12 @@
+## 게이트 AR: rotworld_strat500.hdf5 (n = 500)
+  PASS            logs : 생성 로그 5개, 없는 파일 []
+  PASS               n : demo 500개 (기대 500)
+  PASS             gen = 0.602  (기준 >= 0.45)
+  PASS          yaw_go = 15.526  (기준 <= 20.0)
+  PASS   carry_yaw_net = 11.410  (기준 <= 15.0)
+  PASS            xy30 = 0.280  (기준 >= 0.15)
+  PASS         path_go = 1.194  (기준 >= 1.1)
+  PASS          end_xy = 0.056  (기준 <= 0.07)
+  PASS    yaw_go_vs_AT = 0.180  (기준 <= 6.0)
+  box_push 18% · 시작 < 0.30 m 9% · 상대 yaw > 90° 47% (보고만)
+게이트 통과

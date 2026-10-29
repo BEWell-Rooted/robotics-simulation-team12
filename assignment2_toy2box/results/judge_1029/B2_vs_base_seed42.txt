@@ -1,0 +1,36 @@
+$ -I tools/paired_compare.py --require_carry --label_a baseline --label_b B2 --json results/judge_1029/B2_vs_base_seed42.json --a results/baseline/base_kgh500_s101_e2000_seed42.csv results/baseline/base_kgh500_s111_e2000_seed42.csv --b results/runs/base_reach4_s101_e2000_seed42.csv results/runs/base_reach4_s111_e2000_seed42.csv
+
+[짝] 시작 상태가 밀려 짝이 없는 rollout: s101/seed42 A 3 · B 3 (dropped 0·3) · s111/seed42 A 3 · B 3 (dropped 0·3)
+짝 194개 (학습 seed [101, 111], 평가 seed [42]): baseline 128 (66.0%) vs B2 128 (66.0%), Δ +0.0%p
+불일치 baseline만 성공 31 : B2만 성공 31 · 정확 McNemar 양측 p = 1.0000, 단측(B>A) p = 0.5505
+Δ 군집 부트스트랩(시작 상태 군집 100개): 95% [-7.9, +8.2] · 90% [-6.7, +6.8]
+학습 seed 별 Δ: s101 +3.1 · s111 -3.1
+표적 묶음 category ∈ ['place', 'transport']: baseline 49 → B2 46 · A에서만 30 : B에서만 27 · 단측(B에서 줄어듦) p = 0.3957, 양측 p = 0.7914
+
+범주 이동 (행 = baseline, 열 = B2)
+               success  approach     grasp transport     place
+   success          97         1         8        16         6
+  approach           3         2         2         2         0
+     grasp           4         1         0         3         0
+ transport          15         1         4         6         4
+     place           9         0         1         5         4
+
+          rot60_after_lift 중앙값: 0.164 → 0.104
+              box_disp_max 중앙값: 0.010 → 0.011
+   min_cheb_box_after_lift 중앙값: 0.040 → 0.045
+범주 합계: success 128→128 · approach 9→5 · grasp 8→15 · transport 30→32 · place 19→14
+
+상태 매개 지표 (carry_metrics, prereg 4절): A → B (차)
+    push_carry (건): 19 → 17 (-2)
+  low_approach (건): 28 → 28 (+0)
+     collision (건): 19 → 17 (-2)
+  self_release (건): 19 → 12 (-7)
+          hold (건): 6 → 4 (-2)
+    approach_z (중앙값): 0.2424 → 0.2337 (-0.0087)
+   rot60_state (중앙값): 77.38 → 55.86 (-21.52)
+ carry_yaw_net (중앙값): 41.49 → 35.53 (-5.955)
+          xy30 (중앙값): 0.2048 → 0.1835 (-0.0213)
+   carry_speed (중앙값): 0.01075 → 0.00917 (-0.00158)
+   carry_steps (중앙값): 86 → 83 (-3)
+      box_push (건): 45 → 45 (+0)
+ pre_lift_fail (건): 17 → 20 (+3)

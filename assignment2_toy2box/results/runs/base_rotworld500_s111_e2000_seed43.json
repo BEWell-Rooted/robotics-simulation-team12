@@ -1,0 +1,27 @@
+{
+  "base_rotworld500_s111_e2000_seed43.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 64,
+      "transport": 17,
+      "approach": 11,
+      "grasp": 5,
+      "place": 3
+    },
+    "subtypes": {
+      "transport/box_knocked_over": 5,
+      "approach/far": 8,
+      "transport/stall": 1,
+      "transport/dropped_near_box": 2,
+      "grasp/miss": 5,
+      "transport/box_collision_dropped": 2,
+      "place/no_release": 2,
+      "transport/dropped": 4,
+      "approach/to_box_without_truck": 1,
+      "transport/released_near_box": 2,
+      "transport/released_early": 1,
+      "approach/close_misaligned": 2,
+      "place/in_box_not_open": 1
+    }
+  }
+}

@@ -1,0 +1,14 @@
+## base_translate500_s101_e2000_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.055        33.410         0.046         0.048         9.280        11.370         8.420         0.091         0.235        90.000         0.009            4%            8%
+fail_approach         2             —             —             —             —             —             —             —             —             —             —             —            0%            0%
+fail_grasp            5             —             —             —             —             —             —             —             —             —             —             —            0%           60%
+fail_post_lift        9         0.061        40.600         0.056         0.054        14.670        20.240        13.340         0.068         0.274             —         0.010           11%           44%
+fail_transport        9         0.061        40.600         0.056         0.054        14.670        20.240        13.340         0.068         0.274             —         0.010           11%           44%
+success              84         0.054        32.685         0.043         0.048         8.980        10.705         6.480         0.091         0.233        90.000         0.009            4%            1%
+귀속 attr_ii (들기 이후 실패 9): collision 1 · self_release 2 · slip 5 · other 1
+귀속 attr_i (들기 이후 실패 9): collision 1 · self_release 2 · slip 5 · other 1
+귀속 attr_iii (들기 이후 실패 9): collision 1 · self_release 2 · slip 5 · other 1
+시간 초과(horizon) 실패: 15
+
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/runs/base_translate500_s101_e2000_seed42.carry.csv

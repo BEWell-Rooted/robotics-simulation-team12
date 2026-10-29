@@ -1,0 +1,22 @@
+{
+  "base_translate500_s111_e1800_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 85,
+      "approach": 8,
+      "transport": 4,
+      "grasp": 3
+    },
+    "subtypes": {
+      "approach/to_box_without_truck": 1,
+      "transport/dropped": 3,
+      "approach/hover": 3,
+      "approach/far": 1,
+      "approach/freeze": 2,
+      "grasp/miss": 1,
+      "grasp/no_close": 2,
+      "approach/close_misaligned": 1,
+      "transport/box_knocked_over": 1
+    }
+  }
+}

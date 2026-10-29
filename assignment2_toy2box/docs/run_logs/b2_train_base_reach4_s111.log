@@ -1,0 +1,11 @@
+[train_seed] /home/cai/IsaacLab_RS/source/isaaclab_tasks/isaaclab_tasks/manager_based/manipulation/place/config/agibot/agents/robomimic/bc_rnn_low_dim.json: train.seed 101 -> 111
+>>> Saving logs into directory: /home/cai/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/base_reach4_s111/20261029183453/logs
+>>> Saving checkpoints into directory: /home/cai/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/base_reach4_s111/20261029183453/models
+>>> Saving videos into directory: /home/cai/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/base_reach4_s111/20261029183453/videos
+Train Epoch 1
+Train Epoch 100
+Train Epoch 500
+Train Epoch 1000
+Train Epoch 1500
+Train Epoch 2000
+finished run successfully!

@@ -1,0 +1,10 @@
+## base_rotworld500_s101_e2000_seed43.hdf5  (n=100)
+  성공  success     63 (63.0%)  
+  접근  approach     8 ( 8.0%)  close_misaligned 4, wrong_object 2, far 1, hover 1
+  파지  grasp        4 ( 4.0%)  miss 4
+  운반  transport   22 (22.0%)  dropped 10, stall 4, dropped_near_box 3, box_collision_dropped 2, box_knocked_over 2, released_early 1
+  배치  place        3 ( 3.0%)  no_release 2, released_outside 1
+  실패 37건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 2
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 6회, idle 1%, 손끝 이동 6.34 m
+  성공 중앙값: T 402, t_grasp 256, t_lift 271, t_over 369, 그리퍼 전환 2회
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/runs/base_rotworld500_s101_e2000_seed43.csv

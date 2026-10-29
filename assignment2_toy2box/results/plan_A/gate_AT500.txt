@@ -1,0 +1,13 @@
+## 게이트 AT: translate_strat500.hdf5 (n = 500)
+  PASS            logs : 생성 로그 6개, 없는 파일 []
+  PASS               n : demo 500개 (기대 500)
+  PASS             gen = 0.852  (기준 >= 0.7)
+  PASS          yaw_go = 15.706  (기준 <= 20.0)
+  PASS   carry_yaw_net = 9.685  (기준 <= 15.0)
+  PASS            xy30 = 0.080  (기준 <= 0.13)
+  PASS  approach_z_p10 = 0.206  (기준 >= 0.15)
+  PASS           rot60 = 0.058  (기준 <= 0.08)
+  PASS   carry_pos_cmd = 0.061  (기준 <= 0.08)
+  PASS          end_xy = 0.055  (기준 <= 0.07)
+  box_push 4% · 시작 < 0.30 m 9% · 상대 yaw > 90° 47% (보고만)
+게이트 통과

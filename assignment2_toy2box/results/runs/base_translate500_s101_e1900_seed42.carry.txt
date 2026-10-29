@@ -1,0 +1,15 @@
+## base_translate500_s101_e1900_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.052        32.250         0.046         0.049        10.560        12.650         9.150         0.081         0.237        95.000         0.009            5%           10%
+fail_approach         1             —             —             —             —             —             —             —             —             —             —             —            0%            0%
+fail_grasp            4             —             —             —             —             —             —             —             —             —             —             —           25%           25%
+fail_place            1         0.035        22.090         0.036         0.044         1.220         3.650         3.140         0.170         0.194        91.000         0.009          100%            0%
+fail_post_lift        7         0.061        29.000         0.050         0.050         5.000        11.510        10.060         0.098         0.194        91.000         0.010           14%           71%
+fail_transport        6         0.063        33.875         0.058         0.054         8.255        14.425        12.665         0.091         0.237             —         0.010            0%           83%
+success              88         0.052        32.410         0.045         0.048        10.650        13.110         9.075         0.079         0.239        95.000         0.009            3%            5%
+귀속 attr_ii (들기 이후 실패 7): collision 0 · self_release 2 · slip 5 · other 0
+귀속 attr_i (들기 이후 실패 7): collision 0 · self_release 2 · slip 5 · other 0
+귀속 attr_iii (들기 이후 실패 7): collision 1 · self_release 2 · slip 4 · other 0
+시간 초과(horizon) 실패: 10
+
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/runs/base_translate500_s101_e1900_seed42.carry.csv

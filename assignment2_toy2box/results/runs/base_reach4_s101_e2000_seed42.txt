@@ -1,0 +1,10 @@
+## base_reach4_s101_e2000_seed42.hdf5  (n=100)
+  성공  success     66 (66.0%)  
+  접근  approach     2 ( 2.0%)  wrong_object 1, close_misaligned 1
+  파지  grasp       10 (10.0%)  miss 4, pushed_off_table 3, slip 3
+  운반  transport   18 (18.0%)  dropped 9, dropped_near_box 4, released_near_box 2, box_knocked_over 1, box_collision_dropped 1, released_early 1
+  배치  place        4 ( 4.0%)  released_outside 1, no_release 1, in_box_offcenter 1, other 1
+  실패 34건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 0
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 8회, idle 21%, 손끝 이동 4.00 m
+  성공 중앙값: T 378, t_grasp 241, t_lift 254, t_over 340, 그리퍼 전환 2회
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/runs/base_reach4_s101_e2000_seed42.csv

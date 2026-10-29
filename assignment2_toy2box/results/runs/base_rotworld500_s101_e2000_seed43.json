@@ -1,0 +1,27 @@
+{
+  "base_rotworld500_s101_e2000_seed43.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 63,
+      "transport": 22,
+      "grasp": 4,
+      "place": 3,
+      "approach": 8
+    },
+    "subtypes": {
+      "transport/dropped": 10,
+      "transport/dropped_near_box": 3,
+      "transport/stall": 4,
+      "grasp/miss": 4,
+      "transport/box_collision_dropped": 2,
+      "place/released_outside": 1,
+      "approach/wrong_object": 2,
+      "approach/far": 1,
+      "place/no_release": 2,
+      "transport/box_knocked_over": 2,
+      "approach/close_misaligned": 4,
+      "transport/released_early": 1,
+      "approach/hover": 1
+    }
+  }
+}

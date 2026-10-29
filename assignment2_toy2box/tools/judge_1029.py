@@ -9,6 +9,9 @@
 
 파일이 없는 비교는 건너뛰고 '없음' 으로 적는다. 팔 판정에 필요한 비교(주 비교 · 음성 대조 · e1900 민감도 · 시작 거리 하위 분석)가
 하나라도 없으면 그 팔은 '판정 미완' 이다.
+
+10/30 판정 뒤 출력 표기만 보완 (판정 로직·json 의 기존 값은 그대로, 사전등록 §7 처치 시작 뒤 변경 3):
+귀속 방향을 팔 이름으로, §6 행에 해석 문구, 체크포인트 민감도 '진행 중' 표시(ALL_DONE), 함께 읽기 '해당 없음', 제출 체크포인트 실제 경로·md5.
 """
 import argparse
 import csv
@@ -36,6 +39,46 @@ CONFIRM = ("A-T", "B2", "C-1mode")  # Holm 3팔 고정. 돌리지 않은 팔은 
 ATTR_MARGIN = 7.0  # §5.3 동등 여유 ±7%p
 OLD_CRIT = 13.0  # 이전 기준 (참고만, §5.5)
 STATUS_LOG = os.path.expanduser("~/IsaacLab_RS/logs/rs_a2_runs/queue_1029/status.log")
+CKPT_ROOT = os.path.expanduser("~/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0")
+# §6 해석 칸 (사전등록 문구). 출력 표기용 — 행 선택에는 쓰지 않는다
+ROW_TEXT = {
+    "H-A0": "H-A 검정 안 됨 — 기각 아님, '게이트 미통과' 로 보고",
+    "H-A1": "H-A 기각 (데이터 게이트 통과 확인). A-R 은 해석하지 않는다",
+    "H-A2": "재타깃팅의 회전 성분 (위치 규칙의 몫은 작다)",
+    "H-A3": "재타깃팅의 위치·우회 성분이 몫을 가진다",
+    "H-A4": "상자 구간 재타깃팅(회전 + 우회) 전체로만 결론",
+    "H-A5": "판단 보류 (표본 한계)",
+    "H_B0": "H_B 검정 안 됨 — 보고만",
+    "H_B1": "H_B 기각 (B3' 귀속은 H_B2–4 에서만 쓰므로 해석하지 않는다 — 보고만)",
+    "H_B2": "라벨의 명령 크기가 몫",
+    "H_B3": "라벨의 방향·일관성이 몫",
+    "H_B4": "라벨 정의 전체로만 결론",
+    "H_B5": "판단 보류",
+    "H_C0": "H_C 검정 안 됨 — 보고만",
+    "H_C1": "그리퍼 소수 성분 샘플이 들기 이후 실패의 독립 원인 일부",
+    "H_C2": "판단 보류 (기각 아님)",
+}
+
+
+def attr_named(label, a, b):
+    """귀속 결과의 a/b 를 팔 이름으로 (출력 표기용). a = 짝 팔(대조), b = 귀속 팔"""
+    if not label:
+        return label
+    return label.replace("a > b", f"{a} > {b}").replace("b > a", f"{b} > {a}")
+
+
+def submission_ckpt(pattern):
+    """제출 팔의 학습 seed 101 e2000 체크포인트 (run_baseline.sh 처럼 run 폴더가 여럿이면 마지막). 출력 표기용"""
+    import glob, hashlib, re
+    m = re.search(r"base_(.+?)_s\{s\}", pattern)
+    if not m:
+        return None, None, 0
+    hits = sorted(glob.glob(os.path.join(CKPT_ROOT, f"base_{m.group(1)}_s101", "*", "models", "model_epoch_2000.pth")))
+    if not hits:
+        return None, None, 0
+    with open(hits[-1], "rb") as f:
+        md5 = hashlib.md5(f.read()).hexdigest()
+    return hits[-1], md5, len(hits)
 
 
 def paths(pattern, eseeds, ep=2000):
@@ -327,6 +370,7 @@ def main():
     pending = [a for a in ("A-T", "B2") if R[a]["main"] is None and not nr[a]]
     V["not_run"], V["pending"] = nr, pending
     V["queue_done"] = os.path.exists(os.path.join(os.path.dirname(STATUS_LOG), "MAIN_DONE"))
+    V["all_done"] = os.path.exists(os.path.join(os.path.dirname(STATUS_LOG), "ALL_DONE"))  # 체크포인트 민감도까지 (표기용)
 
     # ── Holm (3팔 고정. 돌리지 않은 팔 = C-1mode(C3 미지지, §5.4) 와 큐가 미실행으로 적은 팔 → p = 1) ──
     pv = {a: (R[a]["main"]["p_two"] if a in R and R[a]["main"] else 1.0) for a in CONFIRM}
@@ -352,6 +396,7 @@ def main():
     attr = {"A-R": R["A-R"]["attr"] and attribution(R["A-R"]["attr"]),
             "B3'": R["B3'"]["attr"] and attribution(R["B3'"]["attr"])}
     V["attribution"] = attr
+    V["attribution_named"] = {"A-R": attr_named(attr["A-R"], "A-T", "A-R"), "B3'": attr_named(attr["B3'"], "B2", "B3'")}
 
     # ── C3 (§5.4): 이미 돈 비교의 json 으로 다시 판정 ──
     c3 = None
@@ -386,6 +431,9 @@ def main():
                                    {a: R[a]["main"] for a in ("A-T", "B2")}, pending=pending)
     V["submission"] = dict(arm=best, rule=rule,
                            checkpoint_pattern=f"{best} 학습 seed 101 e2000 (logs/robomimic/.../base_<tag>_s101/<시각>/models/model_epoch_2000.pth)")
+    if best in pat:
+        ck, md5, nrun = submission_ckpt(pat[best])
+        V["submission"].update(checkpoint=ck, checkpoint_md5=md5, checkpoint_runs=nrun)
 
     # ── 공식 수치 (§5.5, 평가 seed 42) ──
     off = {arm: official(pat[arm]) for arm in ("baseline", "A-T", "B2", "A-R", "B3'")}
@@ -459,17 +507,20 @@ def write_md(path, V, R, sens, band):
             L.append(f"- 이전 기준 13%p (참고만): {'충족' if g['old_crit'] else '미충족'}")
     L += ["", "## 귀속 팔 (§5.3, 짝 팔끼리 직접)", ""]
     for arm, base in (("A-R", "A-T"), ("B3'", "B2")):
-        L.append(f"- **{arm} ↔ {base}: {V['attribution'][arm] or '없음'}** — {fmt_cmp(R[arm]['attr'], base, arm)}")
+        L.append(f"- **{base} → {arm}: {V['attribution_named'][arm] or '없음'}** — {fmt_cmp(R[arm]['attr'], base, arm)}")
         L.append(f"  - baseline 대비 (보고만): {fmt_cmp(R[arm]['base'], 'baseline', arm)}")
-    L += ["", "## 체크포인트 민감도 (보고만, 평가 seed 42, 같은 체크포인트끼리)", "",
-          "| 팔 | e1800 | e1900 | e2000 | 합친 Δ |", "| --- | --- | --- | --- | --- |"]
+    miss = "없음" if V.get("all_done") else "진행 중"
+    L += ["", "## 체크포인트 민감도 (보고만, 평가 seed 42, 같은 체크포인트끼리)", ""]
+    if not V.get("all_done"):
+        L += ["> 큐의 체크포인트 민감도 단계 진행 중 (ALL_DONE 없음) — '진행 중' 칸은 결과가 아직 없다는 뜻. 끝나면 이 도구를 다시 돌린다.", ""]
+    L += ["| 팔 | e1800 | e1900 | e2000 | 합친 Δ |", "| --- | --- | --- | --- | --- |"]
     for arm in sens:
         cells = []
         for ep in (1800, 1900, 2000):
             j = sens[arm][ep]
-            cells.append(f"{j['succ_a']} → {j['succ_b']} ({j['delta_pp']:+.1f}, 짝 {j['n']})" if j else "없음")
+            cells.append(f"{j['succ_a']} → {j['succ_b']} ({j['delta_pp']:+.1f}, 짝 {j['n']})" if j else miss)
         pdlt = sens[arm]["pooled_delta"]
-        L.append(f"| {arm} | " + " | ".join(cells) + f" | {('%+.2f (짝 %d)' % (pdlt, sens[arm]['pooled_n'])) if pdlt is not None else '없음'} |")
+        L.append(f"| {arm} | " + " | ".join(cells) + f" | {('%+.2f (짝 %d)' % (pdlt, sens[arm]['pooled_n'])) if pdlt is not None else miss} |")
     c3 = V["C3"]
     L += ["", "## C3 ↔ 위약 (§5.4)", ""]
     if c3:
@@ -478,13 +529,24 @@ def write_md(path, V, R, sens, band):
     L += ["", "## 결과 해석 (§6)", ""]
     for h in ("H-A", "H_B", "H_C"):
         r = V["rows"][h]
-        L.append(f"- **{h}: {r['row']}**")
+        code = r["row"].split(" ")[0]
+        L.append(f"- **{h}: {r['row']}**" + (f" — {ROW_TEXT[code]}" if code in ROW_TEXT else ""))
         for a in r.get("add", []):
             L.append(f"  - {a}")
+        if h in ("H-A", "H_B") and not V.get("all_done") and sens[{"H-A": "A-T", "H_B": "B2"}[h]]["pooled_delta"] is None:
+            L.append("  - (체크포인트 민감도 합친 Δ 의 덧붙임은 ALL_DONE 뒤 다시 실행해 정한다 — 행은 바뀌지 않는다)")
     for j in V["rows"]["joint"]:
         L.append(f"- H-A · H_B 함께: {j}")
+    if not V["rows"]["joint"]:
+        L.append(f"- H-A · H_B 함께: 해당 없음 (A-T {V['grades']['A-T']['grade']} · B2 {V['grades']['B2']['grade']} — "
+                 "함께 읽기는 둘 다 ① 이거나 둘 다 ② 일 때만)")
     s = V["submission"]
-    L += ["", "## 제출 후보 (§7)", "", f"- **{s['arm']}** — {s['rule']}", f"- 체크포인트: {s['checkpoint_pattern']}"]
+    L += ["", "## 제출 후보 (§7)", "", f"- **{s['arm']}** — {s['rule']}"]
+    if s.get("checkpoint"):
+        L.append(f"- 체크포인트: `{s['checkpoint']}` (md5 {s['checkpoint_md5']}" +
+                 (f"; run 폴더 {s['checkpoint_runs']}개 — 마지막 것" if s.get("checkpoint_runs", 1) > 1 else "") + ")")
+    else:
+        L.append(f"- 체크포인트: {s['checkpoint_pattern']}")
     with open(path, "w") as f:
         f.write("\n".join(L) + "\n")
 

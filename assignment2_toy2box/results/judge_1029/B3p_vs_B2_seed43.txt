@@ -1,0 +1,36 @@
+$ -I tools/paired_compare.py --require_carry --label_a B2 --label_b B3' --json results/judge_1029/B3p_vs_B2_seed43.json --a results/runs/base_reach4_s101_e2000_seed43.csv results/runs/base_reach4_s111_e2000_seed43.csv --b results/runs/base_dirorig_magb2_s101_e2000_seed43.csv results/runs/base_dirorig_magb2_s111_e2000_seed43.csv
+
+[짝] 시작 상태가 밀려 짝이 없는 rollout: s101/seed43 A 4 · B 4 (dropped 4·2) · s111/seed43 A 5 · B 5 (dropped 2·5)
+짝 191개 (학습 seed [101, 111], 평가 seed [43]): B2 116 (60.7%) vs B3' 73 (38.2%), Δ -22.5%p
+불일치 B2만 성공 67 : B3'만 성공 24 · 정확 McNemar 양측 p = 0.0000, 단측(B>A) p = 1.0000
+Δ 군집 부트스트랩(시작 상태 군집 102개): 95% [-31.9, -13.0] · 90% [-30.4, -14.5]
+학습 seed 별 Δ: s101 -17.7 · s111 -27.4
+표적 묶음 category ∈ ['place', 'transport']: B2 51 → B3' 81 · A에서만 31 : B에서만 61 · 단측(B에서 줄어듦) p = 0.9994, 양측 p = 0.0023
+
+범주 이동 (행 = B2, 열 = B3')
+               success  approach     grasp transport     place
+   success          49         9         9        40         9
+  approach           3         0         0         1         1
+     grasp           3         2         4        10         0
+ transport          14         6         4        14         2
+     place           4         1         2         3         1
+
+          rot60_after_lift 중앙값: 0.105 → 0.078
+              box_disp_max 중앙값: 0.006 → 0.001
+   min_cheb_box_after_lift 중앙값: 0.055 → 0.076
+범주 합계: success 116→73 · approach 5→18 · grasp 19→19 · transport 40→68 · place 11→13
+
+상태 매개 지표 (carry_metrics, prereg 4절): A → B (차)
+    push_carry (건): 15 → 9 (-6)
+  low_approach (건): 33 → 26 (-7)
+     collision (건): 15 → 9 (-6)
+  self_release (건): 15 → 21 (+6)
+          hold (건): 5 → 33 (+28)
+    approach_z (중앙값): 0.2321 → 0.2228 (-0.00925)
+   rot60_state (중앙값): 62.26 → 46.32 (-15.94)
+ carry_yaw_net (중앙값): 36.83 → 33.58 (-3.245)
+          xy30 (중앙값): 0.1981 → 0.1212 (-0.07695)
+   carry_speed (중앙값): 0.00903 → 0.006 (-0.00303)
+   carry_steps (중앙값): 81 → 135.5 (+54.5)
+      box_push (건): 37 → 35 (-2)
+ pre_lift_fail (건): 24 → 37 (+13)

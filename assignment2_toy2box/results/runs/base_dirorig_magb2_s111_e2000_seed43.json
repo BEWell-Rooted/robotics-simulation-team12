@@ -1,0 +1,31 @@
+{
+  "base_dirorig_magb2_s111_e2000_seed43.hdf5": {
+    "n": 100,
+    "counts": {
+      "transport": 37,
+      "grasp": 6,
+      "place": 12,
+      "success": 38,
+      "approach": 7
+    },
+    "subtypes": {
+      "transport/released_near_box": 5,
+      "grasp/pushed_off_table": 3,
+      "place/no_release": 11,
+      "transport/released_early": 10,
+      "approach/far": 3,
+      "transport/stall": 11,
+      "approach/close_misaligned": 2,
+      "transport/off_table": 2,
+      "transport/dropped": 7,
+      "approach/wrong_object": 1,
+      "approach/to_box_without_truck": 1,
+      "grasp/miss": 1,
+      "grasp/slip": 1,
+      "grasp/no_close": 1,
+      "place/released_outside": 1,
+      "transport/box_knocked_over": 1,
+      "transport/dropped_near_box": 1
+    }
+  }
+}

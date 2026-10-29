@@ -1,0 +1,10 @@
+## base_kgh500_s111_e2000_seed43.hdf5  (n=100)
+  성공  success     63 (63.0%)  
+  접근  approach     6 ( 6.0%)  far 3, to_box_without_truck 1, wrong_object 1, knocked 1
+  파지  grasp        3 ( 3.0%)  miss 2, slip 1
+  운반  transport   25 (25.0%)  dropped 8, released_early 5, released_near_box 5, box_knocked_over 3, stall 2, dropped_near_box 2
+  배치  place        3 ( 3.0%)  in_box_offcenter 2, in_box_not_open 1
+  실패 37건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 2
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 4회, idle 1%, 손끝 이동 6.49 m
+  성공 중앙값: T 407, t_grasp 266, t_lift 277, t_over 370, 그리퍼 전환 2회
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/baseline/base_kgh500_s111_e2000_seed43.csv

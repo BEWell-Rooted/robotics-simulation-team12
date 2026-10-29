@@ -1,0 +1,6 @@
+## rotworld_strat500.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 500         0.182        71.355         0.148         0.134        11.410        15.975        11.115         0.280         0.234        88.000         0.012           18%            5%
+success             500         0.182        71.355         0.148         0.134        11.410        15.975        11.115         0.280         0.234        88.000         0.012           18%            5%
+
+wrote 500 rows -> /tmp/claude-1000/-home-cai-robotics-simulation-team12/9bd6bf1a-058f-4ee4-b217-0c242a699c1e/scratchpad/apz/rotworld_strat500.csv

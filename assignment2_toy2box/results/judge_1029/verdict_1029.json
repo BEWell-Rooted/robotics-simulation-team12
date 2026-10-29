@@ -1,0 +1,2751 @@
+{
+  "band": {
+    "success_pp": 6.091370558375634,
+    "bundle": 5.05050505050505,
+    "pre_lift_fail": 3.0303030303030303,
+    "push_carry": 4.5,
+    "collision": 4.5,
+    "self_release": 4.040404040404041,
+    "hold": 2.030456852791878,
+    "low_approach": 7.106598984771574,
+    "box_push": 6.0,
+    "rot60_state": 9.86,
+    "carry_yaw_net": 6.240000000000002,
+    "xy30": 0.01880000000000001,
+    "approach_z": 0.007750000000000007,
+    "carry_speed": 0.00040000000000000105,
+    "carry_steps": 5.0
+  },
+  "eseeds": [
+    42,
+    43
+  ],
+  "patterns": {
+    "baseline": "results/baseline/base_kgh500_s{s}_e{ep}_seed{e}.csv",
+    "A-T": "results/runs/base_translate500_s{s}_e{ep}_seed{e}.csv",
+    "B2": "results/runs/base_reach4_s{s}_e{ep}_seed{e}.csv",
+    "A-R": "results/runs/base_rotworld500_s{s}_e{ep}_seed{e}.csv",
+    "B3'": "results/runs/base_dirorig_magb2_s{s}_e{ep}_seed{e}.csv"
+  },
+  "not_run": {
+    "A-T": false,
+    "A-R": false,
+    "B2": false,
+    "B3'": false
+  },
+  "pending": [],
+  "queue_done": true,
+  "all_done": false,
+  "holm": {
+    "raw": {
+      "A-T": 8.691651732727623e-09,
+      "B2": 0.16207156803057038,
+      "C-1mode": 1.0
+    },
+    "adj": {
+      "A-T": 2.607495519818287e-08,
+      "B2": 0.32414313606114076,
+      "C-1mode": 1.0
+    }
+  },
+  "grades": {
+    "A-T": {
+      "grade": "①",
+      "why": [
+        "① Holm p 2.607e-08 < 0.05 · Δ +16.96 > 6.09 · 학습 seed 별 Δ s101 +13.8, s111 +20.1 모두 > 0 → True",
+        "② 95% 상한 +22.75 < 최소 예측 4.0 → False · (Δ ≤ −5 이고 보정 전 p 8.692e-09 < 0.05) → False",
+        "③ Δ +16.96 ≥ 5 · 표적 묶음 단측 p 8.09e-10 < 0.10 · box_push -16.71/100 < −6.00 · low_approach -11.90/100 ≤ 7.11 → True",
+        "음성 대조: 들기 전 실패 39 → 33 (-1.52/100 > 3.03) · 양측 p 0.5044 < 0.05 → 위반 False"
+      ],
+      "notes": [],
+      "neg_violation": false,
+      "d035_delta": 17.314487632508833,
+      "d035_n": 283,
+      "e1900_delta": 17.67676767676768,
+      "old_crit": true
+    },
+    "B2": {
+      "grade": "②",
+      "why": [
+        "① Holm p 0.3241 < 0.05 · Δ -4.64 > 6.09 · 학습 seed 별 Δ s101 -7.8, s111 -1.5 모두 > 0 → False",
+        "② 95% 상한 +1.55 < 최소 예측 4.0 → True · (Δ ≤ −5 이고 보정 전 p 0.1621 < 0.05) → False",
+        "③ Δ -4.64 ≥ 5 · 표적 묶음 단측 p 0.8547 < 0.10 · box_push -0.26/100 < −6.00 · low_approach +2.06/100 ≤ 7.11 → False",
+        "음성 대조: 들기 전 실패 36 → 43 (+1.80/100 > 3.03) · 양측 p 0.435 < 0.05 → 위반 False"
+      ],
+      "notes": [
+        "들기 전 실패 증가 +1.80/100 이 띠의 절반(1.52)을 넘음"
+      ],
+      "neg_violation": false,
+      "d035_delta": -6.405693950177936,
+      "d035_n": 281,
+      "e1900_delta": -3.6082474226804124,
+      "old_crit": false
+    }
+  },
+  "attribution": {
+    "A-R": "차이 (a > b)",
+    "B3'": "차이 (a > b)"
+  },
+  "attribution_named": {
+    "A-R": "차이 (A-T > A-R)",
+    "B3'": "차이 (B2 > B3')"
+  },
+  "C3": {
+    "support": false,
+    "self_release_dec": 0.0,
+    "p_one": 0.604736328125,
+    "hold_inc": -0.5050505050505051,
+    "delta": -1.0101010101010102,
+    "n": 198
+  },
+  "rows": {
+    "H-A": {
+      "row": "H-A3",
+      "add": [],
+      "at_gate": true,
+      "ar_gate": true
+    },
+    "H_B": {
+      "row": "H_B1",
+      "add": []
+    },
+    "joint": [],
+    "H_C": {
+      "row": "H_C2"
+    }
+  },
+  "submission": {
+    "arm": "A-T",
+    "rule": "(1) ① 확증 팔 중 Δ 최대",
+    "checkpoint_pattern": "A-T 학습 seed 101 e2000 (logs/robomimic/.../base_<tag>_s101/<시각>/models/model_epoch_2000.pth)",
+    "checkpoint": "/home/cai/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/base_translate500_s101/20261029191533/models/model_epoch_2000.pth",
+    "checkpoint_md5": "aca48edb71abbe9e8e2181715fc197d0",
+    "checkpoint_runs": 1
+  },
+  "official_seed42": {
+    "baseline": {
+      "rates": [
+        63.0,
+        69.0
+      ],
+      "mean": 66.0,
+      "pstd": 3.0,
+      "sstd": 4.242640687119285
+    },
+    "A-T": {
+      "rates": [
+        84.0,
+        92.0
+      ],
+      "mean": 88.0,
+      "pstd": 4.0,
+      "sstd": 5.656854249492381
+    },
+    "B2": {
+      "rates": [
+        66.0,
+        66.0
+      ],
+      "mean": 66.0,
+      "pstd": 0.0,
+      "sstd": 0.0
+    },
+    "A-R": {
+      "rates": [
+        63.0,
+        65.0
+      ],
+      "mean": 64.0,
+      "pstd": 1.0,
+      "sstd": 1.4142135623730951
+    },
+    "B3'": {
+      "rates": [
+        37.0,
+        40.0
+      ],
+      "mean": 38.5,
+      "pstd": 1.5,
+      "sstd": 2.1213203435596424
+    }
+  },
+  "comparisons": {
+    "A-T": {
+      "main": {
+        "n": 395,
+        "succ_a": 268,
+        "succ_b": 335,
+        "delta_pp": 16.962025316455698,
+        "only_a": 35,
+        "only_b": 102,
+        "p_two": 8.691651732727623e-09,
+        "p_one_b_gt_a": 4.345825866363812e-09,
+        "ci95": [
+          11.221344425394847,
+          22.750303708439894
+        ],
+        "ci90": [
+          12.121212121212121,
+          21.804511278195488
+        ],
+        "delta_by_train_seed": {
+          "101": 13.775510204081632,
+          "111": 20.100502512562816
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 0,
+            "dropped_b": 1
+          },
+          "s101_seed43": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 2,
+            "dropped_b": 3
+          },
+          "s111_seed42": {
+            "a": 0,
+            "b": 0,
+            "dropped_a": 0,
+            "dropped_b": 0
+          },
+          "s111_seed43": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 0,
+            "dropped_b": 1
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 88,
+        "bundle_b": 27,
+        "bundle_only_a": 83,
+        "bundle_only_b": 22,
+        "bundle_p_one": 8.089765867124616e-10,
+        "bundle_p_two": 1.6179531734249232e-09,
+        "pre_lift_fail_a": 39,
+        "pre_lift_fail_b": 33,
+        "mediators": {
+          "push_carry": {
+            "a": 28.0,
+            "b": 3.0,
+            "diff": -25.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 55.0,
+            "b": 8.0,
+            "diff": -47.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 28.0,
+            "b": 3.0,
+            "diff": -25.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 34.0,
+            "b": 3.0,
+            "diff": -31.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 9.0,
+            "b": 7.0,
+            "diff": -2.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.23885,
+            "b": 0.2416,
+            "diff": 0.0027500000000000024,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 66.405,
+            "b": 32.625,
+            "diff": -33.78,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 33.565,
+            "b": 10.055,
+            "diff": -23.509999999999998,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.1917,
+            "b": 0.0842,
+            "diff": -0.10750000000000001,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.010464999999999999,
+            "b": 0.008834999999999999,
+            "diff": -0.0016299999999999995,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 86.0,
+            "b": 91.0,
+            "diff": 5.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 83.0,
+            "b": 17.0,
+            "diff": -66.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 39,
+            "b": 33,
+            "diff": -6,
+            "kind": "count"
+          }
+        }
+      },
+      "neg": {
+        "n": 395,
+        "succ_a": 268,
+        "succ_b": 335,
+        "delta_pp": 16.962025316455698,
+        "only_a": 35,
+        "only_b": 102,
+        "p_two": 8.691651732727623e-09,
+        "p_one_b_gt_a": 4.345825866363812e-09,
+        "ci95": [
+          11.221344425394847,
+          22.750303708439894
+        ],
+        "ci90": [
+          12.121212121212121,
+          21.804511278195488
+        ],
+        "delta_by_train_seed": {
+          "101": 13.775510204081632,
+          "111": 20.100502512562816
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 0,
+            "dropped_b": 1
+          },
+          "s101_seed43": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 2,
+            "dropped_b": 3
+          },
+          "s111_seed42": {
+            "a": 0,
+            "b": 0,
+            "dropped_a": 0,
+            "dropped_b": 0
+          },
+          "s111_seed43": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 0,
+            "dropped_b": 1
+          }
+        },
+        "bundle": [
+          "approach",
+          "grasp"
+        ],
+        "bundle_a": 39,
+        "bundle_b": 33,
+        "bundle_only_a": 31,
+        "bundle_only_b": 25,
+        "bundle_p_one": 0.2522018800114128,
+        "bundle_p_two": 0.5044037600228256,
+        "pre_lift_fail_a": 39,
+        "pre_lift_fail_b": 33,
+        "mediators": {
+          "push_carry": {
+            "a": 28.0,
+            "b": 3.0,
+            "diff": -25.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 55.0,
+            "b": 8.0,
+            "diff": -47.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 28.0,
+            "b": 3.0,
+            "diff": -25.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 34.0,
+            "b": 3.0,
+            "diff": -31.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 9.0,
+            "b": 7.0,
+            "diff": -2.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.23885,
+            "b": 0.2416,
+            "diff": 0.0027500000000000024,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 66.405,
+            "b": 32.625,
+            "diff": -33.78,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 33.565,
+            "b": 10.055,
+            "diff": -23.509999999999998,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.1917,
+            "b": 0.0842,
+            "diff": -0.10750000000000001,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.010464999999999999,
+            "b": 0.008834999999999999,
+            "diff": -0.0016299999999999995,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 86.0,
+            "b": 91.0,
+            "diff": 5.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 83.0,
+            "b": 17.0,
+            "diff": -66.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 39,
+            "b": 33,
+            "diff": -6,
+            "kind": "count"
+          }
+        }
+      },
+      "d035": {
+        "n": 283,
+        "succ_a": 201,
+        "succ_b": 250,
+        "delta_pp": 17.314487632508833,
+        "only_a": 23,
+        "only_b": 72,
+        "p_two": 4.757482385242055e-07,
+        "p_one_b_gt_a": 2.3787411926210276e-07,
+        "ci95": [
+          10.526315789473685,
+          24.113785151019187
+        ],
+        "ci90": [
+          11.538461538461538,
+          22.968197879858657
+        ],
+        "delta_by_train_seed": {
+          "101": 14.184397163120567,
+          "111": 20.422535211267604
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 0,
+            "dropped_b": 1
+          },
+          "s101_seed43": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 2,
+            "dropped_b": 3
+          },
+          "s111_seed42": {
+            "a": 0,
+            "b": 0,
+            "dropped_a": 0,
+            "dropped_b": 0
+          },
+          "s111_seed43": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 0,
+            "dropped_b": 1
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 61,
+        "bundle_b": 14,
+        "bundle_only_a": 58,
+        "bundle_only_b": 11,
+        "bundle_p_one": 3.7779148713741346e-09,
+        "bundle_p_two": 7.555829742748269e-09,
+        "pre_lift_fail_a": 21,
+        "pre_lift_fail_b": 19,
+        "mediators": {
+          "push_carry": {
+            "a": 17.0,
+            "b": 0.0,
+            "diff": -17.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 29.0,
+            "b": 6.0,
+            "diff": -23.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 17.0,
+            "b": 0.0,
+            "diff": -17.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 28.0,
+            "b": 1.0,
+            "diff": -27.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 7.0,
+            "b": 3.0,
+            "diff": -4.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.2421,
+            "b": 0.2445,
+            "diff": 0.0023999999999999855,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 56.9,
+            "b": 32.61,
+            "diff": -24.29,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 30.66,
+            "b": 10.05,
+            "diff": -20.61,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.20274999999999999,
+            "b": 0.0869,
+            "diff": -0.11584999999999998,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.010315000000000001,
+            "b": 0.00893,
+            "diff": -0.0013850000000000008,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 86.0,
+            "b": 91.0,
+            "diff": 5.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 47.0,
+            "b": 9.0,
+            "diff": -38.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 21,
+            "b": 19,
+            "diff": -2,
+            "kind": "count"
+          }
+        }
+      },
+      "e1900": {
+        "n": 198,
+        "succ_a": 139,
+        "succ_b": 174,
+        "delta_pp": 17.67676767676768,
+        "only_a": 13,
+        "only_b": 48,
+        "p_two": 7.665168380445453e-06,
+        "p_one_b_gt_a": 3.8325841902227265e-06,
+        "ci95": [
+          10.152284263959391,
+          25.0
+        ],
+        "ci90": [
+          11.282051282051283,
+          23.979591836734695
+        ],
+        "delta_by_train_seed": {
+          "101": 16.161616161616163,
+          "111": 19.19191919191919
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 1,
+            "dropped_b": 1
+          },
+          "s111_seed42": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 1,
+            "dropped_b": 0
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 39,
+        "bundle_b": 12,
+        "bundle_only_a": 36,
+        "bundle_only_b": 9,
+        "bundle_p_one": 3.28733162291428e-05,
+        "bundle_p_two": 6.57466324582856e-05,
+        "pre_lift_fail_a": 20,
+        "pre_lift_fail_b": 12,
+        "mediators": {
+          "push_carry": {
+            "a": 14.0,
+            "b": 2.0,
+            "diff": -12.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 31.0,
+            "b": 1.0,
+            "diff": -30.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 14.0,
+            "b": 2.0,
+            "diff": -12.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 11.0,
+            "b": 3.0,
+            "diff": -8.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 5.0,
+            "b": 2.0,
+            "diff": -3.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.2413,
+            "b": 0.2445,
+            "diff": 0.0032000000000000084,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 64.99000000000001,
+            "b": 32.89,
+            "diff": -32.10000000000001,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 36.29,
+            "b": 10.035,
+            "diff": -26.255,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.19669999999999999,
+            "b": 0.08660000000000001,
+            "diff": -0.11009999999999998,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.010445,
+            "b": 0.008834999999999999,
+            "diff": -0.0016100000000000003,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 80.0,
+            "b": 91.0,
+            "diff": 11.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 43.0,
+            "b": 8.0,
+            "diff": -35.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 20,
+            "b": 12,
+            "diff": -8,
+            "kind": "count"
+          }
+        }
+      },
+      "per_eseed": {
+        "42": {
+          "n": 199,
+          "succ_a": 131,
+          "succ_b": 176,
+          "delta_pp": 22.613065326633166,
+          "only_a": 11,
+          "only_b": 56,
+          "p_two": 2.1457960315833698e-08,
+          "p_one_b_gt_a": 1.0728980157916849e-08,
+          "ci95": [
+            15.0,
+            30.80808080808081
+          ],
+          "ci90": [
+            16.08040201005025,
+            29.14572864321608
+          ],
+          "delta_by_train_seed": {
+            "101": 22.22222222222222,
+            "111": 23.0
+          },
+          "unmatched": {
+            "s101_seed42": {
+              "a": 1,
+              "b": 1,
+              "dropped_a": 0,
+              "dropped_b": 1
+            },
+            "s111_seed42": {
+              "a": 0,
+              "b": 0,
+              "dropped_a": 0,
+              "dropped_b": 0
+            }
+          },
+          "bundle": [
+            "place",
+            "transport"
+          ],
+          "bundle_a": 49,
+          "bundle_b": 11,
+          "bundle_only_a": 47,
+          "bundle_only_b": 9,
+          "bundle_p_one": 1.285786024041169e-07,
+          "bundle_p_two": 2.571572048082338e-07,
+          "pre_lift_fail_a": 19,
+          "pre_lift_fail_b": 12,
+          "mediators": {
+            "push_carry": {
+              "a": 19.0,
+              "b": 2.0,
+              "diff": -17.0,
+              "kind": "count"
+            },
+            "low_approach": {
+              "a": 28.0,
+              "b": 1.0,
+              "diff": -27.0,
+              "kind": "low"
+            },
+            "collision": {
+              "a": 19.0,
+              "b": 2.0,
+              "diff": -17.0,
+              "kind": "attr"
+            },
+            "self_release": {
+              "a": 19.0,
+              "b": 3.0,
+              "diff": -16.0,
+              "kind": "attr"
+            },
+            "hold": {
+              "a": 6.0,
+              "b": 2.0,
+              "diff": -4.0,
+              "kind": "hold"
+            },
+            "approach_z": {
+              "a": 0.2442,
+              "b": 0.2445,
+              "diff": 0.0002999999999999947,
+              "kind": "median"
+            },
+            "rot60_state": {
+              "a": 74.36,
+              "b": 32.94,
+              "diff": -41.42,
+              "kind": "median"
+            },
+            "carry_yaw_net": {
+              "a": 39.93,
+              "b": 10.04,
+              "diff": -29.89,
+              "kind": "median"
+            },
+            "xy30": {
+              "a": 0.20274999999999999,
+              "b": 0.0863,
+              "diff": -0.11644999999999998,
+              "kind": "median"
+            },
+            "carry_speed": {
+              "a": 0.010589999999999999,
+              "b": 0.00884,
+              "diff": -0.001749999999999998,
+              "kind": "median"
+            },
+            "carry_steps": {
+              "a": 85.5,
+              "b": 91.0,
+              "diff": 5.5,
+              "kind": "median"
+            },
+            "box_push": {
+              "a": 45.0,
+              "b": 8.0,
+              "diff": -37.0,
+              "kind": "count"
+            },
+            "pre_lift_fail": {
+              "a": 19,
+              "b": 12,
+              "diff": -7,
+              "kind": "count"
+            }
+          }
+        },
+        "43": {
+          "n": 196,
+          "succ_a": 137,
+          "succ_b": 159,
+          "delta_pp": 11.224489795918368,
+          "only_a": 24,
+          "only_b": 46,
+          "p_two": 0.011526409654363481,
+          "p_one_b_gt_a": 0.005763204827181741,
+          "ci95": [
+            3.045685279187817,
+            19.587628865979383
+          ],
+          "ci90": [
+            4.166666666666667,
+            18.274111675126903
+          ],
+          "delta_by_train_seed": {
+            "101": 5.154639175257732,
+            "111": 17.171717171717173
+          },
+          "unmatched": {
+            "s101_seed43": {
+              "a": 3,
+              "b": 3,
+              "dropped_a": 2,
+              "dropped_b": 3
+            },
+            "s111_seed43": {
+              "a": 1,
+              "b": 1,
+              "dropped_a": 0,
+              "dropped_b": 1
+            }
+          },
+          "bundle": [
+            "place",
+            "transport"
+          ],
+          "bundle_a": 39,
+          "bundle_b": 16,
+          "bundle_only_a": 36,
+          "bundle_only_b": 13,
+          "bundle_p_one": 0.0007013442518477575,
+          "bundle_p_two": 0.001402688503695515,
+          "pre_lift_fail_a": 20,
+          "pre_lift_fail_b": 21,
+          "mediators": {
+            "push_carry": {
+              "a": 9.0,
+              "b": 1.0,
+              "diff": -8.0,
+              "kind": "count"
+            },
+            "low_approach": {
+              "a": 27.0,
+              "b": 7.0,
+              "diff": -20.0,
+              "kind": "low"
+            },
+            "collision": {
+              "a": 9.0,
+              "b": 1.0,
+              "diff": -8.0,
+              "kind": "attr"
+            },
+            "self_release": {
+              "a": 15.0,
+              "b": 0.0,
+              "diff": -15.0,
+              "kind": "attr"
+            },
+            "hold": {
+              "a": 3.0,
+              "b": 5.0,
+              "diff": 2.0,
+              "kind": "hold"
+            },
+            "approach_z": {
+              "a": 0.2301,
+              "b": 0.24004999999999999,
+              "diff": 0.009949999999999987,
+              "kind": "median"
+            },
+            "rot60_state": {
+              "a": 55.275,
+              "b": 31.69,
+              "diff": -23.584999999999997,
+              "kind": "median"
+            },
+            "carry_yaw_net": {
+              "a": 29.85,
+              "b": 10.07,
+              "diff": -19.78,
+              "kind": "median"
+            },
+            "xy30": {
+              "a": 0.17375000000000002,
+              "b": 0.0806,
+              "diff": -0.09315000000000001,
+              "kind": "median"
+            },
+            "carry_speed": {
+              "a": 0.010270000000000001,
+              "b": 0.00883,
+              "diff": -0.001440000000000002,
+              "kind": "median"
+            },
+            "carry_steps": {
+              "a": 86.0,
+              "b": 91.0,
+              "diff": 5.0,
+              "kind": "median"
+            },
+            "box_push": {
+              "a": 38.0,
+              "b": 9.0,
+              "diff": -29.0,
+              "kind": "count"
+            },
+            "pre_lift_fail": {
+              "a": 20,
+              "b": 21,
+              "diff": 1,
+              "kind": "count"
+            }
+          }
+        }
+      }
+    },
+    "B2": {
+      "main": {
+        "n": 388,
+        "succ_a": 264,
+        "succ_b": 246,
+        "delta_pp": -4.639175257731959,
+        "only_a": 83,
+        "only_b": 65,
+        "p_two": 0.16207156803057038,
+        "p_one_b_gt_a": 0.9409803766091368,
+        "ci95": [
+          -10.512820512820513,
+          1.550387596899225
+        ],
+        "ci90": [
+          -9.61038961038961,
+          0.5181347150259067
+        ],
+        "delta_by_train_seed": {
+          "101": -7.772020725388601,
+          "111": -1.5384615384615385
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 0,
+            "dropped_b": 3
+          },
+          "s101_seed43": {
+            "a": 4,
+            "b": 4,
+            "dropped_a": 2,
+            "dropped_b": 4
+          },
+          "s111_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 0,
+            "dropped_b": 3
+          },
+          "s111_seed43": {
+            "a": 2,
+            "b": 2,
+            "dropped_a": 0,
+            "dropped_b": 2
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 88,
+        "bundle_b": 99,
+        "bundle_only_a": 59,
+        "bundle_only_b": 70,
+        "bundle_p_one": 0.8546560726096317,
+        "bundle_p_two": 0.378687662693119,
+        "pre_lift_fail_a": 36,
+        "pre_lift_fail_b": 43,
+        "mediators": {
+          "push_carry": {
+            "a": 28.0,
+            "b": 34.0,
+            "diff": 6.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 54.0,
+            "b": 62.0,
+            "diff": 8.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 28.0,
+            "b": 34.0,
+            "diff": 6.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 33.0,
+            "b": 27.0,
+            "diff": -6.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 9.0,
+            "b": 9.0,
+            "diff": 0.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.23825,
+            "b": 0.2328,
+            "diff": -0.005449999999999983,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 66.755,
+            "b": 59.74,
+            "diff": -7.0149999999999935,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 34.09,
+            "b": 36.46,
+            "diff": 2.3699999999999974,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.19490000000000002,
+            "b": 0.1906,
+            "diff": -0.004300000000000026,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.010505,
+            "b": 0.00906,
+            "diff": -0.001445,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 86.0,
+            "b": 81.5,
+            "diff": -4.5,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 83.0,
+            "b": 82.0,
+            "diff": -1.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 36,
+            "b": 43,
+            "diff": 7,
+            "kind": "count"
+          }
+        }
+      },
+      "neg": {
+        "n": 388,
+        "succ_a": 264,
+        "succ_b": 246,
+        "delta_pp": -4.639175257731959,
+        "only_a": 83,
+        "only_b": 65,
+        "p_two": 0.16207156803057038,
+        "p_one_b_gt_a": 0.9409803766091368,
+        "ci95": [
+          -10.512820512820513,
+          1.550387596899225
+        ],
+        "ci90": [
+          -9.61038961038961,
+          0.5181347150259067
+        ],
+        "delta_by_train_seed": {
+          "101": -7.772020725388601,
+          "111": -1.5384615384615385
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 0,
+            "dropped_b": 3
+          },
+          "s101_seed43": {
+            "a": 4,
+            "b": 4,
+            "dropped_a": 2,
+            "dropped_b": 4
+          },
+          "s111_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 0,
+            "dropped_b": 3
+          },
+          "s111_seed43": {
+            "a": 2,
+            "b": 2,
+            "dropped_a": 0,
+            "dropped_b": 2
+          }
+        },
+        "bundle": [
+          "approach",
+          "grasp"
+        ],
+        "bundle_a": 36,
+        "bundle_b": 43,
+        "bundle_only_a": 26,
+        "bundle_only_b": 33,
+        "bundle_p_one": 0.8512023958577857,
+        "bundle_p_two": 0.4349928051221534,
+        "pre_lift_fail_a": 36,
+        "pre_lift_fail_b": 43,
+        "mediators": {
+          "push_carry": {
+            "a": 28.0,
+            "b": 34.0,
+            "diff": 6.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 54.0,
+            "b": 62.0,
+            "diff": 8.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 28.0,
+            "b": 34.0,
+            "diff": 6.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 33.0,
+            "b": 27.0,
+            "diff": -6.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 9.0,
+            "b": 9.0,
+            "diff": 0.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.23825,
+            "b": 0.2328,
+            "diff": -0.005449999999999983,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 66.755,
+            "b": 59.74,
+            "diff": -7.0149999999999935,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 34.09,
+            "b": 36.46,
+            "diff": 2.3699999999999974,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.19490000000000002,
+            "b": 0.1906,
+            "diff": -0.004300000000000026,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.010505,
+            "b": 0.00906,
+            "diff": -0.001445,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 86.0,
+            "b": 81.5,
+            "diff": -4.5,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 83.0,
+            "b": 82.0,
+            "diff": -1.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 36,
+            "b": 43,
+            "diff": 7,
+            "kind": "count"
+          }
+        }
+      },
+      "d035": {
+        "n": 281,
+        "succ_a": 201,
+        "succ_b": 183,
+        "delta_pp": -6.405693950177936,
+        "only_a": 62,
+        "only_b": 44,
+        "p_two": 0.09824250442243802,
+        "p_one_b_gt_a": 0.9677682040052531,
+        "ci95": [
+          -13.928571428571429,
+          1.0714285714285714
+        ],
+        "ci90": [
+          -12.720848056537102,
+          0.0
+        ],
+        "delta_by_train_seed": {
+          "101": -9.285714285714286,
+          "111": -3.5460992907801416
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 0,
+            "dropped_b": 3
+          },
+          "s101_seed43": {
+            "a": 4,
+            "b": 4,
+            "dropped_a": 2,
+            "dropped_b": 4
+          },
+          "s111_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 0,
+            "dropped_b": 3
+          },
+          "s111_seed43": {
+            "a": 2,
+            "b": 2,
+            "dropped_a": 0,
+            "dropped_b": 2
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 60,
+        "bundle_b": 77,
+        "bundle_only_a": 38,
+        "bundle_only_b": 55,
+        "bundle_p_one": 0.9693070506477702,
+        "bundle_p_two": 0.09656519729770464,
+        "pre_lift_fail_a": 20,
+        "pre_lift_fail_b": 21,
+        "mediators": {
+          "push_carry": {
+            "a": 17.0,
+            "b": 23.0,
+            "diff": 6.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 28.0,
+            "b": 34.0,
+            "diff": 6.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 17.0,
+            "b": 23.0,
+            "diff": 6.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 27.0,
+            "b": 26.0,
+            "diff": -1.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 7.0,
+            "b": 8.0,
+            "diff": 1.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.242,
+            "b": 0.2391,
+            "diff": -0.002899999999999986,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 56.73,
+            "b": 58.72,
+            "diff": 1.990000000000002,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 30.6,
+            "b": 36.935,
+            "diff": 6.335000000000001,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.2044,
+            "b": 0.21334999999999998,
+            "diff": 0.008949999999999986,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.01033,
+            "b": 0.009145,
+            "diff": -0.0011850000000000003,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 87.0,
+            "b": 84.0,
+            "diff": -3.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 47.0,
+            "b": 48.0,
+            "diff": 1.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 20,
+            "b": 21,
+            "diff": 1,
+            "kind": "count"
+          }
+        }
+      },
+      "e1900": {
+        "n": 194,
+        "succ_a": 135,
+        "succ_b": 128,
+        "delta_pp": -3.6082474226804124,
+        "only_a": 37,
+        "only_b": 30,
+        "p_two": 0.4638176178968696,
+        "p_one_b_gt_a": 0.835783968651405,
+        "ci95": [
+          -11.398963730569948,
+          4.211646136618125
+        ],
+        "ci90": [
+          -10.309278350515465,
+          3.1088082901554404
+        ],
+        "delta_by_train_seed": {
+          "101": -1.0309278350515463,
+          "111": -6.185567010309279
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 1,
+            "dropped_b": 3
+          },
+          "s111_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 1,
+            "dropped_b": 3
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 39,
+        "bundle_b": 45,
+        "bundle_only_a": 26,
+        "bundle_only_b": 32,
+        "bundle_p_one": 0.820928349096931,
+        "bundle_p_two": 0.5118423084381689,
+        "pre_lift_fail_a": 20,
+        "pre_lift_fail_b": 21,
+        "mediators": {
+          "push_carry": {
+            "a": 14.0,
+            "b": 15.0,
+            "diff": 1.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 31.0,
+            "b": 27.0,
+            "diff": -4.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 14.0,
+            "b": 15.0,
+            "diff": 1.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 11.0,
+            "b": 12.0,
+            "diff": 1.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 5.0,
+            "b": 4.0,
+            "diff": -1.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.2408,
+            "b": 0.2343,
+            "diff": -0.006499999999999978,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 64.99000000000001,
+            "b": 55.48,
+            "diff": -9.510000000000012,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 36.29,
+            "b": 35.82,
+            "diff": -0.46999999999999886,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.19669999999999999,
+            "b": 0.1814,
+            "diff": -0.01529999999999998,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.010445,
+            "b": 0.00906,
+            "diff": -0.001384999999999999,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 82.0,
+            "b": 83.0,
+            "diff": 1.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 43.0,
+            "b": 43.0,
+            "diff": 0.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 20,
+            "b": 21,
+            "diff": 1,
+            "kind": "count"
+          }
+        }
+      },
+      "per_eseed": {
+        "42": {
+          "n": 194,
+          "succ_a": 128,
+          "succ_b": 128,
+          "delta_pp": 0.0,
+          "only_a": 31,
+          "only_b": 31,
+          "p_two": 1.0,
+          "p_one_b_gt_a": 0.5504618431735705,
+          "ci95": [
+            -7.854436483879855,
+            8.205128205128204
+          ],
+          "ci90": [
+            -6.7357512953367875,
+            6.806282722513089
+          ],
+          "delta_by_train_seed": {
+            "101": 3.0927835051546393,
+            "111": -3.0927835051546393
+          },
+          "unmatched": {
+            "s101_seed42": {
+              "a": 3,
+              "b": 3,
+              "dropped_a": 0,
+              "dropped_b": 3
+            },
+            "s111_seed42": {
+              "a": 3,
+              "b": 3,
+              "dropped_a": 0,
+              "dropped_b": 3
+            }
+          },
+          "bundle": [
+            "place",
+            "transport"
+          ],
+          "bundle_a": 49,
+          "bundle_b": 46,
+          "bundle_only_a": 30,
+          "bundle_only_b": 27,
+          "bundle_p_one": 0.3956832138895903,
+          "bundle_p_two": 0.7913664277791806,
+          "pre_lift_fail_a": 17,
+          "pre_lift_fail_b": 20,
+          "mediators": {
+            "push_carry": {
+              "a": 19.0,
+              "b": 17.0,
+              "diff": -2.0,
+              "kind": "count"
+            },
+            "low_approach": {
+              "a": 28.0,
+              "b": 28.0,
+              "diff": 0.0,
+              "kind": "low"
+            },
+            "collision": {
+              "a": 19.0,
+              "b": 17.0,
+              "diff": -2.0,
+              "kind": "attr"
+            },
+            "self_release": {
+              "a": 19.0,
+              "b": 12.0,
+              "diff": -7.0,
+              "kind": "attr"
+            },
+            "hold": {
+              "a": 6.0,
+              "b": 4.0,
+              "diff": -2.0,
+              "kind": "hold"
+            },
+            "approach_z": {
+              "a": 0.2424,
+              "b": 0.23370000000000002,
+              "diff": -0.008699999999999986,
+              "kind": "median"
+            },
+            "rot60_state": {
+              "a": 77.38,
+              "b": 55.864999999999995,
+              "diff": -21.515,
+              "kind": "median"
+            },
+            "carry_yaw_net": {
+              "a": 41.49,
+              "b": 35.535,
+              "diff": -5.955000000000005,
+              "kind": "median"
+            },
+            "xy30": {
+              "a": 0.2048,
+              "b": 0.1835,
+              "diff": -0.021300000000000013,
+              "kind": "median"
+            },
+            "carry_speed": {
+              "a": 0.01075,
+              "b": 0.009170000000000001,
+              "diff": -0.001579999999999998,
+              "kind": "median"
+            },
+            "carry_steps": {
+              "a": 86.0,
+              "b": 83.0,
+              "diff": -3.0,
+              "kind": "median"
+            },
+            "box_push": {
+              "a": 45.0,
+              "b": 45.0,
+              "diff": 0.0,
+              "kind": "count"
+            },
+            "pre_lift_fail": {
+              "a": 17,
+              "b": 20,
+              "diff": 3,
+              "kind": "count"
+            }
+          }
+        },
+        "43": {
+          "n": 194,
+          "succ_a": 136,
+          "succ_b": 118,
+          "delta_pp": -9.278350515463918,
+          "only_a": 52,
+          "only_b": 34,
+          "p_two": 0.06615259746138928,
+          "p_one_b_gt_a": 0.9800731857197325,
+          "ci95": [
+            -18.04123711340206,
+            0.0
+          ],
+          "ci90": [
+            -16.666666666666668,
+            -1.5625
+          ],
+          "delta_by_train_seed": {
+            "101": -18.75,
+            "111": 0.0
+          },
+          "unmatched": {
+            "s101_seed43": {
+              "a": 4,
+              "b": 4,
+              "dropped_a": 2,
+              "dropped_b": 4
+            },
+            "s111_seed43": {
+              "a": 2,
+              "b": 2,
+              "dropped_a": 0,
+              "dropped_b": 2
+            }
+          },
+          "bundle": [
+            "place",
+            "transport"
+          ],
+          "bundle_a": 39,
+          "bundle_b": 53,
+          "bundle_only_a": 29,
+          "bundle_only_b": 43,
+          "bundle_p_one": 0.9618154226640843,
+          "bundle_p_two": 0.12491820036864003,
+          "pre_lift_fail_a": 19,
+          "pre_lift_fail_b": 23,
+          "mediators": {
+            "push_carry": {
+              "a": 9.0,
+              "b": 17.0,
+              "diff": 8.0,
+              "kind": "count"
+            },
+            "low_approach": {
+              "a": 26.0,
+              "b": 34.0,
+              "diff": 8.0,
+              "kind": "low"
+            },
+            "collision": {
+              "a": 9.0,
+              "b": 17.0,
+              "diff": 8.0,
+              "kind": "attr"
+            },
+            "self_release": {
+              "a": 14.0,
+              "b": 15.0,
+              "diff": 1.0,
+              "kind": "attr"
+            },
+            "hold": {
+              "a": 3.0,
+              "b": 5.0,
+              "diff": 2.0,
+              "kind": "hold"
+            },
+            "approach_z": {
+              "a": 0.22935,
+              "b": 0.23199999999999998,
+              "diff": 0.0026499999999999857,
+              "kind": "median"
+            },
+            "rot60_state": {
+              "a": 55.33,
+              "b": 61.01,
+              "diff": 5.68,
+              "kind": "median"
+            },
+            "carry_yaw_net": {
+              "a": 29.22,
+              "b": 36.83,
+              "diff": 7.609999999999999,
+              "kind": "median"
+            },
+            "xy30": {
+              "a": 0.1784,
+              "b": 0.1981,
+              "diff": 0.019699999999999995,
+              "kind": "median"
+            },
+            "carry_speed": {
+              "a": 0.01029,
+              "b": 0.00905,
+              "diff": -0.0012399999999999998,
+              "kind": "median"
+            },
+            "carry_steps": {
+              "a": 86.0,
+              "b": 80.5,
+              "diff": -5.5,
+              "kind": "median"
+            },
+            "box_push": {
+              "a": 38.0,
+              "b": 37.0,
+              "diff": -1.0,
+              "kind": "count"
+            },
+            "pre_lift_fail": {
+              "a": 19,
+              "b": 23,
+              "diff": 4,
+              "kind": "count"
+            }
+          }
+        }
+      }
+    },
+    "A-R": {
+      "attr": {
+        "n": 392,
+        "succ_a": 332,
+        "succ_b": 250,
+        "delta_pp": -20.918367346938776,
+        "only_a": 111,
+        "only_b": 29,
+        "p_two": 1.6638844634724402e-12,
+        "p_one_b_gt_a": 0.9999999999997877,
+        "ci95": [
+          -26.99228791773779,
+          -14.910025706940875
+        ],
+        "ci90": [
+          -25.954198473282442,
+          -15.816326530612244
+        ],
+        "delta_by_train_seed": {
+          "101": -20.0,
+          "111": -21.82741116751269
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 2,
+            "b": 2,
+            "dropped_a": 1,
+            "dropped_b": 2
+          },
+          "s101_seed43": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 3,
+            "dropped_b": 0
+          },
+          "s111_seed42": {
+            "a": 2,
+            "b": 2,
+            "dropped_a": 0,
+            "dropped_b": 2
+          },
+          "s111_seed43": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 1,
+            "dropped_b": 0
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 28,
+        "bundle_b": 92,
+        "bundle_only_a": 17,
+        "bundle_only_b": 81,
+        "bundle_p_one": 0.9999999999963098,
+        "bundle_p_two": 3.6232467291175146e-11,
+        "pre_lift_fail_a": 32,
+        "pre_lift_fail_b": 50,
+        "mediators": {
+          "push_carry": {
+            "a": 3.0,
+            "b": 41.0,
+            "diff": 38.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 9.0,
+            "b": 91.0,
+            "diff": 82.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 3.0,
+            "b": 41.0,
+            "diff": 38.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 3.0,
+            "b": 6.0,
+            "diff": 3.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 7.0,
+            "b": 20.0,
+            "diff": 13.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.24155,
+            "b": 0.2314,
+            "diff": -0.010149999999999992,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 32.675,
+            "b": 55.97,
+            "diff": 23.295,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 10.094999999999999,
+            "b": 11.345,
+            "diff": 1.2500000000000018,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.0837,
+            "b": 0.24259999999999998,
+            "diff": 0.15889999999999999,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.00884,
+            "b": 0.01055,
+            "diff": 0.0017099999999999997,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 91.0,
+            "b": 85.0,
+            "diff": -6.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 17.0,
+            "b": 96.0,
+            "diff": 79.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 32,
+            "b": 50,
+            "diff": 18,
+            "kind": "count"
+          }
+        }
+      },
+      "base": {
+        "n": 394,
+        "succ_a": 266,
+        "succ_b": 252,
+        "delta_pp": -3.553299492385787,
+        "only_a": 79,
+        "only_b": 65,
+        "p_two": 0.27861454634422106,
+        "p_one_b_gt_a": 0.8944236797283533,
+        "ci95": [
+          -9.595959595959595,
+          2.544529262086514
+        ],
+        "ci90": [
+          -8.629441624365482,
+          1.5267175572519085
+        ],
+        "delta_by_train_seed": {
+          "101": -6.122448979591836,
+          "111": -1.0101010101010102
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 2,
+            "b": 2,
+            "dropped_a": 0,
+            "dropped_b": 2
+          },
+          "s101_seed43": {
+            "a": 2,
+            "b": 2,
+            "dropped_a": 2,
+            "dropped_b": 0
+          },
+          "s111_seed42": {
+            "a": 2,
+            "b": 2,
+            "dropped_a": 0,
+            "dropped_b": 2
+          },
+          "s111_seed43": {
+            "a": 0,
+            "b": 0,
+            "dropped_a": 0,
+            "dropped_b": 0
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 89,
+        "bundle_b": 93,
+        "bundle_only_a": 63,
+        "bundle_only_b": 67,
+        "bundle_p_one": 0.669415158430592,
+        "bundle_p_two": 0.7925825227940952,
+        "pre_lift_fail_a": 39,
+        "pre_lift_fail_b": 49,
+        "mediators": {
+          "push_carry": {
+            "a": 28.0,
+            "b": 43.0,
+            "diff": 15.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 55.0,
+            "b": 95.0,
+            "diff": 40.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 28.0,
+            "b": 43.0,
+            "diff": 15.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 33.0,
+            "b": 6.0,
+            "diff": -27.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 9.0,
+            "b": 22.0,
+            "diff": 13.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.23859999999999998,
+            "b": 0.2293,
+            "diff": -0.009299999999999975,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 66.0,
+            "b": 56.32,
+            "diff": -9.68,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 33.77,
+            "b": 11.13,
+            "diff": -22.64,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.1935,
+            "b": 0.2489,
+            "diff": 0.055400000000000005,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.01048,
+            "b": 0.01058,
+            "diff": 0.00010000000000000113,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 86.0,
+            "b": 86.0,
+            "diff": 0.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 83.0,
+            "b": 98.0,
+            "diff": 15.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 39,
+            "b": 49,
+            "diff": 10,
+            "kind": "count"
+          }
+        }
+      }
+    },
+    "B3'": {
+      "attr": {
+        "n": 384,
+        "succ_a": 242,
+        "succ_b": 148,
+        "delta_pp": -24.479166666666668,
+        "only_a": 135,
+        "only_b": 41,
+        "p_two": 6.536195274161394e-13,
+        "p_one_b_gt_a": 0.9999999999999027,
+        "ci95": [
+          -30.708661417322833,
+          -18.276762402088774
+        ],
+        "ci90": [
+          -29.736842105263158,
+          -19.270833333333332
+        ],
+        "delta_by_train_seed": {
+          "101": -22.395833333333332,
+          "111": -26.5625
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 4,
+            "b": 4,
+            "dropped_a": 3,
+            "dropped_b": 5
+          },
+          "s101_seed43": {
+            "a": 4,
+            "b": 4,
+            "dropped_a": 4,
+            "dropped_b": 2
+          },
+          "s111_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 3,
+            "dropped_b": 2
+          },
+          "s111_seed43": {
+            "a": 5,
+            "b": 5,
+            "dropped_a": 2,
+            "dropped_b": 5
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 98,
+        "bundle_b": 165,
+        "bundle_only_a": 55,
+        "bundle_only_b": 122,
+        "bundle_p_one": 0.9999998861315141,
+        "bundle_p_two": 5.194305648357268e-07,
+        "pre_lift_fail_a": 44,
+        "pre_lift_fail_b": 71,
+        "mediators": {
+          "push_carry": {
+            "a": 32.0,
+            "b": 19.0,
+            "diff": -13.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 61.0,
+            "b": 45.0,
+            "diff": -16.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 32.0,
+            "b": 19.0,
+            "diff": -13.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 27.0,
+            "b": 48.0,
+            "diff": 21.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 9.0,
+            "b": 71.0,
+            "diff": 62.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.2331,
+            "b": 0.2207,
+            "diff": -0.012399999999999994,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 60.605000000000004,
+            "b": 46.72,
+            "diff": -13.885000000000005,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 36.935,
+            "b": 34.3,
+            "diff": -2.635000000000005,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.19105,
+            "b": 0.1242,
+            "diff": -0.06684999999999999,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.009055,
+            "b": 0.00574,
+            "diff": -0.0033150000000000002,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 81.0,
+            "b": 145.0,
+            "diff": 64.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 82.0,
+            "b": 56.0,
+            "diff": -26.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 44,
+            "b": 71,
+            "diff": 27,
+            "kind": "count"
+          }
+        }
+      },
+      "base": {
+        "n": 389,
+        "succ_a": 263,
+        "succ_b": 155,
+        "delta_pp": -27.763496143958868,
+        "only_a": 142,
+        "only_b": 34,
+        "p_two": 6.789758904074646e-17,
+        "p_one_b_gt_a": 1.0,
+        "ci95": [
+          -33.76288659793814,
+          -21.73913043478261
+        ],
+        "ci90": [
+          -32.82442748091603,
+          -22.715404699738905
+        ],
+        "delta_by_train_seed": {
+          "101": -28.205128205128204,
+          "111": -27.31958762886598
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 0,
+            "dropped_b": 5
+          },
+          "s101_seed43": {
+            "a": 2,
+            "b": 2,
+            "dropped_a": 2,
+            "dropped_b": 2
+          },
+          "s111_seed42": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 0,
+            "dropped_b": 2
+          },
+          "s111_seed43": {
+            "a": 5,
+            "b": 5,
+            "dropped_a": 0,
+            "dropped_b": 5
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 88,
+        "bundle_b": 165,
+        "bundle_only_a": 46,
+        "bundle_only_b": 123,
+        "bundle_p_one": 0.9999999995096226,
+        "bundle_p_two": 2.687937404218371e-09,
+        "pre_lift_fail_a": 38,
+        "pre_lift_fail_b": 69,
+        "mediators": {
+          "push_carry": {
+            "a": 28.0,
+            "b": 19.0,
+            "diff": -9.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 55.0,
+            "b": 46.0,
+            "diff": -9.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 28.0,
+            "b": 19.0,
+            "diff": -9.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 33.0,
+            "b": 48.0,
+            "diff": 15.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 8.0,
+            "b": 71.0,
+            "diff": 63.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.2387,
+            "b": 0.22110000000000002,
+            "diff": -0.017599999999999977,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 66.5,
+            "b": 46.7,
+            "diff": -19.799999999999997,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 33.94,
+            "b": 34.084999999999994,
+            "diff": 0.14499999999999602,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.1941,
+            "b": 0.12115000000000001,
+            "diff": -0.07294999999999999,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.01048,
+            "b": 0.00582,
+            "diff": -0.00466,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 85.5,
+            "b": 143.0,
+            "diff": 57.5,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 82.0,
+            "b": 57.0,
+            "diff": -25.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 38,
+            "b": 69,
+            "diff": 31,
+            "kind": "count"
+          }
+        }
+      }
+    }
+  },
+  "ckpt_sensitivity": {
+    "A-T": {
+      "1800": null,
+      "1900": {
+        "n": 198,
+        "succ_a": 139,
+        "succ_b": 176,
+        "delta_pp": 18.68686868686869,
+        "only_a": 10,
+        "only_b": 47,
+        "p_two": 7.513043097095995e-07,
+        "p_one_b_gt_a": 3.7565215485479975e-07,
+        "ci95": [
+          11.457944651741295,
+          25.909067357512917
+        ],
+        "ci90": [
+          12.56281407035176,
+          24.629073201056745
+        ],
+        "delta_by_train_seed": {
+          "101": 20.2020202020202,
+          "111": 17.171717171717173
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 1,
+            "dropped_b": 2
+          },
+          "s111_seed42": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 1,
+            "dropped_b": 0
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 39,
+        "bundle_b": 9,
+        "bundle_only_a": 37,
+        "bundle_only_b": 7,
+        "bundle_p_one": 2.649790872055746e-06,
+        "bundle_p_two": 5.299581744111492e-06,
+        "pre_lift_fail_a": 20,
+        "pre_lift_fail_b": 13,
+        "mediators": {
+          "push_carry": {
+            "a": 14.0,
+            "b": 0.0,
+            "diff": -14.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 31.0,
+            "b": 0.0,
+            "diff": -31.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 14.0,
+            "b": 0.0,
+            "diff": -14.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 11.0,
+            "b": 2.0,
+            "diff": -9.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 5.0,
+            "b": 2.0,
+            "diff": -3.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.2412,
+            "b": 0.24505,
+            "diff": 0.0038499999999999923,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 66.265,
+            "b": 30.68,
+            "diff": -35.585,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 36.57,
+            "b": 9.98,
+            "diff": -26.59,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.19669999999999999,
+            "b": 0.0759,
+            "diff": -0.12079999999999999,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.010445,
+            "b": 0.0089,
+            "diff": -0.0015449999999999995,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 80.0,
+            "b": 93.0,
+            "diff": 13.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 43.0,
+            "b": 9.0,
+            "diff": -34.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 20,
+            "b": 13,
+            "diff": -7,
+            "kind": "count"
+          }
+        }
+      },
+      "2000": {
+        "n": 199,
+        "succ_a": 131,
+        "succ_b": 176,
+        "delta_pp": 22.613065326633166,
+        "only_a": 11,
+        "only_b": 56,
+        "p_two": 2.1457960315833698e-08,
+        "p_one_b_gt_a": 1.0728980157916849e-08,
+        "ci95": [
+          15.0,
+          30.80808080808081
+        ],
+        "ci90": [
+          16.08040201005025,
+          29.14572864321608
+        ],
+        "delta_by_train_seed": {
+          "101": 22.22222222222222,
+          "111": 23.0
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 1,
+            "b": 1,
+            "dropped_a": 0,
+            "dropped_b": 1
+          },
+          "s111_seed42": {
+            "a": 0,
+            "b": 0,
+            "dropped_a": 0,
+            "dropped_b": 0
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 49,
+        "bundle_b": 11,
+        "bundle_only_a": 47,
+        "bundle_only_b": 9,
+        "bundle_p_one": 1.285786024041169e-07,
+        "bundle_p_two": 2.571572048082338e-07,
+        "pre_lift_fail_a": 19,
+        "pre_lift_fail_b": 12,
+        "mediators": {
+          "push_carry": {
+            "a": 19.0,
+            "b": 2.0,
+            "diff": -17.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 28.0,
+            "b": 1.0,
+            "diff": -27.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 19.0,
+            "b": 2.0,
+            "diff": -17.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 19.0,
+            "b": 3.0,
+            "diff": -16.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 6.0,
+            "b": 2.0,
+            "diff": -4.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.2442,
+            "b": 0.2445,
+            "diff": 0.0002999999999999947,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 74.36,
+            "b": 32.94,
+            "diff": -41.42,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 39.93,
+            "b": 10.04,
+            "diff": -29.89,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.20274999999999999,
+            "b": 0.0863,
+            "diff": -0.11644999999999998,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.010589999999999999,
+            "b": 0.00884,
+            "diff": -0.001749999999999998,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 85.5,
+            "b": 91.0,
+            "diff": 5.5,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 45.0,
+            "b": 8.0,
+            "diff": -37.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 19,
+            "b": 12,
+            "diff": -7,
+            "kind": "count"
+          }
+        }
+      },
+      "pooled_delta": null,
+      "pooled_n": null
+    },
+    "B2": {
+      "1800": null,
+      "1900": null,
+      "2000": {
+        "n": 194,
+        "succ_a": 128,
+        "succ_b": 128,
+        "delta_pp": 0.0,
+        "only_a": 31,
+        "only_b": 31,
+        "p_two": 1.0,
+        "p_one_b_gt_a": 0.5504618431735705,
+        "ci95": [
+          -7.854436483879855,
+          8.205128205128204
+        ],
+        "ci90": [
+          -6.7357512953367875,
+          6.806282722513089
+        ],
+        "delta_by_train_seed": {
+          "101": 3.0927835051546393,
+          "111": -3.0927835051546393
+        },
+        "unmatched": {
+          "s101_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 0,
+            "dropped_b": 3
+          },
+          "s111_seed42": {
+            "a": 3,
+            "b": 3,
+            "dropped_a": 0,
+            "dropped_b": 3
+          }
+        },
+        "bundle": [
+          "place",
+          "transport"
+        ],
+        "bundle_a": 49,
+        "bundle_b": 46,
+        "bundle_only_a": 30,
+        "bundle_only_b": 27,
+        "bundle_p_one": 0.3956832138895903,
+        "bundle_p_two": 0.7913664277791806,
+        "pre_lift_fail_a": 17,
+        "pre_lift_fail_b": 20,
+        "mediators": {
+          "push_carry": {
+            "a": 19.0,
+            "b": 17.0,
+            "diff": -2.0,
+            "kind": "count"
+          },
+          "low_approach": {
+            "a": 28.0,
+            "b": 28.0,
+            "diff": 0.0,
+            "kind": "low"
+          },
+          "collision": {
+            "a": 19.0,
+            "b": 17.0,
+            "diff": -2.0,
+            "kind": "attr"
+          },
+          "self_release": {
+            "a": 19.0,
+            "b": 12.0,
+            "diff": -7.0,
+            "kind": "attr"
+          },
+          "hold": {
+            "a": 6.0,
+            "b": 4.0,
+            "diff": -2.0,
+            "kind": "hold"
+          },
+          "approach_z": {
+            "a": 0.2424,
+            "b": 0.23370000000000002,
+            "diff": -0.008699999999999986,
+            "kind": "median"
+          },
+          "rot60_state": {
+            "a": 77.38,
+            "b": 55.864999999999995,
+            "diff": -21.515,
+            "kind": "median"
+          },
+          "carry_yaw_net": {
+            "a": 41.49,
+            "b": 35.535,
+            "diff": -5.955000000000005,
+            "kind": "median"
+          },
+          "xy30": {
+            "a": 0.2048,
+            "b": 0.1835,
+            "diff": -0.021300000000000013,
+            "kind": "median"
+          },
+          "carry_speed": {
+            "a": 0.01075,
+            "b": 0.009170000000000001,
+            "diff": -0.001579999999999998,
+            "kind": "median"
+          },
+          "carry_steps": {
+            "a": 86.0,
+            "b": 83.0,
+            "diff": -3.0,
+            "kind": "median"
+          },
+          "box_push": {
+            "a": 45.0,
+            "b": 45.0,
+            "diff": 0.0,
+            "kind": "count"
+          },
+          "pre_lift_fail": {
+            "a": 17,
+            "b": 20,
+            "diff": 3,
+            "kind": "count"
+          }
+        }
+      },
+      "pooled_delta": null,
+      "pooled_n": null
+    }
+  }
+}

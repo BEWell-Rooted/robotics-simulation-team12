@@ -1,0 +1,15 @@
+## base_dirorig_magb2_s101_e2000_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.080        50.875         0.067         0.046        36.060        37.325        32.005         0.112         0.225       158.000         0.005           10%            6%
+fail_approach         7             —             —             —             —             —             —             —             —             —             —             —           14%           14%
+fail_grasp           19             —             —             —             —             —             —             —             —             —             —             —           21%           21%
+fail_place            4         0.120        70.815         0.078         0.042        55.975        58.550        51.145         0.107         0.215       243.500         0.003            0%            0%
+fail_post_lift       37         0.089        59.560         0.077         0.048        44.490        52.520        40.650         0.100         0.191       243.500         0.004           11%            3%
+fail_transport       33         0.089        59.560         0.077         0.048        44.490        52.520        40.650         0.100         0.184             —         0.005           12%            3%
+success              37         0.056        37.160         0.062         0.043        26.010        30.460        23.650         0.120         0.242       145.000         0.006            3%            0%
+귀속 attr_ii (들기 이후 실패 37): collision 4 · self_release 13 · slip 6 · other 14
+귀속 attr_i (들기 이후 실패 37): collision 0 · self_release 16 · slip 7 · other 14
+귀속 attr_iii (들기 이후 실패 37): collision 4 · self_release 13 · slip 6 · other 14
+시간 초과(horizon) 실패: 58
+
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/runs/base_dirorig_magb2_s101_e2000_seed42.carry.csv
