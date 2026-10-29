@@ -1,0 +1,11 @@
+variant,demo,replay_success,category,subtype,dev50_cm,dev_lift_cm,devmax_cm,orig_t_lift,approach_steps,lift_to_over,carry_speed
+sub10_cap.hdf5,demo_0,0,approach,far,4.31,28.51,58.43,243,nan,nan,nan
+sub10_cap.hdf5,demo_1,0,approach,to_box_without_truck,2.45,5.29,6.93,244,nan,nan,nan
+sub10_cap.hdf5,demo_10,0,approach,far,2.46,14.65,65.96,238,nan,nan,nan
+sub10_cap.hdf5,demo_100,0,approach,close_misaligned,4.36,9.95,43.79,243,nan,nan,nan
+sub10_cap.hdf5,demo_101,0,approach,far,3.2,35.23,73.58,266,nan,nan,nan
+sub10_cap.hdf5,demo_102,0,approach,to_box_without_truck,12.53,21.3,21.95,267,nan,nan,nan
+sub10_cap.hdf5,demo_103,0,approach,to_box_without_truck,12.48,24.41,28.47,265,nan,nan,nan
+sub10_cap.hdf5,demo_104,0,grasp,miss,6.57,13.51,18.76,266,248,nan,nan
+sub10_cap.hdf5,demo_105,0,approach,far,14.14,24.27,75.11,242,nan,nan,nan
+sub10_cap.hdf5,demo_106,0,approach,to_box_without_truck,7.54,17.58,17.7,254,nan,nan,nan

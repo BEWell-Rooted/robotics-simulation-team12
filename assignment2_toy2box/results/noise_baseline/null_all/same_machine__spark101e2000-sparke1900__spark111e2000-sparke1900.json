@@ -1,0 +1,154 @@
+{
+  "label_a": "A",
+  "label_b": "B",
+  "n": 197,
+  "succ_a": 141,
+  "succ_b": 135,
+  "delta_pp": -3.045685279187817,
+  "only_a": 31,
+  "only_b": 25,
+  "p_two": 0.5044037600228256,
+  "p_one_b_gt_a": 0.8251590235081576,
+  "ci95": [
+    -10.152284263959391,
+    4.0201005025125625
+  ],
+  "ci90": [
+    -9.090909090909092,
+    2.577319587628866
+  ],
+  "delta_by_train_seed": {
+    "101": -9.090909090909092,
+    "111": 3.061224489795918
+  },
+  "files_a": [
+    "/home/cai/robotics-simulation-team12/assignment2_toy2box/results/noise_baseline/spark_gx10-3_base_kgh500_s101_e2000_seed42.csv",
+    "/home/cai/robotics-simulation-team12/assignment2_toy2box/results/noise_baseline/spark_gx10-2_base_kgh500_s111_e2000_seed42.csv"
+  ],
+  "files_b": [
+    "/home/cai/robotics-simulation-team12/assignment2_toy2box/results/noise_baseline/spark_gx10-3_base_kgh500_s101_e1900_seed42.csv",
+    "/home/cai/robotics-simulation-team12/assignment2_toy2box/results/noise_baseline/spark_gx10-2_base_kgh500_s111_e1900_seed42.csv"
+  ],
+  "min_d0": null,
+  "unmatched": {
+    "s101_seed42": {
+      "a": 1,
+      "b": 1,
+      "dropped_a": 0,
+      "dropped_b": 1
+    },
+    "s111_seed42": {
+      "a": 2,
+      "b": 2,
+      "dropped_a": 0,
+      "dropped_b": 2
+    }
+  },
+  "bundle": [
+    "place",
+    "transport"
+  ],
+  "bundle_col": "category",
+  "bundle_a": 38,
+  "bundle_b": 41,
+  "bundle_only_a": 25,
+  "bundle_only_b": 28,
+  "bundle_p_one": 0.7084339228694119,
+  "bundle_p_two": 0.7838463022094988,
+  "categories_a": {
+    "grasp": 8,
+    "success": 141,
+    "place": 16,
+    "transport": 22,
+    "approach": 10
+  },
+  "categories_b": {
+    "transport": 31,
+    "success": 135,
+    "approach": 11,
+    "place": 10,
+    "grasp": 10
+  },
+  "pre_lift_fail_a": 18,
+  "pre_lift_fail_b": 21,
+  "mediators": {
+    "push_carry": {
+      "a": 10.0,
+      "b": 17.0,
+      "diff": 7.0,
+      "kind": "count"
+    },
+    "low_approach": {
+      "a": 19.0,
+      "b": 31.0,
+      "diff": 12.0,
+      "kind": "low"
+    },
+    "collision": {
+      "a": 10.0,
+      "b": 17.0,
+      "diff": 7.0,
+      "kind": "attr"
+    },
+    "self_release": {
+      "a": 11.0,
+      "b": 14.0,
+      "diff": 3.0,
+      "kind": "attr"
+    },
+    "hold": {
+      "a": 8.0,
+      "b": 4.0,
+      "diff": -4.0,
+      "kind": "hold"
+    },
+    "approach_z": {
+      "a": 0.24225,
+      "b": 0.2368,
+      "diff": -0.005449999999999983,
+      "kind": "median"
+    },
+    "rot60_state": {
+      "a": 71.07,
+      "b": 72.845,
+      "diff": 1.7750000000000057,
+      "kind": "median"
+    },
+    "carry_yaw_net": {
+      "a": 37.46,
+      "b": 42.885000000000005,
+      "diff": 5.425000000000004,
+      "kind": "median"
+    },
+    "xy30": {
+      "a": 0.2002,
+      "b": 0.18985000000000002,
+      "diff": -0.01034999999999997,
+      "kind": "median"
+    },
+    "carry_speed": {
+      "a": 0.01032,
+      "b": 0.010235000000000001,
+      "diff": -8.499999999999827e-05,
+      "kind": "median"
+    },
+    "carry_steps": {
+      "a": 83.0,
+      "b": 79.0,
+      "diff": -4.0,
+      "kind": "median"
+    },
+    "box_push": {
+      "a": 33.0,
+      "b": 43.0,
+      "diff": 10.0,
+      "kind": "count"
+    },
+    "pre_lift_fail": {
+      "a": 18,
+      "b": 21,
+      "diff": 3,
+      "kind": "count"
+    }
+  }
+}

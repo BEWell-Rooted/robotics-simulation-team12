@@ -1,0 +1,15 @@
+## base_kgh500_s111_e1900_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.129        64.870         0.128         0.118        36.820        40.700        36.640         0.201         0.236        79.000         0.010           22%            5%
+fail_approach         4             —             —             —             —             —             —             —             —             —             —             —            0%            0%
+fail_grasp            3             —             —             —             —             —             —             —             —             —             —             —            0%            0%
+fail_place            6         1.024       134.875         1.009         0.239        64.855        64.990        56.360         0.299         0.087        53.500         0.016           67%           17%
+fail_post_lift       20         0.571       125.540         0.671         0.215        52.970        52.970        50.930         0.290         0.037        53.500         0.016           60%           25%
+fail_transport       14         0.289       118.680         0.452         0.184        47.635        47.665        48.250         0.287         0.037             —         0.017           57%           29%
+success              73         0.109        60.090         0.109         0.105        36.160        36.420        35.090         0.170         0.241        82.000         0.010           14%            0%
+귀속 attr_ii (들기 이후 실패 20): collision 10 · self_release 3 · slip 6 · other 1
+귀속 attr_i (들기 이후 실패 20): collision 1 · self_release 7 · slip 8 · other 4
+귀속 attr_iii (들기 이후 실패 20): collision 12 · self_release 2 · slip 5 · other 1
+시간 초과(horizon) 실패: 26
+
+wrote 100 rows -> results/noise_baseline/a6000_base_kgh500_s111_e1900_seed42.carry.csv

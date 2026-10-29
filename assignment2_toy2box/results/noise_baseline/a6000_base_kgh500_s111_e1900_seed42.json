@@ -1,0 +1,27 @@
+{
+  "base_kgh500_s111_e1900_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 73,
+      "place": 6,
+      "approach": 4,
+      "grasp": 3,
+      "transport": 14
+    },
+    "subtypes": {
+      "place/released_outside": 4,
+      "place/no_release": 2,
+      "approach/hover": 2,
+      "grasp/miss": 2,
+      "transport/released_near_box": 2,
+      "transport/box_knocked_over": 2,
+      "transport/dropped": 5,
+      "approach/far": 2,
+      "grasp/slip": 1,
+      "transport/dropped_near_box": 2,
+      "transport/box_collision_released": 1,
+      "transport/released_early": 1,
+      "transport/off_table": 1
+    }
+  }
+}

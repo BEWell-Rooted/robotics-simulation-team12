@@ -1,0 +1,21 @@
+## toy2box_kgh_annotated.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                  20         0.028        24.305         0.022         0.038         2.395         2.645         0.450         0.023         0.243        82.000         0.009            0%            0%
+success              20         0.028        24.305         0.022         0.038         2.395         2.645         0.450         0.023         0.243        82.000         0.009            0%            0%
+
+## kgh_mimic_500.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 500         0.209        83.360         0.179         0.137        38.435        41.710        37.985         0.212         0.243        92.000         0.011           16%            5%
+success             500         0.209        83.360         0.179         0.137        38.435        41.710        37.985         0.212         0.243        92.000         0.011           16%            5%
+
+## toy2box_agibot_annotated.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                  20         0.000        16.665         0.006         0.041         2.560         5.140         0.200         0.042         0.379       114.000         0.009            0%            0%
+success              20         0.000        16.665         0.006         0.041         2.560         5.140         0.200         0.042         0.379       114.000         0.009            0%            0%
+
+## ta_mimic_500.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 500         0.218        73.365         0.182         0.141        21.830        27.450        16.310         0.135         0.300       113.000         0.012           15%            1%
+success             500         0.218        73.365         0.182         0.141        21.830        27.450        16.310         0.135         0.300       113.000         0.012           15%            1%
+
+wrote 1040 rows -> results/carry_metrics/data_human_mimic.csv

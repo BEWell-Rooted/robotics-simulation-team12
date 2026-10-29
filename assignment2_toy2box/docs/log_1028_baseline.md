@@ -129,3 +129,11 @@
 | `base_ta500_s111` | 22:50–23:34 | 23:34–00:53 | **33/100** |
 
 - **35.0 ± 2.0%** (조교 보고 26%). 팀원 baseline 과 200쌍 비교: +31%p, 불일치 18:80, McNemar p < 0.001. 실패 130건: 접근 43 · 파지 23 · 운반 47 · 배치 17 (팀원 68건: 9 · 10 · 30 · 19). 들기 전 실패 66 → 19. 진단 문서 8절.
+
+## 10/29 — 공용 기전 지표, 트랙 A·B·C 기획 fork
+
+- `tools/carry_metrics.py`: 데이터셋·평가 기록에 같은 정의로 운반 구간 지표(rot60, carry_rot_cmd, carry_yaw_net/max, yaw30, xy30, approach_z, box_push, empty_at_box)를 계산. 결과 `results/carry_metrics/{data_human_mimic,baseline_rollouts}.csv`.
+  - 손목 yaw 순변화(들기 → 상자 위): 사람 팀원 2.4° · 조교 2.6° / Mimic 팀원 38.4° · 조교 21.8° / baseline rollout 성공 32–35° · 들기 이후 실패 58–63°.
+- `classify_failures.py`: 로더에 `eef_q` 추가, `empty_at_box` 를 "트럭이 상자 밖(xy > 0.15 m)일 때만"으로 고침(상자에 넣은 뒤의 빈손 제외 — 사람 시범에서 95% 로 잘못 잡히던 것). 범주 결과는 그대로.
+- 서베이 트랙 A·B·C 를 이 세션의 fork 3개로 나눠 가설·실험 설계·구현·소규모 검증을 진행(기획안 `docs/plan_{A,B,C}_1029.md`).
+- 이어지는 기록(교차 점검, 잡음 기준선 P0, 사전등록)은 `docs/log_1029.md` · `docs/prereg_1029.md`.

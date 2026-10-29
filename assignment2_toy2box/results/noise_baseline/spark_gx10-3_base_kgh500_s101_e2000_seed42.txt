@@ -1,0 +1,10 @@
+## spark_gx10-3_base_kgh500_s101_e2000_seed42.hdf5  (n=100)
+  성공  success     74 (74.0%)  
+  접근  approach     4 ( 4.0%)  to_box_without_truck 2, far 2
+  파지  grasp        4 ( 4.0%)  slip 2, miss 1, no_close 1
+  운반  transport   10 (10.0%)  released_near_box 4, dropped 3, stall 3
+  배치  place        8 ( 8.0%)  released_outside 5, in_box_offcenter 2, no_release 1
+  실패 26건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 0
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 4회, idle 1%, 손끝 이동 6.52 m
+  성공 중앙값: T 372, t_grasp 234, t_lift 260, t_over 338, 그리퍼 전환 2회
+wrote 100 rows -> results/noise_baseline/spark_gx10-3_base_kgh500_s101_e2000_seed42.csv

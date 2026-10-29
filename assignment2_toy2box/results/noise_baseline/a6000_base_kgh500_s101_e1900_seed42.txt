@@ -1,0 +1,10 @@
+## base_kgh500_s101_e1900_seed42.hdf5  (n=100)
+  성공  success     68 (68.0%)  
+  접근  approach    10 (10.0%)  far 7, close_misaligned 1, to_box_without_truck 1, hover 1
+  파지  grasp        3 ( 3.0%)  miss 3
+  운반  transport   14 (14.0%)  released_near_box 5, dropped_near_box 4, stall 2, dropped 2, off_table 1
+  배치  place        5 ( 5.0%)  released_outside 4, no_release 1
+  실패 32건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 2
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 5회, idle 1%, 손끝 이동 5.47 m
+  성공 중앙값: T 396, t_grasp 258, t_lift 268, t_over 358, 그리퍼 전환 2회
+wrote 100 rows -> results/noise_baseline/a6000_base_kgh500_s101_e1900_seed42.csv

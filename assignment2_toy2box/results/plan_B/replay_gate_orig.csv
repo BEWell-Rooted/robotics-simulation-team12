@@ -1,0 +1,11 @@
+variant,demo,replay_success,category,subtype,dev50_cm,dev_lift_cm,devmax_cm,orig_t_lift,approach_steps,lift_to_over,carry_speed
+sub10_orig.hdf5,demo_0,1,success,,0.0,0.06,3.54,243,215,124,0.01493
+sub10_orig.hdf5,demo_1,1,success,,0.0,0.01,2.27,244,215,91,0.01045
+sub10_orig.hdf5,demo_10,1,success,,0.0,0.04,2.45,238,214,130,0.0135
+sub10_orig.hdf5,demo_100,1,success,,0.0,0.01,0.39,243,216,93,0.01323
+sub10_orig.hdf5,demo_101,0,place,released_outside,0.0,0.02,4.99,266,247,85,0.01496
+sub10_orig.hdf5,demo_102,1,success,,0.0,0.01,0.05,267,247,78,0.00838
+sub10_orig.hdf5,demo_103,1,success,,0.0,0.01,1.15,265,247,77,0.01051
+sub10_orig.hdf5,demo_104,1,success,,0.0,0.4,0.45,266,247,79,0.01019
+sub10_orig.hdf5,demo_105,1,success,,0.0,0.19,1.03,242,222,95,0.01497
+sub10_orig.hdf5,demo_106,1,success,,0.0,0.03,0.28,254,232,92,0.00879

@@ -1,0 +1,11 @@
+variant,demo,replay_success,category,subtype,dev50_cm,dev_lift_cm,devmax_cm,orig_t_lift,approach_steps,lift_to_over,carry_speed
+sub10_carrynorot.hdf5,demo_0,0,transport,released_early,0.0,0.06,60.74,243,215,nan,0.01456
+sub10_carrynorot.hdf5,demo_1,1,success,,0.0,0.01,18.84,244,215,108,0.01062
+sub10_carrynorot.hdf5,demo_10,0,transport,released_early,0.0,0.04,51.65,238,214,nan,0.01109
+sub10_carrynorot.hdf5,demo_100,0,transport,released_early,0.0,0.01,56.21,243,216,nan,0.01351
+sub10_carrynorot.hdf5,demo_101,1,success,,0.0,0.02,53.56,266,247,107,0.01496
+sub10_carrynorot.hdf5,demo_102,1,success,,0.0,0.01,4.52,267,247,76,0.00822
+sub10_carrynorot.hdf5,demo_103,1,success,,0.0,0.01,19.84,265,247,86,0.01015
+sub10_carrynorot.hdf5,demo_104,0,transport,box_collision_released,0.0,0.4,17.16,266,247,nan,0.01091
+sub10_carrynorot.hdf5,demo_105,0,transport,released_early,0.0,0.18,54.77,242,222,nan,0.01325
+sub10_carrynorot.hdf5,demo_106,1,success,,0.0,0.04,7.91,254,232,95,0.00898

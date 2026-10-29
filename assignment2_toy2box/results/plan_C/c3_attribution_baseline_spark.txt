@@ -1,0 +1,18 @@
+들기 이후 실패 39건 — 귀속 (ii) 계층형 / 민감도 (i) ±5 step / (iii) rollout 전체
+  cls_ii: collision 10 · self_release_minority 8 · self_release_majority 4 · slip 11 · other_no_loss 6
+  cls_i: collision 1 · self_release_minority 12 · self_release_majority 7 · slip 13 · other_no_loss 6
+  cls_iii: collision 15 · self_release_minority 5 · self_release_majority 3 · slip 10 · other_no_loss 6
+C3 표적 묶음 = (ii) 비충돌 스스로 놓음 중 소수 열기: 8건 → spark3_base_kgh:rollout_17(in_box_offcenter, P=0.1952), spark3_base_kgh:rollout_29(released_outside, P=0.1384), spark3_base_kgh:rollout_84(released_outside, P=0.4193), spark_gx10-2_ba:rollout_12(released_outside, P=0.0572), spark_gx10-2_ba:rollout_64(released_near_box, P=0.4889), spark_gx10-2_ba:rollout_78(in_box_offcenter, P=0.0885), spark_gx10-2_ba:rollout_82(released_early, P=0.006), spark_gx10-2_ba:rollout_95(released_outside, P=0.1063)
+  v3 세부 유형별 (ii) 분포:
+    place/released_outside                 9  collision 4 · self_release_minority 4 · self_release_majority 1
+    transport/dropped                      8  slip 8
+    transport/released_near_box            7  collision 3 · self_release_minority 1 · self_release_majority 3
+    transport/stall                        4  other_no_loss 4
+    place/in_box_offcenter                 3  collision 1 · self_release_minority 2
+    place/no_release                       2  other_no_loss 2
+    place/in_box_not_open                  2  collision 1 · slip 1
+    transport/dropped_near_box             2  slip 2
+    place/dropped_outside                  1  collision 1
+    transport/released_early               1  self_release_minority 1
+참고 — 성공 143건의 놓기(같은 규칙): collision 8 · self_release_minority 6 · self_release_majority 15 · slip 4 · other_no_loss 110
+wrote 200 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/plan_C/c3_attribution_baseline_spark.csv

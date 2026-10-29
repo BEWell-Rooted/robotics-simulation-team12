@@ -1,0 +1,20 @@
+들기 이후 실패 49건 — 귀속 (ii) 계층형 / 민감도 (i) ±5 step / (iii) rollout 전체
+  cls_ii: collision 17 · self_release_minority 6 · self_release_majority 13 · slip 8 · other_no_loss 5
+  cls_i: collision 3 · self_release_minority 11 · self_release_majority 16 · slip 14 · other_no_loss 5
+  cls_iii: collision 28 · self_release_minority 2 · self_release_majority 10 · slip 4 · other_no_loss 5
+C3 표적 묶음 = (ii) 비충돌 스스로 놓음 중 소수 열기: 6건 → base_kgh500_s10:rollout_14(released_near_box, P=0.3735), base_kgh500_s10:rollout_36(released_early, P=0.001), base_kgh500_s10:rollout_65(released_early, P=0.1134), base_kgh500_s10:rollout_89(released_outside, P=0.2994), base_kgh500_s11:rollout_46(released_near_box, P=0.4358), base_kgh500_s11:rollout_97(released_early, P=0.0955)
+  v3 세부 유형별 (ii) 분포:
+    place/released_outside                12  collision 6 · self_release_minority 1 · self_release_majority 5
+    transport/released_near_box           10  collision 3 · self_release_minority 2 · self_release_majority 5
+    transport/dropped                      7  collision 2 · slip 5
+    transport/released_early               4  self_release_minority 3 · self_release_majority 1
+    transport/dropped_near_box             3  collision 1 · slip 2
+    transport/stall                        3  other_no_loss 3
+    place/dropped_outside                  2  collision 1 · slip 1
+    place/in_box_not_open                  2  collision 2
+    transport/box_collision_released       2  collision 2
+    place/in_box_offcenter                 2  self_release_majority 2
+    place/no_release                       1  other_no_loss 1
+    transport/box_knocked_over             1  other_no_loss 1
+참고 — 성공 132건의 놓기(같은 규칙): collision 3 · self_release_minority 11 · self_release_majority 2 · slip 1 · other_no_loss 115
+wrote 200 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/plan_C/c3_attribution_baseline_a6000.csv

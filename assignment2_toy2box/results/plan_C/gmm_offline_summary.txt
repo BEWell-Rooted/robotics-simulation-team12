@@ -1,0 +1,39 @@
+== 들기 뒤 60 step: 실행된 회전 | 혼합 평균 회전 | 모드 간 회전 퍼짐 | 실행 위치 | 평균 위치 (중앙값)
+  succ  n=132  exec_rot 0.102  mean_rot 0.099  (비율 0.99)  spread 0.008  exec_pos 0.115  mean_pos 0.114
+  post  n= 49  exec_rot 0.494  mean_rot 0.490  (비율 1.00)  spread 0.014  exec_pos 0.190  mean_pos 0.189
+== 운반 중 그리퍼: 실행 부호가 혼합 평균 부호와 다른 step 비율 (중앙값)
+  succ  n=132 median 0.000 mean 0.000  >0 인 rollout 6
+  post  n=49 median 0.000 mean 0.002  >0 인 rollout 21
+== 들기 뒤 첫 열기 시점: 혼합 평균도 "열기"인가 / 그 전 30 step 안에 평균이 먼저 "열기"였나
+  EO  n= 16  평균도 열기 8  평균이 먼저 열기 2  P(open)<0.5 8
+  OUT n= 14  평균도 열기 9  평균이 먼저 열기 2  P(open)<0.5 5
+  SUC n=132  평균도 열기 87  평균이 먼저 열기 21  P(open)<0.5 45
+  OTH n= 11  평균도 열기 7  평균이 먼저 열기 0  P(open)<0.5 4
+== 운반 중 소수 성분 "열기"(실행 열기 & 혼합 평균 닫기)와 놓침의 시간 관계
+group                                 n     소수열기있음   놓침5step전  1step짜리
+place/dropped_outside                 2          1          0        0
+place/in_box_not_open                 2          0          0        0
+place/in_box_offcenter                2          0          0        0
+place/no_release                      1          0          0        0
+place/released_outside               12          4          3        0
+succ                                132         45         38        1
+transport/box_collision_released      2          0          0        0
+transport/box_knocked_over            1          0          0        0
+transport/dropped                     7          2          2        2
+transport/dropped_near_box            3          0          0        0
+transport/released_early              4          3          3        0
+transport/released_near_box          10          5          4        0
+transport/stall                       3          0          0        0
+놓치기 직전 소수 열기가 있었던 실패: 12
+   (101, 'rollout_14', 'transport/released_near_box', 491, [486], [0.37])
+   (101, 'rollout_27', 'transport/released_near_box', 441, [438], [0.0])
+   (101, 'rollout_36', 'transport/released_early', 374, [370], [0.0])
+   (101, 'rollout_65', 'transport/released_early', 316, [313], [0.11])
+   (101, 'rollout_69', 'place/released_outside', 357, [353], [0.01])
+   (101, 'rollout_89', 'place/released_outside', 430, [427], [0.3])
+   (111, 'rollout_2', 'transport/dropped', 255, [251], [0.0])
+   (111, 'rollout_27', 'transport/dropped', 323, [322], [0.07])
+   (111, 'rollout_46', 'transport/released_near_box', 300, [297], [0.44])
+   (111, 'rollout_62', 'transport/released_near_box', 392, [389], [0.43])
+   (111, 'rollout_71', 'place/released_outside', 380, [377], [0.42])
+   (111, 'rollout_97', 'transport/released_early', 427, [426], [0.1])

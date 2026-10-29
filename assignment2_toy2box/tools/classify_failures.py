@@ -124,7 +124,7 @@ def load_trajs(path):
                 o = g["obs"]
                 tr = dict(
                     src=os.path.basename(path), kind=kind, id=n,
-                    eef=o["eef_pos"][:], truck=o["toy_truck_positions"][:], truck_q=o["toy_truck_orientations"][:],
+                    eef=o["eef_pos"][:], eef_q=o["eef_quat"][:], truck=o["toy_truck_positions"][:], truck_q=o["toy_truck_orientations"][:],
                     box=o["box_positions"][:], box_q=o["box_orientations"][:], gp=o["gripper_pos"][:],
                     act=g["actions"][:], grasp=g["grasp"][:].astype(bool), success_t=g["success"][:].astype(bool),
                     grip_open=g["grip_open"][:].astype(bool) if "grip_open" in g else None,
@@ -146,7 +146,7 @@ def load_trajs(path):
                 succ = bool(g.attrs.get("success", False))
                 tr = dict(
                     src=base, kind=kind, id=n,
-                    eef=o["eef_pos"][:], truck=o["toy_truck_positions"][:], truck_q=o["toy_truck_orientations"][:],
+                    eef=o["eef_pos"][:], eef_q=o["eef_quat"][:], truck=o["toy_truck_positions"][:], truck_q=o["toy_truck_orientations"][:],
                     box=o["box_positions"][:], box_q=o["box_orientations"][:], gp=o["gripper_pos"][:],
                     act=g["actions"][:], grasp=grasp, success_t=None, grip_open=None,
                     end_reason="success" if succ else "", success=succ, horizon=None,
@@ -253,7 +253,8 @@ def classify(tr):
 
     # 표시 열 (범주를 바꾸지 않음)
     eef_box_xy = np.linalg.norm((eef - box)[:, :2], axis=1)
-    t_empty_box = first_run((~air) & (eef_box_xy < 0.12) & (d3 > D_HOLD), 5)  # 트럭 없이 손이 상자 0.12 m 안
+    # 트럭 없이 손이 상자 0.12 m 안 — 트럭이 상자 밖(xy > 0.15 m)에 있을 때만 (상자에 넣은 뒤의 빈손은 제외)
+    t_empty_box = first_run((~air) & (eef_box_xy < 0.12) & (d3 > D_HOLD) & (xy_tb > 0.15), 5)
     shallow = bool(held.any() and np.median(d3[held]) > 0.05)  # 들고 있는 동안 손끝-트럭 중앙값 > 5 cm
     tail_idle = float((np.abs(act[-300:, :6]) < IDLE_EPS).all(axis=1).mean()) if A >= 50 else 0.0
     rot60 = float(np.abs(act[t_lift:t_lift + 60, 3:6]).sum(1).mean()) if 0 <= t_lift < A else float("nan")

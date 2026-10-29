@@ -1,0 +1,36 @@
+# 사전등록 3절 데이터 게이트를 스모크 데이터에 적용 (스모크라 --n_expect · --n_logs 만 바꿈; 전체 규모는 기본값 500 · 5)
+## 게이트 AT: x1_translate_s1_30.hdf5 (n = 31)
+  PASS            logs : 생성 로그 1개, 없는 파일 []
+  PASS               n : demo 31개 (기대 31)
+  PASS             gen = 0.886  (기준 >= 0.7)
+  PASS          yaw_go = 12.967  (기준 <= 20.0)
+  PASS   carry_yaw_net = 7.160  (기준 <= 15.0)
+  PASS            xy30 = 0.089  (기준 <= 0.13)
+  PASS  approach_z_p10 = 0.212  (기준 >= 0.15)
+  PASS           rot60 = 0.063  (기준 <= 0.08)
+  PASS   carry_pos_cmd = 0.060  (기준 <= 0.08)
+  PASS          end_xy = 0.053  (기준 <= 0.07)
+  box_push 6% · 시작 < 0.30 m 6% · 상대 yaw > 90° 55% (보고만)
+게이트 통과
+rc=0
+## 게이트 AR: r1_rotworld_s1_30.hdf5 (n = 30)
+  PASS            logs : 생성 로그 1개, 없는 파일 []
+  PASS               n : demo 30개 (기대 30)
+  PASS             gen = 0.577  (기준 >= 0.45)
+  PASS          yaw_go = 13.374  (기준 <= 20.0)
+  PASS   carry_yaw_net = 9.935  (기준 <= 15.0)
+  PASS            xy30 = 0.299  (기준 >= 0.15)
+  PASS         path_go = 1.289  (기준 >= 1.1)
+  PASS          end_xy = 0.061  (기준 <= 0.07)
+  PASS    yaw_go_vs_AT = 0.407  (기준 <= 6.0)
+  box_push 17% · 시작 < 0.30 m 3% · 상대 yaw > 90° 47% (보고만)
+게이트 통과
+rc=0
+# --at_yaw 없이 A-R (FAIL 이어야 함)
+FAIL  A-R 게이트에는 --at_yaw (A-T 의 손목 yaw 파지→상자 위 중앙값)가 필요하다
+rc=1
+# 없는 로그 (FAIL 이어야 함)
+## 게이트 AT: x1_translate_s1_30.hdf5 (n = 31)
+  FAIL            logs : 생성 로그 2개, 없는 파일 ['logs/rs_a2_runs/plan_A/none.log']
+게이트 미통과
+rc=1

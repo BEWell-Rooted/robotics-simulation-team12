@@ -1,0 +1,34 @@
+[짝] 시작 상태가 밀려 짝이 없는 rollout: s101/seed42 A 1 · B 1 (dropped 1·1) · s111/seed42 A 2 · B 2 (dropped 0·2)
+짝 197개 (학습 seed [101, 111], 평가 seed [42]): A 133 (67.5%) vs B 144 (73.1%), Δ +5.6%p
+불일치 A만 성공 24 : B만 성공 35 · 정확 McNemar 양측 p = 0.1925, 단측(B>A) p = 0.0963
+Δ 군집 부트스트랩(시작 상태 군집 101개): 95% [-2.0, +13.4] · 90% [-1.0, +12.2]
+학습 seed 별 Δ: s101 +8.1 · s111 +3.1
+표적 묶음 category ∈ ['place', 'transport']: A 43 → B 36 · A에서만 27 : B에서만 20 · 단측(B에서 줄어듦) p = 0.1908, 양측 p = 0.3817
+
+범주 이동 (행 = A, 열 = B)
+               success  approach     grasp transport     place
+   success         109         3         2        15         4
+  approach           6         4         3         0         0
+     grasp           5         2         0         1         0
+ transport          17         1         1         9         0
+     place           7         0         1         2         5
+
+          rot60_after_lift 중앙값: 0.136 → 0.148
+              box_disp_max 중앙값: 0.010 → 0.015
+   min_cheb_box_after_lift 중앙값: 0.038 → 0.049
+범주 합계: success 133→144 · approach 13→10 · grasp 8→7 · transport 28→27 · place 15→9
+
+상태 매개 지표 (carry_metrics, prereg 4절): A → B (차)
+    push_carry (건): 12 → 13 (+1)
+  low_approach (건): 25 → 34 (+9)
+     collision (건): 12 → 13 (+1)
+  self_release (건): 16 → 12 (-4)
+          hold (건): 7 → 5 (-2)
+    approach_z (중앙값): 0.2389 → 0.2338 (-0.0051)
+   rot60_state (중앙값): 70.9 → 74.13 (+3.235)
+ carry_yaw_net (중앙값): 39.8 → 40.54 (+0.735)
+          xy30 (중앙값): 0.186 → 0.1995 (+0.01345)
+   carry_speed (중앙값): 0.01018 → 0.01052 (+0.00033)
+   carry_steps (중앙값): 81 → 85 (+4)
+      box_push (건): 33 → 42 (+9)
+ pre_lift_fail (건): 21 → 17 (-4)

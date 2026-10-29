@@ -1,0 +1,29 @@
+{
+  "spark_gx10-2_base_kgh500_s111_e1900_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 72,
+      "transport": 15,
+      "approach": 4,
+      "grasp": 6,
+      "place": 3
+    },
+    "subtypes": {
+      "transport/released_near_box": 5,
+      "approach/wrong_object": 1,
+      "approach/pushed_off_table": 1,
+      "transport/dropped": 3,
+      "transport/dropped_near_box": 2,
+      "grasp/miss": 4,
+      "grasp/pushed_off_table": 1,
+      "place/in_box_offcenter": 1,
+      "approach/far": 1,
+      "grasp/no_close": 1,
+      "transport/box_knocked_over": 4,
+      "approach/hover": 1,
+      "place/released_outside": 1,
+      "place/in_box_not_open": 1,
+      "transport/released_early": 1
+    }
+  }
+}

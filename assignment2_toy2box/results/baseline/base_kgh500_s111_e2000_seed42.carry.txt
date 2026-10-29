@@ -1,0 +1,15 @@
+## base_kgh500_s111_e2000_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.160        75.590         0.149         0.136        39.935        40.650        36.950         0.212         0.241        83.500         0.011           24%           10%
+fail_approach         5             —             —             —             —             —             —             —             —             —             —             —           20%           20%
+fail_grasp            3             —             —             —             —             —             —             —             —             —             —             —           33%           33%
+fail_place            5         0.838       137.130         0.850         0.233        60.110        60.190        48.120         0.400         0.190        49.000         0.018          100%            0%
+fail_post_lift       23         0.494       135.200         0.433         0.186        58.330        58.330        51.790         0.282         0.183        49.000         0.013           61%           26%
+fail_transport       18         0.462       134.305         0.423         0.168        54.245        56.165        54.720         0.246         0.128             —         0.012           50%           33%
+success              69         0.122        63.510         0.120         0.113        34.550        36.400        26.720         0.190         0.246        85.000         0.010           12%            3%
+귀속 attr_ii (들기 이후 실패 23): collision 9 · self_release 7 · slip 4 · other 3
+귀속 attr_i (들기 이후 실패 23): collision 0 · self_release 12 · slip 7 · other 4
+귀속 attr_iii (들기 이후 실패 23): collision 14 · self_release 3 · slip 3 · other 3
+시간 초과(horizon) 실패: 31
+
+wrote 100 rows -> results/baseline/base_kgh500_s111_e2000_seed42.carry.csv

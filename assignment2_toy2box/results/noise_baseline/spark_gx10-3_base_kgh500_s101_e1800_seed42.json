@@ -1,0 +1,29 @@
+{
+  "spark_gx10-3_base_kgh500_s101_e1800_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 73,
+      "transport": 13,
+      "place": 6,
+      "grasp": 2,
+      "approach": 6
+    },
+    "subtypes": {
+      "transport/released_near_box": 7,
+      "transport/dropped": 3,
+      "place/no_release": 2,
+      "grasp/no_close": 1,
+      "place/in_box_offcenter": 1,
+      "approach/wrong_object": 1,
+      "place/released_outside": 3,
+      "approach/freeze": 1,
+      "transport/box_collision_released": 1,
+      "approach/far": 1,
+      "approach/knocked": 1,
+      "approach/hover": 1,
+      "grasp/miss": 1,
+      "transport/stall": 2,
+      "approach/pushed_off_table": 1
+    }
+  }
+}

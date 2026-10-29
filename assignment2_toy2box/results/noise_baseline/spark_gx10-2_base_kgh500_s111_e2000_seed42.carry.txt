@@ -1,0 +1,15 @@
+## spark_gx10-2_base_kgh500_s111_e2000_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.155        78.820         0.147         0.128        40.675        41.215        33.395         0.219         0.242        82.500         0.010           15%            5%
+fail_approach         6             —             —             —             —             —             —             —             —             —             —             —           33%            0%
+fail_grasp            4             —             —             —             —             —             —             —             —             —             —             —            0%            0%
+fail_place            9         0.807       148.270         0.932         0.227        80.080        83.850        69.700         0.332         0.236        88.000         0.016           56%           11%
+fail_post_lift       21         0.549       135.410         0.270         0.158        65.530        66.230        58.120         0.312         0.249        88.000         0.014           38%           19%
+fail_transport       12         0.304       115.725         0.243         0.124        58.855        62.360        50.135         0.247         0.256             —         0.011           25%           25%
+success              69         0.130        64.990         0.128         0.117        34.020        34.020        30.250         0.186         0.241        82.000         0.010            7%            1%
+귀속 attr_ii (들기 이후 실패 21): collision 5 · self_release 6 · slip 8 · other 2
+귀속 attr_i (들기 이후 실패 21): collision 0 · self_release 9 · slip 10 · other 2
+귀속 attr_iii (들기 이후 실패 21): collision 8 · self_release 4 · slip 7 · other 2
+시간 초과(horizon) 실패: 31
+
+wrote 100 rows -> results/noise_baseline/spark_gx10-2_base_kgh500_s111_e2000_seed42.carry.csv
