@@ -1,0 +1,16 @@
+들기 이후 실패 20건 — 귀속 (ii) 계층형 / 민감도 (i) ±5 step / (iii) rollout 전체
+  cls_ii: collision 5 · self_release_minority 0 · self_release_majority 8 · slip 6 · other_no_loss 1
+  cls_i: collision 2 · self_release_minority 0 · self_release_majority 11 · slip 6 · other_no_loss 1
+  cls_iii: collision 8 · self_release_minority 0 · self_release_majority 7 · slip 4 · other_no_loss 1
+C3 표적 묶음 = (ii) 비충돌 스스로 놓음 중 소수 열기: 0건 → 
+  v3 세부 유형별 (ii) 분포:
+    transport/dropped                      5  slip 5
+    place/released_outside                 5  collision 2 · self_release_majority 3
+    transport/released_near_box            4  collision 1 · self_release_majority 3
+    place/in_box_offcenter                 2  self_release_majority 1 · slip 1
+    place/no_release                       1  other_no_loss 1
+    transport/off_table                    1  collision 1
+    transport/dropped_near_box             1  self_release_majority 1
+    transport/box_collision_released       1  collision 1
+참고 — 성공 73건의 놓기(같은 규칙): collision 3 · self_release_majority 8 · slip 1 · other_no_loss 61
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/plan_C/C3maj_s101_e2000_gx10-3_seed42_attr.csv

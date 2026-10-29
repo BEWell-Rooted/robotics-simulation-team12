@@ -1,0 +1,27 @@
+{
+  "C3placebo_s111_e2000_gx10-2_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 70,
+      "transport": 12,
+      "grasp": 3,
+      "approach": 4,
+      "place": 11
+    },
+    "subtypes": {
+      "transport/dropped": 2,
+      "transport/box_collision_released": 1,
+      "grasp/no_close": 2,
+      "approach/to_box_without_truck": 1,
+      "transport/box_knocked_over": 2,
+      "place/released_outside": 9,
+      "approach/far": 1,
+      "transport/released_near_box": 4,
+      "grasp/slip": 1,
+      "approach/close_misaligned": 2,
+      "transport/released_early": 1,
+      "transport/stall": 2,
+      "place/no_release": 2
+    }
+  }
+}

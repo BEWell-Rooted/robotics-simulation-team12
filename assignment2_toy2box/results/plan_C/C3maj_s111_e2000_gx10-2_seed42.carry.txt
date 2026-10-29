@@ -1,0 +1,15 @@
+## C3maj_s111_e2000_gx10-2_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.127        63.240         0.133         0.125        36.980        36.980        32.320         0.197         0.239        80.000         0.011           23%            5%
+fail_approach         4             —             —             —             —             —             —             —             —             —             —             —            0%            0%
+fail_grasp            3             —             —             —             —             —             —             —             —             —             —             —            0%            0%
+fail_place            8         1.016       162.605         1.023         0.218        89.260        95.405        75.550         0.405         0.227        69.500         0.016           75%           25%
+fail_post_lift       25         0.266        93.950         0.377         0.193        61.030        61.030        51.700         0.262         0.217        69.500         0.012           56%           20%
+fail_transport       17         0.222        83.880         0.323         0.152        54.810        54.810        43.240         0.236         0.097             —         0.011           47%           18%
+success              68         0.101        56.445         0.105         0.109        29.590        31.305        26.985         0.192         0.243        81.000         0.010           13%            0%
+귀속 attr_ii (들기 이후 실패 25): collision 11 · self_release 8 · slip 4 · other 2
+귀속 attr_i (들기 이후 실패 25): collision 3 · self_release 13 · slip 5 · other 4
+귀속 attr_iii (들기 이후 실패 25): collision 14 · self_release 6 · slip 3 · other 2
+시간 초과(horizon) 실패: 32
+
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/plan_C/C3maj_s111_e2000_gx10-2_seed42.carry.csv

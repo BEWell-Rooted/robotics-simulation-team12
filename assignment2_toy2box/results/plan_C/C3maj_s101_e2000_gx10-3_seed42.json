@@ -1,0 +1,26 @@
+{
+  "C3maj_s101_e2000_gx10-3_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 73,
+      "grasp": 3,
+      "place": 8,
+      "approach": 4,
+      "transport": 12
+    },
+    "subtypes": {
+      "grasp/miss": 2,
+      "place/no_release": 1,
+      "approach/wrong_object": 2,
+      "transport/dropped": 5,
+      "transport/released_near_box": 4,
+      "transport/off_table": 1,
+      "place/released_outside": 5,
+      "grasp/slip": 1,
+      "transport/dropped_near_box": 1,
+      "place/in_box_offcenter": 2,
+      "approach/far": 2,
+      "transport/box_collision_released": 1
+    }
+  }
+}

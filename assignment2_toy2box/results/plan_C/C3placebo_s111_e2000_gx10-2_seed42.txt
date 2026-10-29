@@ -1,0 +1,10 @@
+## C3placebo_s111_e2000_gx10-2_seed42.hdf5  (n=100)
+  성공  success     70 (70.0%)  
+  접근  approach     4 ( 4.0%)  close_misaligned 2, to_box_without_truck 1, far 1
+  파지  grasp        3 ( 3.0%)  no_close 2, slip 1
+  운반  transport   12 (12.0%)  released_near_box 4, dropped 2, box_knocked_over 2, stall 2, box_collision_released 1, released_early 1
+  배치  place       11 (11.0%)  released_outside 9, no_release 2
+  실패 30건 중 닫기 전에 트럭을 밀거나 넘어뜨림: 0
+  실패 중앙값: 닫기 명령(근처) 1회, 그리퍼 전환 4회, idle 1%, 손끝 이동 6.50 m
+  성공 중앙값: T 394, t_grasp 258, t_lift 268, t_over 362, 그리퍼 전환 2회
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/plan_C/C3placebo_s111_e2000_gx10-2_seed42.csv

@@ -1,0 +1,19 @@
+들기 이후 실패 19건 — 귀속 (ii) 계층형 / 민감도 (i) ±5 step / (iii) rollout 전체
+  cls_ii: collision 5 · self_release_minority 2 · self_release_majority 3 · slip 6 · other_no_loss 3
+  cls_i: collision 0 · self_release_minority 3 · self_release_majority 5 · slip 8 · other_no_loss 3
+  cls_iii: collision 12 · self_release_minority 1 · self_release_majority 1 · slip 2 · other_no_loss 3
+C3 표적 묶음 = (ii) 비충돌 스스로 놓음 중 소수 열기: 2건 → C3placebo_s101_:rollout_35(released_outside, P=0.3332), C3placebo_s101_:rollout_45(in_box_offcenter, P=0.4688)
+  v3 세부 유형별 (ii) 분포:
+    place/released_outside                 5  collision 1 · self_release_minority 1 · self_release_majority 2 · other_no_loss 1
+    transport/dropped                      3  slip 3
+    transport/box_collision_released       2  collision 2
+    transport/dropped_near_box             2  slip 2
+    transport/box_knocked_over             1  collision 1
+    place/no_release                       1  other_no_loss 1
+    place/dropped_outside                  1  slip 1
+    place/in_box_not_open                  1  collision 1
+    transport/stall                        1  other_no_loss 1
+    place/in_box_offcenter                 1  self_release_minority 1
+    transport/released_near_box            1  self_release_majority 1
+참고 — 성공 73건의 놓기(같은 규칙): collision 5 · self_release_minority 2 · self_release_majority 5 · slip 1 · other_no_loss 60
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/plan_C/C3placebo_s101_e2000_gx10-3_seed42_attr.csv

@@ -1,0 +1,15 @@
+## C3placebo_s111_e2000_gx10-2_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.172        73.520         0.159         0.130        42.950        44.820        41.270         0.201         0.241        85.000         0.010           22%            6%
+fail_approach         4             —             —             —             —             —             —             —             —             —             —             —            0%           25%
+fail_grasp            3             —             —             —             —             —             —             —             —             —             —             —            0%           67%
+fail_place           11         0.711       130.200         0.716         0.210        77.500        79.760        77.100         0.237         0.217        76.000         0.013           55%            0%
+fail_post_lift       23         0.454       112.310         0.420         0.180        72.560        72.630        63.830         0.249         0.220        76.000         0.012           52%            9%
+fail_transport       12         0.214        86.425         0.241         0.149        70.680        71.050        51.800         0.295         0.222             —         0.011           50%           17%
+success              70         0.152        66.220         0.135         0.119        39.845        40.270        37.530         0.179         0.243        85.000         0.010           14%            1%
+귀속 attr_ii (들기 이후 실패 23): collision 8 · self_release 9 · slip 2 · other 4
+귀속 attr_i (들기 이후 실패 23): collision 4 · self_release 13 · slip 2 · other 4
+귀속 attr_iii (들기 이후 실패 23): collision 12 · self_release 7 · slip 0 · other 4
+시간 초과(horizon) 실패: 30
+
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/plan_C/C3placebo_s111_e2000_gx10-2_seed42.carry.csv
