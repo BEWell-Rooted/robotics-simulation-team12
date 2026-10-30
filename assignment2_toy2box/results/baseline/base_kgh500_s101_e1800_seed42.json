@@ -1,0 +1,26 @@
+{
+  "base_kgh500_s101_e1800_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "success": 70,
+      "place": 9,
+      "grasp": 4,
+      "transport": 16,
+      "approach": 1
+    },
+    "subtypes": {
+      "place/released_outside": 8,
+      "grasp/miss": 3,
+      "transport/released_near_box": 5,
+      "grasp/no_close": 1,
+      "transport/dropped": 6,
+      "place/in_box_offcenter": 1,
+      "transport/released_early": 1,
+      "transport/box_collision_dropped": 1,
+      "approach/far": 1,
+      "transport/box_collision_released": 1,
+      "transport/stall": 1,
+      "transport/box_knocked_over": 1
+    }
+  }
+}

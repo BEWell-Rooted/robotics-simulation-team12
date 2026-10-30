@@ -1,0 +1,26 @@
+{
+  "base_reach4_s111_e1800_seed42.hdf5": {
+    "n": 100,
+    "counts": {
+      "transport": 11,
+      "success": 73,
+      "place": 7,
+      "grasp": 7,
+      "approach": 2
+    },
+    "subtypes": {
+      "transport/dropped": 6,
+      "place/released_outside": 3,
+      "grasp/miss": 3,
+      "place/in_box_offcenter": 2,
+      "place/off_table": 1,
+      "transport/released_near_box": 4,
+      "transport/released_early": 1,
+      "place/no_release": 1,
+      "grasp/pushed_off_table": 2,
+      "approach/close_misaligned": 1,
+      "grasp/slip": 2,
+      "approach/knocked": 1
+    }
+  }
+}

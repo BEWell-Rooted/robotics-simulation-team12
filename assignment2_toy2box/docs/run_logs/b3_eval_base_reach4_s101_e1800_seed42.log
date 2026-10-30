@@ -1,0 +1,206 @@
+[play_record] recording -> /home/cai/IsaacLab_RS/logs/rollout_records/base_reach4_s101_e1800_seed42.hdf5 (states=True, success params {'robot_cfg': SceneEntityCfg(name='robot', joint_names=None, joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names=None, body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'object_a_cfg': SceneEntityCfg(name='toy_truck', joint_names=None, joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names=None, body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'object_b_cfg': SceneEntityCfg(name='box', joint_names=None, joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names=None, body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'xy_threshold': 0.1, 'height_diff': 0.06, 'height_threshold': 0.04})
+[INFO] Trial 0: True
+[play_record] rollout 0: T=329 success=True end=success
+[INFO] Trial 1: True
+[play_record] rollout 1: T=401 success=True end=success
+[INFO] Trial 2: False
+[play_record] rollout 2: T=800 success=False end=horizon
+[INFO] Trial 3: True
+[play_record] rollout 3: T=308 success=True end=success
+[INFO] Trial 4: False
+[play_record] rollout 4: T=800 success=False end=horizon
+[INFO] Trial 5: False
+[play_record] rollout 5: T=800 success=False end=horizon
+[INFO] Trial 6: True
+[play_record] rollout 6: T=530 success=True end=success
+[INFO] Trial 7: False
+[play_record] rollout 7: T=800 success=False end=horizon
+[INFO] Trial 8: True
+[play_record] rollout 8: T=282 success=True end=success
+[INFO] Trial 9: True
+[play_record] rollout 9: T=477 success=True end=success
+[INFO] Trial 10: False
+[play_record] rollout 10: T=800 success=False end=horizon
+[INFO] Trial 11: False
+[play_record] rollout 11: T=285 success=False end=dropped
+[INFO] Trial 12: True
+[play_record] rollout 12: T=373 success=True end=success
+[INFO] Trial 13: False
+[play_record] rollout 13: T=800 success=False end=horizon
+[INFO] Trial 14: False
+[play_record] rollout 14: T=800 success=False end=horizon
+[INFO] Trial 15: True
+[play_record] rollout 15: T=323 success=True end=success
+[INFO] Trial 16: False
+[play_record] rollout 16: T=800 success=False end=horizon
+[INFO] Trial 17: False
+[play_record] rollout 17: T=800 success=False end=horizon
+[INFO] Trial 18: True
+[play_record] rollout 18: T=361 success=True end=success
+[INFO] Trial 19: True
+[play_record] rollout 19: T=689 success=True end=success
+[INFO] Trial 20: False
+[play_record] rollout 20: T=800 success=False end=horizon
+[INFO] Trial 21: True
+[play_record] rollout 21: T=344 success=True end=success
+[INFO] Trial 22: False
+[play_record] rollout 22: T=800 success=False end=horizon
+[INFO] Trial 23: True
+[play_record] rollout 23: T=516 success=True end=success
+[INFO] Trial 24: True
+[play_record] rollout 24: T=338 success=True end=success
+[INFO] Trial 25: False
+[play_record] rollout 25: T=800 success=False end=horizon
+[INFO] Trial 26: True
+[play_record] rollout 26: T=436 success=True end=success
+[INFO] Trial 27: True
+[play_record] rollout 27: T=366 success=True end=success
+[INFO] Trial 28: False
+[play_record] rollout 28: T=800 success=False end=horizon
+[INFO] Trial 29: True
+[play_record] rollout 29: T=352 success=True end=success
+[INFO] Trial 30: False
+[play_record] rollout 30: T=800 success=False end=horizon
+[INFO] Trial 31: True
+[play_record] rollout 31: T=349 success=True end=success
+[INFO] Trial 32: True
+[play_record] rollout 32: T=562 success=True end=success
+[INFO] Trial 33: True
+[play_record] rollout 33: T=317 success=True end=success
+[INFO] Trial 34: True
+[play_record] rollout 34: T=360 success=True end=success
+[INFO] Trial 35: False
+[play_record] rollout 35: T=800 success=False end=horizon
+[INFO] Trial 36: True
+[play_record] rollout 36: T=355 success=True end=success
+[INFO] Trial 37: False
+[play_record] rollout 37: T=800 success=False end=horizon
+[INFO] Trial 38: False
+[play_record] rollout 38: T=800 success=False end=horizon
+[INFO] Trial 39: True
+[play_record] rollout 39: T=373 success=True end=success
+[INFO] Trial 40: False
+[play_record] rollout 40: T=800 success=False end=horizon
+[INFO] Trial 41: False
+[play_record] rollout 41: T=800 success=False end=horizon
+[INFO] Trial 42: False
+[play_record] rollout 42: T=800 success=False end=horizon
+[INFO] Trial 43: True
+[play_record] rollout 43: T=665 success=True end=success
+[INFO] Trial 44: True
+[play_record] rollout 44: T=338 success=True end=success
+[INFO] Trial 45: True
+[play_record] rollout 45: T=356 success=True end=success
+[INFO] Trial 46: False
+[play_record] rollout 46: T=800 success=False end=horizon
+[INFO] Trial 47: True
+[play_record] rollout 47: T=499 success=True end=success
+[INFO] Trial 48: True
+[play_record] rollout 48: T=421 success=True end=success
+[INFO] Trial 49: False
+[play_record] rollout 49: T=665 success=False end=dropped
+[INFO] Trial 50: False
+[play_record] rollout 50: T=800 success=False end=horizon
+[INFO] Trial 51: True
+[play_record] rollout 51: T=429 success=True end=success
+[INFO] Trial 52: True
+[play_record] rollout 52: T=408 success=True end=success
+[INFO] Trial 53: False
+[play_record] rollout 53: T=800 success=False end=horizon
+[INFO] Trial 54: False
+[play_record] rollout 54: T=800 success=False end=horizon
+[INFO] Trial 55: False
+[play_record] rollout 55: T=800 success=False end=horizon
+[INFO] Trial 56: True
+[play_record] rollout 56: T=414 success=True end=success
+[INFO] Trial 57: True
+[play_record] rollout 57: T=410 success=True end=success
+[INFO] Trial 58: True
+[play_record] rollout 58: T=449 success=True end=success
+[INFO] Trial 59: True
+[play_record] rollout 59: T=323 success=True end=success
+[INFO] Trial 60: False
+[play_record] rollout 60: T=800 success=False end=horizon
+[INFO] Trial 61: True
+[play_record] rollout 61: T=388 success=True end=success
+[INFO] Trial 62: True
+[play_record] rollout 62: T=665 success=True end=success
+[INFO] Trial 63: False
+[play_record] rollout 63: T=800 success=False end=horizon
+[INFO] Trial 64: True
+[play_record] rollout 64: T=312 success=True end=success
+[INFO] Trial 65: True
+[play_record] rollout 65: T=370 success=True end=success
+[INFO] Trial 66: False
+[play_record] rollout 66: T=800 success=False end=horizon
+[INFO] Trial 67: True
+[play_record] rollout 67: T=380 success=True end=success
+[INFO] Trial 68: True
+[play_record] rollout 68: T=444 success=True end=success
+[INFO] Trial 69: False
+[play_record] rollout 69: T=280 success=False end=dropped
+[INFO] Trial 70: False
+[play_record] rollout 70: T=800 success=False end=horizon
+[INFO] Trial 71: True
+[play_record] rollout 71: T=454 success=True end=success
+[INFO] Trial 72: True
+[play_record] rollout 72: T=289 success=True end=success
+[INFO] Trial 73: False
+[play_record] rollout 73: T=800 success=False end=horizon
+[INFO] Trial 74: True
+[play_record] rollout 74: T=326 success=True end=success
+[INFO] Trial 75: False
+[play_record] rollout 75: T=800 success=False end=horizon
+[INFO] Trial 76: False
+[play_record] rollout 76: T=800 success=False end=horizon
+[INFO] Trial 77: False
+[play_record] rollout 77: T=800 success=False end=horizon
+[INFO] Trial 78: True
+[play_record] rollout 78: T=358 success=True end=success
+[INFO] Trial 79: True
+[play_record] rollout 79: T=357 success=True end=success
+[INFO] Trial 80: True
+[play_record] rollout 80: T=352 success=True end=success
+[INFO] Trial 81: False
+[play_record] rollout 81: T=800 success=False end=horizon
+[INFO] Trial 82: True
+[play_record] rollout 82: T=558 success=True end=success
+[INFO] Trial 83: True
+[play_record] rollout 83: T=388 success=True end=success
+[INFO] Trial 84: True
+[play_record] rollout 84: T=348 success=True end=success
+[INFO] Trial 85: True
+[play_record] rollout 85: T=345 success=True end=success
+[INFO] Trial 86: False
+[play_record] rollout 86: T=800 success=False end=horizon
+[INFO] Trial 87: True
+[play_record] rollout 87: T=332 success=True end=success
+[INFO] Trial 88: True
+[play_record] rollout 88: T=378 success=True end=success
+[INFO] Trial 89: True
+[play_record] rollout 89: T=468 success=True end=success
+[INFO] Trial 90: False
+[play_record] rollout 90: T=800 success=False end=horizon
+[INFO] Trial 91: False
+[play_record] rollout 91: T=800 success=False end=horizon
+[INFO] Trial 92: True
+[play_record] rollout 92: T=305 success=True end=success
+[INFO] Trial 93: True
+[play_record] rollout 93: T=425 success=True end=success
+[INFO] Trial 94: False
+[play_record] rollout 94: T=800 success=False end=horizon
+[INFO] Trial 95: True
+[play_record] rollout 95: T=401 success=True end=success
+[INFO] Trial 96: False
+[play_record] rollout 96: T=800 success=False end=horizon
+[INFO] Trial 97: True
+[play_record] rollout 97: T=416 success=True end=success
+[INFO] Trial 98: True
+[play_record] rollout 98: T=283 success=True end=success
+[INFO] Trial 99: True
+Successful trials: 58, out of 100 trials
+Success rate: 0.58
+Trial Results: [True, True, False, True, False, False, True, False, True, True, False, False, True, False, False, True, False, False, True, True, False, True, False, True, True, False, True, True, False, True, False, True, True, True, True, False, True, False, False, True, False, False, False, True, True, True, False, True, True, False, False, True, True, False, False, False, True, True, True, True, False, True, True, False, True, True, False, True, True, False, False, True, True, False, True, False, False, False, True, True, True, False, True, True, True, True, False, True, True, True, False, False, True, True, False, True, False, True, True, True]
+[play_record] rollout 99: T=356 success=True end=success
+[play_record] wrote 100 rollouts -> /home/cai/IsaacLab_RS/logs/rollout_records/base_reach4_s101_e1800_seed42.hdf5
+eval rc=0

@@ -1,0 +1,15 @@
+## base_kgh500_s111_e1800_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.169        82.095         0.185         0.136        40.150        42.310        37.265         0.215         0.241        88.000         0.011           18%            9%
+fail_approach         5             —             —             —             —             —             —             —             —             —             —             —           20%           40%
+fail_grasp            5             —             —             —             —             —             —             —             —             —             —             —            0%           40%
+fail_place            7         0.904       127.200         1.062         0.238        97.850       102.680        72.820         0.342         0.268       103.000         0.013           43%            0%
+fail_post_lift       30         0.475       117.470         0.580         0.185        67.225        67.565        56.915         0.323         0.168       103.000         0.012           40%           17%
+fail_transport       23         0.285        99.970         0.312         0.158        46.410        52.730        47.090         0.288         0.149             —         0.012           39%           22%
+success              60         0.138        69.595         0.127         0.122        35.220        37.870        31.715         0.188         0.246        87.500         0.010            8%            0%
+귀속 attr_ii (들기 이후 실패 30): collision 11 · self_release 9 · slip 7 · other 3
+귀속 attr_i (들기 이후 실패 30): collision 2 · self_release 14 · slip 10 · other 4
+귀속 attr_iii (들기 이후 실패 30): collision 12 · self_release 9 · slip 6 · other 3
+시간 초과(horizon) 실패: 39
+
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/baseline/base_kgh500_s111_e1800_seed42.carry.csv

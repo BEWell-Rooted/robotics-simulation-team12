@@ -1,0 +1,15 @@
+## base_reach4_s111_e1800_seed42.hdf5 (중앙값; box_push·empty_at_box 는 비율)
+group                 n         rot60   rot60_state carry_rot_cmd carry_pos_cmd carry_yaw_net carry_yaw_max         yaw30          xy30    approach_z   carry_steps   carry_speed      box_push  empty_at_box
+ALL                 100         0.102        55.680         0.088         0.051        37.020        38.670        32.300         0.185         0.229        85.000         0.009           18%           12%
+fail_approach         2             —             —             —             —             —             —             —             —             —             —             —            0%            0%
+fail_grasp            7             —             —             —             —             —             —             —             —             —             —             —           29%           43%
+fail_place            7         0.235       111.680         0.195         0.080        71.530        77.460        56.310         0.371         0.173        81.000         0.011           71%           29%
+fail_post_lift       18         0.184        85.170         0.167         0.065        58.485        66.695        47.650         0.269         0.163        81.000         0.010           39%           50%
+fail_transport       11         0.114        60.000         0.075         0.061        37.500        38.700        29.810         0.231         0.033             —         0.010           18%           64%
+success              73         0.095        50.740         0.080         0.048        29.380        30.280        28.020         0.161         0.236        85.000         0.009           12%            0%
+귀속 attr_ii (들기 이후 실패 18): collision 7 · self_release 5 · slip 6 · other 0
+귀속 attr_i (들기 이후 실패 18): collision 0 · self_release 10 · slip 7 · other 1
+귀속 attr_iii (들기 이후 실패 18): collision 7 · self_release 5 · slip 6 · other 0
+시간 초과(horizon) 실패: 24
+
+wrote 100 rows -> /home/cai/robotics-simulation-team12/assignment2_toy2box/results/runs/base_reach4_s111_e1800_seed42.carry.csv

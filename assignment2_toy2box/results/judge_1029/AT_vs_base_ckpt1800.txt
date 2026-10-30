@@ -1,0 +1,36 @@
+$ -I tools/paired_compare.py --require_carry --label_a baseline_e1800 --label_b A-T_e1800 --json results/judge_1029/AT_vs_base_ckpt1800.json --a results/baseline/base_kgh500_s101_e1800_seed42.csv results/baseline/base_kgh500_s111_e1800_seed42.csv --b results/runs/base_translate500_s101_e1800_seed42.csv results/runs/base_translate500_s111_e1800_seed42.csv
+
+[짝] 시작 상태가 밀려 짝이 없는 rollout: s101/seed42 A 1 · B 1 (dropped 0·1) · s111/seed42 A 1 · B 1 (dropped 1·0)
+짝 198개 (학습 seed [101, 111], 평가 seed [42]): baseline_e1800 128 (64.6%) vs A-T_e1800 166 (83.8%), Δ +19.2%p
+불일치 baseline_e1800만 성공 21 : A-T_e1800만 성공 59 · 정확 McNemar 양측 p = 0.0000, 단측(B>A) p = 0.0000
+Δ 군집 부트스트랩(시작 상태 군집 100개): 95% [+10.6, +27.9] · 90% [+12.0, +26.5]
+학습 seed 별 Δ: s101 +13.1 · s111 +25.3
+표적 묶음 category ∈ ['place', 'transport']: baseline_e1800 55 → A-T_e1800 14 · A에서만 50 : B에서만 9 · 단측(B에서 줄어듦) p = 0.0000, 양측 p = 0.0000
+
+범주 이동 (행 = baseline_e1800, 열 = A-T_e1800)
+               success  approach     grasp transport     place
+   success         107         7         5         9         0
+  approach           4         2         0         0         0
+     grasp           7         1         1         0         0
+ transport          35         1         1         2         0
+     place          13         0         0         3         0
+
+          rot60_after_lift 중앙값: 0.155 → 0.052
+              box_disp_max 중앙값: 0.018 → 0.002
+   min_cheb_box_after_lift 중앙값: 0.056 → 0.032
+범주 합계: success 128→166 · approach 6→11 · grasp 9→7 · transport 39→14 · place 16→0
+
+상태 매개 지표 (carry_metrics, prereg 4절): A → B (차)
+    push_carry (건): 18 → 4 (-14)
+  low_approach (건): 34 → 4 (-30)
+     collision (건): 18 → 4 (-14)
+  self_release (건): 21 → 3 (-18)
+          hold (건): 5 → 1 (-4)
+    approach_z (중앙값): 0.2412 → 0.2402 (-0.001)
+   rot60_state (중앙값): 79.94 → 33.33 (-46.61)
+ carry_yaw_net (중앙값): 40.56 → 10.9 (-29.66)
+          xy30 (중앙값): 0.2162 → 0.0827 (-0.1335)
+   carry_speed (중앙값): 0.01087 → 0.009065 (-0.001805)
+   carry_steps (중앙값): 86 → 89 (+3)
+      box_push (건): 43 → 16 (-27)
+ pre_lift_fail (건): 15 → 18 (+3)
