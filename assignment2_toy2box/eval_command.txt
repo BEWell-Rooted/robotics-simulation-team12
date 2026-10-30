@@ -1,0 +1,25 @@
+# Repo : git clone https://github.com/BEWell-Rooted/robotics-simulation-team12.git
+# REPO = the folder you cloned it into (e.g. ~/robotics-simulation-team12) — set it in the command below
+#
+# Team 12 — Assignment 2 (Agibot Toy2Box imitation learning): evaluation command
+#
+# Final checkpoint : assignment2_toy2box/checkpoints/final/model_epoch_2000.pth
+#                    arm A-T, training seed 101, epoch 2000, md5 aca48edb71abbe9e8e2181715fc197d0
+# Task             : Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0   (course task, unchanged)
+# Script           : the course robomimic play.py, unmodified. No extra package is needed.
+#
+# What we changed vs. the baseline: only the training data. In Isaac Lab Mimic, the box subtask is retargeted by
+# translation only (the source demo's world orientation is kept) instead of full SE(3). Same 20 human demos,
+# 500 generated demos, same BC-RNN config (bc_rnn_low_dim.json, 2000 epochs). See assignment2_toy2box/README.md.
+
+cd ~/IsaacLab_RS
+REPO=~/robotics-simulation-team12
+./isaaclab.sh -p scripts/imitation_learning/robomimic/play.py \
+    --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 \
+    --checkpoint $REPO/assignment2_toy2box/checkpoints/final/model_epoch_2000.pth \
+    --num_rollouts 100 --horizon 800 --seed 42 --headless
+
+# --headless is optional (we evaluated without rendering).
+# Our result with this exact command (NVIDIA RTX 6000 Ada, eval seed 42): Successful trials: 84, out of 100 trials
+# Our reported numbers (eval seed 42, training seeds 101 / 111, mean ± population std; the submitted file is seed 101):
+#   baseline 66.0 ± 3.0 %  ->  A-T 88.0 ± 4.0 %

@@ -1,5 +1,7 @@
 *.hdf5
 *.mp4
 *.pth
+# 제출용 최종 가중치 하나만 올린다 (수업 규칙: 최종 모델 1개)
+!checkpoints/final/model_epoch_2000.pth
 logs/
 videos/

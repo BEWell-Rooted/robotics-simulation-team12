@@ -1,0 +1,9 @@
+제출 체크포인트 출처 (2026-10-30 레포로 복사)
+
+- 원래 위치: ~/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/base_translate500_s101/20261029191533/models/model_epoch_2000.pth
+- md5: aca48edb71abbe9e8e2181715fc197d0 (사전등록 판정 · 제출 확인에 쓴 파일과 같음)
+- config.json: 같은 run 폴더의 robomimic 설정 사본 (train.seed 101, num_epochs 2000, 나머지는 조교 bc_rnn_low_dim.json 그대로)
+- 학습 데이터: ./datasets/team12_kgh/plan_A/translate_strat500.hdf5 (md5 c2456916d62f3c4c2e7d09fec2fd1be9, Mimic 생성 500개, 사람 시범 20개에서)
+- 학습 명령 (~/IsaacLab_RS 에서, REPO = 이 레포를 clone 한 폴더): ./isaaclab.sh -p $REPO/assignment2_toy2box/tools/train_seed.py --seed 101 --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 --algo bc --dataset ./datasets/team12_kgh/plan_A/translate_strat500.hdf5 --name base_translate500_s101
+  (seed 101 은 조교 json 기본값이라 robomimic train.py 를 그대로 돌린 것과 같다)
+- 선택 규칙: 사전등록 §7 제출 규칙 (1) — ① 확증 팔 중 Δ 최대 팔(A-T), 학습 seed 101 의 e2000 고정 (docs/prereg_1029.md)
