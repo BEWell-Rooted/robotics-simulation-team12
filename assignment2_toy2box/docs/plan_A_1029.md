@@ -31,7 +31,7 @@
 | 상자 구간 위치 | SE(3) | 평행이동만 (+상자 위치 차) | SE(3) |
 | 생성 → 학습 데이터 | seed 1–5 × 100 = 500 | seed 1–5 × 130 ≈ 650 → **층화 500** | seed 1–5 × 130 ≈ 650 → **층화 500** (A-T 와 같은 도구·seed) |
 | 원본 20 · 선택 · 보간 15 · noise 0.01 · 그리퍼 · 트럭 구간(subtask 1) | 조교 cfg | 같음 | 같음 |
-| 학습 · 평가 | `bc_rnn_low_dim.json` 2000 epoch 마지막 ckpt, seed 101·111 / A6000 평가 seed 42 + 43 × 100회 = 400쌍 | 같음 | 같음 |
+| 학습 · 평가 | `bc_rnn_low_dim.json` 2000 epoch 마지막 ckpt, seed 101·111 / RTX 6000 평가 seed 42 + 43 × 100회 = 400쌍 | 같음 | 같음 |
 | 등급 (prereg §3) | — | 확증 · baseline 과 비교 | 귀속 · A-T 와 직접 비교 |
 
 - **A-T 가 한 요인인 이유:** 생성기의 상자 구간 변환 함수 하나만 바꾼다(`--translate 1`). 성공 판정이 상자 위치만 본다는 이 과업의 불변성에서 나온 처치다. 선례: DexMimicGen 의 Transform/Replay 비교, Isaac Lab `SubTaskConstraintCoordinationScheme.TRANSLATE`(양팔 조율용).
@@ -50,7 +50,7 @@
   - 모드는 하나만. `--datagen_seed N`, `--src_log FILE`(원본 선택 jsonl; subtask 0 선택만 찍힌다).
 - 실행 로그에 `subtask 1: object_ref=box interp=15 noise=0.01 interpolate_from_last_target_pose=True` 와 적용된 모드를 찍는다.
 
-### 3.2 스모크 결과 (A6000, `--num_envs 50`, `results/plan_A/gate_table_1029.md`)
+### 3.2 스모크 결과 (RTX 6000, `--num_envs 50`, `results/plan_A/gate_table_1029.md`)
 
 수동성: `--yawhold 0`(모드 없음) seed 1 의 demo 20/20 이 baseline seed 1 샤드와 시작 상태·길이·actions 까지 bit 단위로 같다. 진행 순서(0/1 → 2/5 → … → 12/35)도 같다.
 
@@ -119,7 +119,7 @@ A-T↔A-R 해석은 prereg §6 의 H-A2–4 만 쓴다: A-T + 이고 A-R 동등 
 
 ## 7. 실행 명령 · 계산량
 
-모두 `~/IsaacLab_RS` 에서 conda `lerobot-arena`, A6000. 프로세스마다 TMPDIR 을 따로, tmux 창마다 하나씩(20초 간격) 띄운다. 이전 판 대비 변경: A-T · A-R 모두 샤드당 130개(합 ≈ 650) + `--src_log` + 같은 층화 단계, 게이트는 `check AT|AR`(prereg §3, 샤드 로그 5개 합산), 평가 seed 43 추가. 단계마다 종료 코드가 0 이 아니면 다음 단계로 가지 않는다(prereg §7).
+모두 `~/IsaacLab_RS` 에서 conda `lerobot-arena`, RTX 6000. 프로세스마다 TMPDIR 을 따로, tmux 창마다 하나씩(20초 간격) 띄운다. 이전 판 대비 변경: A-T · A-R 모두 샤드당 130개(합 ≈ 650) + `--src_log` + 같은 층화 단계, 게이트는 `check AT|AR`(prereg §3, 샤드 로그 5개 합산), 평가 seed 43 추가. 단계마다 종료 코드가 0 이 아니면 다음 단계로 가지 않는다(prereg §7).
 
 ```bash
 set -o pipefail   # tee 뒤에도 앞 명령의 종료 코드를 남긴다
@@ -158,7 +158,7 @@ python -I $A2/tools/paired_compare.py --require_carry --label_a baseline --label
 #     같은 명령에 --min_d0 0.35 (하위 분석), --bundle approach,grasp (음성 대조)
 ```
 
-- **계산량 (A6000):** A-T 생성 약 20–25분(성공률 89% → 시도 약 730회) + 층화·게이트 1분 + 학습 2 seed 동시 약 45분 + 평가 2개 동시 약 65분 ≈ **2.3 h**. A-R 은 생성 약 45분(생성률 58% → 성공 650 에 시도 약 1,120회) 포함 ≈ **2.6 h**. 평가 seed 43 은 팔마다 2 체크포인트 동시 약 65분. 일정은 prereg §7 직렬 큐를 따른다.
+- **계산량 (RTX 6000):** A-T 생성 약 20–25분(성공률 89% → 시도 약 730회) + 층화·게이트 1분 + 학습 2 seed 동시 약 45분 + 평가 2개 동시 약 65분 ≈ **2.3 h**. A-R 은 생성 약 45분(생성률 58% → 성공 650 에 시도 약 1,120회) 포함 ≈ **2.6 h**. 평가 seed 43 은 팔마다 2 체크포인트 동시 약 65분. 일정은 prereg §7 직렬 큐를 따른다.
 
 ## 8. 위험 · 대안 · 규칙 확인
 

@@ -45,7 +45,7 @@ B2 는 데이터의 회전 상태(손목 yaw 38.4°)를 그대로 두고 명령�
 | B2-carry (예비) | 파지 뒤 닫힘 구간만 B2 라벨 | B2 와 직접 (prereg §7 큐 밖) | `kgh_mimic_500_reach4carry.hdf5` (3d5fb2875ac4fa35ae84e0620283e044) |
 
 - 원본: `kgh_mimic_500.hdf5` (5e9bebaf4ee4111f4cc4cae9b58c994d). 세 처치 모두 같은 500개 시범, 관측·상태·초기 상태·그리퍼 라벨 bit 동일.
-- 고정: 사람 시범 20 · Mimic 500 · `bc_rnn_low_dim.json` 그대로(행동 정규화 없음, 2000 epoch × 100 step, batch 100) · 마지막 체크포인트 · 학습 seed 101·111 · 평가 seed 42 + 43 · 100회 · horizon 800 · A6000 한 대 · 분류 v3 · 지표 스크립트는 prereg 를 커밋한 커밋의 판(그 커밋은 `docs/log_1029.md` 에 기록). 학습량 seed 당 200k gradient step.
+- 고정: 사람 시범 20 · Mimic 500 · `bc_rnn_low_dim.json` 그대로(행동 정규화 없음, 2000 epoch × 100 step, batch 100) · 마지막 체크포인트 · 학습 seed 101·111 · 평가 seed 42 + 43 · 100회 · horizon 800 · RTX 6000 한 대 · 분류 v3 · 지표 스크립트는 prereg 를 커밋한 커밋의 판(그 커밋은 `docs/log_1029.md` 에 기록). 학습량 seed 당 200k gradient step.
 - 규칙: 환경·성공 판정·종료 조건 그대로, 사람 시범 20 ≤ 100, Mimic 500 ≤ 1000(같은 성공 에피소드), 행동 표현(축 C)은 자유 항목.
 
 ## 3. 구현과 소규모 검증
@@ -91,7 +91,7 @@ B1 데이터는 운반 중 관측(eef_quat·트럭 자세)이 계속 도는데 �
 
 ### 3.5 학습 스모크
 
-`train_seed.py --seed 101 --dataset .../kgh_mimic_500_carrynorot.hdf5 --name _plan_B_smoke_carrynorot --epochs 20` (A6000, 10/29 14:00) → `finished run successfully`, `model_epoch_20.pth`. 재라벨 파일은 모드와 상관없이 키·dtype·shape 가 원본과 같아 그대로 읽힌다. 성능은 보지 않았다.
+`train_seed.py --seed 101 --dataset .../kgh_mimic_500_carrynorot.hdf5 --name _plan_B_smoke_carrynorot --epochs 20` (RTX 6000, 10/29 14:00) → `finished run successfully`, `model_epoch_20.pth`. 재라벨 파일은 모드와 상관없이 키·dtype·shape 가 원본과 같아 그대로 읽힌다. 성능은 보지 않았다.
 
 ## 4. 조작 확인 게이트 (학습 전, 통과 못 하면 학습하지 않음)
 
@@ -112,7 +112,7 @@ B1 데이터는 운반 중 관측(eef_quat·트럭 자세)이 계속 도는데 �
 
 ## 5. 판정 — prereg §5.2 (B2) · §5.3 (B3') 를 따른다
 
-- 비교: B2 는 baseline 대비 400쌍(평가 seed 42+43, A6000), B3' 는 B2 와 직접 400쌍(평가 seed 42+43). B2 의 ①–④ 는 prereg §5.2, B3' 의 동등 · 차이 · 구분 불가는 prereg §5.3, 해석은 prereg §6 의 H_B 표와 'H-A 와 H_B 를 함께 읽기' 를 따른다.
+- 비교: B2 는 baseline 대비 400쌍(평가 seed 42+43, RTX 6000), B3' 는 B2 와 직접 400쌍(평가 seed 42+43). B2 의 ①–④ 는 prereg §5.2, B3' 의 동등 · 차이 · 구분 불가는 prereg §5.3, 해석은 prereg §6 의 H_B 표와 'H-A 와 H_B 를 함께 읽기' 를 따른다.
 - **최소 예측(B2): +4%p** (prereg §3 표, §5.2 ② 의 기준).
 - **상태 매개 지표로만 기전 비교** (prereg §4). 아래는 예측 방향만이다. 띠와 문턱은 prereg §5.1 null 띠 · §5.2 ③ 을 따른다.
 
@@ -183,7 +183,7 @@ python -I $A2/tools/paired_compare.py --require_carry --label_a B2 --label_b "B3
 python -I ~/robotics-simulation-team12/assignment2_toy2box/tools/plan_B_speed_metrics.py <B2 기록 s101.hdf5> <B2 기록 s111.hdf5> --csv ~/robotics-simulation-team12/assignment2_toy2box/results/plan_B/speed_b2_rollouts.csv
 ```
 
-- 계산량(A6000): 생성 없음. 팔 하나 = 학습 2 seed 동시 약 45분 + 평가 2개 동시 약 65분 ≈ 2 h. B2 · B3' 는 평가 seed 43 이 각각 약 65분 더 든다(prereg §7 큐). B2-carry 약 2 h (prereg §7 큐 밖).
+- 계산량(RTX 6000): 생성 없음. 팔 하나 = 학습 2 seed 동시 약 45분 + 평가 2개 동시 약 65분 ≈ 2 h. B2 · B3' 는 평가 seed 43 이 각각 약 65분 더 든다(prereg §7 큐). B2-carry 약 2 h (prereg §7 큐 밖).
 
 ## 8. 위험 · 대안 · 규칙 확인
 

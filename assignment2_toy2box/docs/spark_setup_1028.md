@@ -2,17 +2,17 @@
 
 | 항목 | 값 |
 | --- | --- |
-| 세션 | A6000 Claude Code 서브에이전트 (1028 세션) |
+| 세션 | RTX 6000 Claude Code 서브에이전트 (1028 세션) |
 | 머신 | `ssh gx10-2` = hyounggeun@192.168.0.51, DGX Spark (`gx10-d7db`) |
 | 시각 | 19:16–19:52 KST (gx10-2 시계는 UTC, 로그 시각은 UTC로 찍힘: 10:16–10:52) |
 | 설치 스크립트 | `tools/setup_spark_env.sh` (gx10-2에는 `~/rs_a2_tools/setup_spark_env.sh`) |
 
 ## 요약
 
-- **결론:** gx10-2에서 Isaac Sim 5.1 렌더링이 된다. 조교 demo 0 replay 영상(635프레임)과 A6000 기록 파일의 상태 재생(`render_record.py`) 영상·장면 띠가 정상으로 나왔고, robomimic `play.py` 평가도 돈다.
-- **A6000 → gx10-2 흐름:** A6000에서 `play_record.py`로 평가하면서 상태를 기록하고, 기록 파일을 gx10-2로 `scp`한 뒤 `render_record.py`로 mp4·jpg를 만들어 가져온다(아래 "실행 방법").
+- **결론:** gx10-2에서 Isaac Sim 5.1 렌더링이 된다. 조교 demo 0 replay 영상(635프레임)과 RTX 6000 기록 파일의 상태 재생(`render_record.py`) 영상·장면 띠가 정상으로 나왔고, robomimic `play.py` 평가도 돈다.
+- **RTX 6000 → gx10-2 흐름:** RTX 6000에서 `play_record.py`로 평가하면서 상태를 기록하고, 기록 파일을 gx10-2로 `scp`한 뒤 `render_record.py`로 mp4·jpg를 만들어 가져온다(아래 "실행 방법").
 - **aarch64에서 x86과 달랐던 것 두 가지:** (1) 시스템 libgomp를 `LD_PRELOAD`로 먼저 올려야 Isaac Sim이 뜬다. (2) torch 2.7.0+cu128에 들어 있는 nvrtc 12.8은 GB10(sm_121)을 몰라서 TorchScript 퓨전이 죽는다. pip nvrtc 12.9를 `LD_PRELOAD`로 올려서 해결했다. 둘 다 conda env activate 훅에 넣어 두었다.
-- **속도:** 렌더 재생은 약 16 프레임/s(960×540). 평가는 800 step rollout 하나에 32–38 s 걸려 A6000(약 20 s)보다 1.6–1.9배 느리다.
+- **속도:** 렌더 재생은 약 16 프레임/s(960×540). 평가는 800 step rollout 하나에 32–38 s 걸려 RTX 6000(약 20 s)보다 1.6–1.9배 느리다.
 
 ## 설치한 것 (모두 새 폴더, sudo 없음)
 
@@ -20,7 +20,7 @@
 | --- | --- |
 | `~/miniforge3` | Miniforge (conda 26.9.4), `-b` 설치라 `~/.bashrc`는 그대로 |
 | `~/miniforge3/envs/rs_toy2box` | 작업 env (python 3.11.18) |
-| `~/IsaacLab_RS` | `cailab-hy/IsaacLab_RS` @ e83a5d2 (detached HEAD, A6000과 같은 커밋) |
+| `~/IsaacLab_RS` | `cailab-hy/IsaacLab_RS` @ e83a5d2 (detached HEAD, RTX 6000과 같은 커밋) |
 | `~/rs_a2_tools` | `replay_video.py`, `render_record.py`, `classify_failures.py`, `setup_spark_env.sh` (레포 사본) |
 | `~/rs_a2_logs` | 실행 로그, 확인용 프레임·카메라 비교 png |
 | `~/rs_a2_setup` | Miniforge 설치 파일, 시험용 스크립트(`env.sh`, `run.sh`, `run_ts.sh`, `jit_test.py`, `cam_test.py`, `lag_test.py`) |
@@ -29,7 +29,7 @@
 
 ## 버전
 
-| 패키지 | gx10-2 | A6000 (lerobot-arena) | 비고 |
+| 패키지 | gx10-2 | RTX 6000 (lerobot-arena) | 비고 |
 | --- | --- | --- | --- |
 | 하드웨어 | GB10 (sm_121), aarch64, 20코어, 121 GB | RTX 6000 Ada Generation 48 GB | |
 | 드라이버 | 580.178.04 (CUDA 13.0) | 595.x | 5.1은 580 계열을 요구 |
@@ -48,7 +48,7 @@
 
 - 처음 지시대로 `torch==2.7.0 torchvision==0.22.0`(cu128)을 깔았다. `get_arch_list()`는 sm_90·100·120이지만 GB10(12.1)에서 matmul·conv·LSTM·torchvision nms가 모두 돌았다("no kernel image" 오류 없음). sm_120 바이너리가 sm_121에서 돈다.
 - `isaacsim-core 5.1.0.0` aarch64 휠이 `torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0`을 고정한다. isaacsim 설치 때 torch는 "already satisfied"로 그대로 남았다.
-- `./isaaclab.sh --install`은 aarch64에서 torch를 **2.9.0+cu130**으로 지우고 다시 깐다(`ensure_cuda_torch`, 설치 전후 두 번). isaacsim 고정값과도, A6000과도 달라지므로 `--install` 대신 확장 5개를 `pip install -e`로 직접 깔았다. `isaaclab_rl[none]`/`isaaclab_mimic[none]`은 추가 의존이 없어서 결과가 같다. robomimic은 `isaaclab_mimic[robomimic]`과 같은 git 태그로 따로 깔았다.
+- `./isaaclab.sh --install`은 aarch64에서 torch를 **2.9.0+cu130**으로 지우고 다시 깐다(`ensure_cuda_torch`, 설치 전후 두 번). isaacsim 고정값과도, RTX 6000과도 달라지므로 `--install` 대신 확장 5개를 `pip install -e`로 직접 깔았다. `isaaclab_rl[none]`/`isaaclab_mimic[none]`은 추가 의존이 없어서 결과가 같다. robomimic은 `isaaclab_mimic[robomimic]`과 같은 git 태그로 따로 깔았다.
 - 2.7.0에서 남은 문제는 nvrtc 하나였다(아래 문제 2). nvrtc 12.9로 해결해서 torch를 바꾸지 않았다.
 
 ## 설치 시간 (gx10-2, KST)
@@ -77,7 +77,7 @@
 - **b 프레임 확인:** ffmpeg로 300·634번 프레임을 뽑아 보았다. 300번은 로봇·테이블·트럭·분홍 상자가 제대로 렌더되어 있고 트럭은 테이블 위에 있다. 634번에서는 트럭이 상자 안에 있다. Dell 결과(10/28)와 같다.
 - **c 프레임 확인:** 기본 카메라(태스크 cfg viewer)로 먼저 돌렸더니 렌더는 정상이었지만 트럭이 15 px 정도로 작았다. 아래 "카메라"의 close 시점으로 바꾸고 다시 확인했다. rollout 0에서는 팔이 트럭 쪽으로 내려가 트럭 바로 옆 0.1 m 안에서 손을 여닫으며 맴돈다(`approach/close_misaligned`, t=298 첫 닫기). 분류 결과와 화면이 맞는다.
 - **프레임 밀림 확인 (`lag_test.py`):** 상태를 바꾼 뒤 한 번만 렌더한 프레임을 같은 상태로 4번 렌더한 기준 프레임과 비교했다. 평균 화소 차는 1.3–2.2였고, 직전 상태와 비교하면 9.3–12.0이었다. 한 번 렌더로 그 step의 상태가 나오므로 영상이 한 step씩 밀리지 않는다. 남는 1–2는 TAA 잡음이다.
-- **d 속도:** 800 step rollout 하나에 32–38 s 걸린다. A6000의 약 20 s보다 1.6–1.9배 느리다. 100 rollout 평가는 약 1시간이 걸린다(A6000 약 35분). 평가는 A6000에서 하고 Spark는 렌더링에 쓰는 편이 낫다.
+- **d 속도:** 800 step rollout 하나에 32–38 s 걸린다. RTX 6000의 약 20 s보다 1.6–1.9배 느리다. 100 rollout 평가는 약 1시간이 걸린다(RTX 6000 약 35분). 평가는 RTX 6000에서 하고 Spark는 렌더링에 쓰는 편이 낫다.
 
 ## 문제와 해결
 
@@ -118,7 +118,7 @@ cd ~/IsaacLab_RS
 #   --rollouts all | fail | success | 0 3 7   --stride 2 (10 fps, 절반 시간)   --no_video (장면 띠만)   --view wide
 ```
 
-A6000에서 한 번에 (기록 보내기 → 렌더 → 결과 가져오기):
+RTX 6000에서 한 번에 (기록 보내기 → 렌더 → 결과 가져오기):
 
 ```bash
 N=<이름>   # ~/IsaacLab_RS/logs/rollout_records/$N.hdf5
@@ -140,4 +140,4 @@ scp -r gx10-2:IsaacLab_RS/videos/$N ~/IsaacLab_RS/videos/
 - `ENV=rs_verify DIR=~/rs_a2_setup/IsaacLab_RS_verify bash ~/rs_a2_tools/setup_spark_env.sh`로 새 env를 처음부터 만들었다(pip 캐시 끔). 19:41:16–19:47:05에 설치가 모두 끝나 약 6분 걸렸다. 로그는 `setup_spark_env_verify.log`.
 - 첫 실행은 마지막 확인 단계에서만 실패했다. 확인용 python을 `python - <<EOF`(stdin)로 돌려서 `torch.jit.script`가 소스를 읽지 못했다(`OSError: could not get source code`). 확인 코드를 파일(`~/rs_a2_setup/check_env.py`)로 쓰고 돌리게 고쳤다. 같은 env에 다시 돌리니 설치 단계는 already satisfied로 1분 안에 지나갔고, 확인이 모두 통과했다(`setup_spark_env_verify2.log`, `SCRIPT_RC=0`). 통과한 확인: torch 2.7.0+cu128 GB10 (12, 1), matmul, TorchScript 퓨전, `robomimic.utils.file_utils` import, 버전 목록, `list_envs`의 Toy2Box.
 - 확인이 끝난 뒤 `rs_verify` env와 `IsaacLab_RS_verify` 폴더는 지웠다. 작업 env는 `rs_toy2box` 하나다.
-- 위 "실행 방법"의 A6000 한 줄 명령(`conda activate`만 쓰고 시험용 `env.sh`는 쓰지 않음)도 그대로 돌려 보았다. `--rollouts fail --sheet --stride 2`로 rollout 3개의 mp4(각 401프레임, 24.5–24.9 s)와 장면 띠 3장이 나왔고, ssh까지 포함해 92.6 s 걸렸다.
+- 위 "실행 방법"의 RTX 6000 한 줄 명령(`conda activate`만 쓰고 시험용 `env.sh`는 쓰지 않음)도 그대로 돌려 보았다. `--rollouts fail --sheet --stride 2`로 rollout 3개의 mp4(각 401프레임, 24.5–24.9 s)와 장면 띠 3장이 나왔고, ssh까지 포함해 92.6 s 걸렸다.
