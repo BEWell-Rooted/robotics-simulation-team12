@@ -1,9 +1,24 @@
-제출 체크포인트 출처 (2026-10-30 레포로 복사)
+제출 체크포인트 출처 (seed 101: 2026-10-30, seed 111: 2026-11-03 레포로 복사)
 
+수업 제출 규칙에 따라 최종 모델 2개(학습 seed 101 · 111)만 올린다. 둘 다 A-T 팔의 epoch 2000 이고,
+학습 데이터 · 학습 설정이 같다(config.json 에서 train.seed 와 experiment.name 만 다름).
+
+seed101/model_epoch_2000.pth
 - 원래 위치: ~/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/base_translate500_s101/20261029191533/models/model_epoch_2000.pth
 - md5: aca48edb71abbe9e8e2181715fc197d0 (사전등록 판정 · 제출 확인에 쓴 파일과 같음)
-- config.json: 같은 run 폴더의 robomimic 설정 사본 (train.seed 101, num_epochs 2000, 나머지는 조교 bc_rnn_low_dim.json 그대로)
+- 평가 seed 42, 100회, horizon 800: 84 / 100
+
+seed111/model_epoch_2000.pth
+- 원래 위치: ~/IsaacLab_RS/logs/robomimic/Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0/base_translate500_s111/20261029191553/models/model_epoch_2000.pth
+- md5: fc88573fa422ac39310e2ffca5d90620 (사전등록 판정의 학습 seed 111 행에 쓴 파일과 같음)
+- 평가 seed 42, 100회, horizon 800: 92 / 100
+
+공통
+- config.json (각 seed 폴더): 같은 run 폴더의 robomimic 설정 사본 (train.seed 101 / 111, num_epochs 2000, 나머지는 조교 bc_rnn_low_dim.json 그대로)
 - 학습 데이터: ./datasets/team12_kgh/plan_A/translate_strat500.hdf5 (md5 c2456916d62f3c4c2e7d09fec2fd1be9, Mimic 생성 500개, 사람 시범 20개에서)
-- 학습 명령 (~/IsaacLab_RS 에서, REPO = 이 레포를 clone 한 폴더): ./isaaclab.sh -p $REPO/assignment2_toy2box/tools/train_seed.py --seed 101 --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 --algo bc --dataset ./datasets/team12_kgh/plan_A/translate_strat500.hdf5 --name base_translate500_s101
+- 학습 명령 (~/IsaacLab_RS 에서, REPO = 이 레포를 clone 한 폴더, S = 101 또는 111):
+  ./isaaclab.sh -p $REPO/assignment2_toy2box/tools/train_seed.py --seed $S --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 --algo bc --dataset ./datasets/team12_kgh/plan_A/translate_strat500.hdf5 --name base_translate500_s$S
   (seed 101 은 조교 json 기본값이라 robomimic train.py 를 그대로 돌린 것과 같다)
-- 선택 규칙: 사전등록 §7 제출 규칙 (1) — ① 확증 팔 중 Δ 최대 팔(A-T), 학습 seed 101 의 e2000 고정 (docs/prereg_1029.md)
+- 보고 수치: 두 모델의 평균 ± 모표준편차 88.0 ± 4.0% (baseline 66.0 ± 3.0%)
+- 선택 규칙: 사전등록 §7 제출 규칙 (1) — ① 확증 팔 중 Δ 최대 팔(A-T), epoch 2000 고정 (docs/prereg_1029.md).
+  사전등록은 학습 seed 101 하나를 제출 체크포인트로 정했고, 수업 제출 규칙(101 · 111 최종 모델 2개)에 맞춰 같은 팔의 seed 111 도 함께 올린다.

@@ -1,7 +1,8 @@
 *.hdf5
 *.mp4
 *.pth
-# 제출용 최종 가중치 하나만 올린다 (수업 규칙: 최종 모델 1개)
-!checkpoints/final/model_epoch_2000.pth
+# 제출용 최종 가중치 2개만 올린다 (수업 규칙: 학습 seed 101 · 111 최종 모델)
+!checkpoints/final/seed101/model_epoch_2000.pth
+!checkpoints/final/seed111/model_epoch_2000.pth
 logs/
 videos/

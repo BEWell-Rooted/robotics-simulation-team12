@@ -2,7 +2,9 @@
 
 연구 질문(고정): 사람 시범으로 학습한 BC 정책은 Toy2Box에서 왜 성공률이 저조한가? 원인 하나를 진단하고, 그 원인을 겨냥해 성공률을 높인다.
 
-- **최종 제출**: `checkpoints/final/model_epoch_2000.pth` (A-T, 학습 seed 101, epoch 2000, md5 `aca48edb71abbe9e8e2181715fc197d0`), 평가 명령 [`eval_command.txt`](eval_command.txt)
+- **최종 제출 (가중치 2개, 수업 규칙: 학습 seed 101 · 111 최종 모델)**: A-T 팔, epoch 2000. 평가 명령 [`eval_command.txt`](eval_command.txt)
+  - 학습 seed 101: `checkpoints/final/seed101/model_epoch_2000.pth` (md5 `aca48edb71abbe9e8e2181715fc197d0`) — 평가 seed 42 에서 84 / 100
+  - 학습 seed 111: `checkpoints/final/seed111/model_epoch_2000.pth` (md5 `fc88573fa422ac39310e2ffca5d90620`) — 평가 seed 42 에서 92 / 100
 - 바꾼 것은 **학습 데이터 하나**다. 환경 · 성공 판정 · 조교 BC-RNN config · `play.py` 는 그대로 쓴다.
 - 결과 요약 문서: [`docs/log_1030.md`](docs/log_1030.md) · 판정 원문: [`results/judge_1029/verdict_1029.md`](results/judge_1029/verdict_1029.md) · 사전등록: [`docs/prereg_1029.md`](docs/prereg_1029.md) · 진단: [`docs/diagnosis_1028.md`](docs/diagnosis_1028.md)
 
@@ -24,18 +26,24 @@
 
 ## 최종 체크포인트 실행 (조교 평가 형식)
 
-[`eval_command.txt`](eval_command.txt) 참고. 수업 환경(conda `lerobot-arena`, `~/IsaacLab_RS`)에서 조교 `play.py` 를 고치지 않고 그대로 쓴다.
+[`eval_command.txt`](eval_command.txt) 참고. 수업 환경(conda `lerobot-arena`, `~/IsaacLab_RS`)에서 조교 `play.py` 를 고치지 않고 그대로 쓴다. 두 가중치는 `--checkpoint` 경로만 다르다.
 
 ```bash
 cd ~/IsaacLab_RS
 REPO=~/robotics-simulation-team12   # 이 레포를 clone 한 폴더
+# 학습 seed 101
 ./isaaclab.sh -p scripts/imitation_learning/robomimic/play.py \
     --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 \
-    --checkpoint $REPO/assignment2_toy2box/checkpoints/final/model_epoch_2000.pth \
+    --checkpoint $REPO/assignment2_toy2box/checkpoints/final/seed101/model_epoch_2000.pth \
+    --num_rollouts 100 --horizon 800 --seed 42 --headless
+# 학습 seed 111
+./isaaclab.sh -p scripts/imitation_learning/robomimic/play.py \
+    --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 \
+    --checkpoint $REPO/assignment2_toy2box/checkpoints/final/seed111/model_epoch_2000.pth \
     --num_rollouts 100 --horizon 800 --seed 42 --headless
 ```
 
-우리 기계(NVIDIA RTX 6000 Ada)에서 이 명령의 결과는 84 / 100 이다.
+우리 기계(NVIDIA RTX 6000 Ada)에서 이 명령들의 결과는 seed 101 84 / 100, seed 111 92 / 100 이다(평균 88.0 ± 4.0%).
 
 ## 재현 절차 (A-T 데이터 → 학습)
 
@@ -62,8 +70,9 @@ REPO=~/robotics-simulation-team12   # 이 레포를 clone 한 폴더
    ```
 3. **학습 (조교 config, 2000 epoch):** `train_seed.py` 는 `train.py` 를 고치지 않고 학습 seed 만 CLI 로 주는 래퍼다 (seed 101 은 조교 json 기본값).
    ```bash
-   ./isaaclab.sh -p $A2/tools/train_seed.py --seed 101 --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 \
-       --algo bc --dataset ./datasets/team12_kgh/plan_A/translate_strat500.hdf5 --name base_translate500_s101
+   # S = 101, 111 (제출한 두 가중치)
+   ./isaaclab.sh -p $A2/tools/train_seed.py --seed $S --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 \
+       --algo bc --dataset ./datasets/team12_kgh/plan_A/translate_strat500.hdf5 --name base_translate500_s$S
    ```
 4. **평가 · 분류:** `tools/run_baseline.sh` (학습 → `play_record.py` 기록 평가 → 실패 분류). 판정은 `tools/judge_1029.py`, 보고 보충은 `tools/report_1029.py`.
 
@@ -74,6 +83,6 @@ REPO=~/robotics-simulation-team12   # 이 레포를 clone 한 폴더
 - `docs/`: 진단 · 서베이 · 사전등록 · 작업 로그(`log_MMDD.md`), `run_logs/` 실행 로그 요약, `env/` 패키지 스냅샷. 인계 브리프 `handoff_MMDD.md`.
 - `tools/`: 생성(`generate_yawhold.py`), 층화(`plan_A_stratify.py`), 학습 래퍼(`train_seed.py`), 기록 평가(`play_record.py`), 실패 분류(`classify_failures.py`), 운반 지표(`carry_metrics.py`), 짝 비교(`paired_compare.py`), 판정(`judge_1029.py`), 렌더(`render_record.py` 등).
 - `results/`: 평가 CSV · 분류 · 판정(`judge_1029/`) · 잡음 기준선(`noise_baseline/`) · 트랙별 결과(`plan_A/B/C`).
-- `checkpoints/final/`: 제출 가중치 · 학습 설정 사본 · 출처 메모.
+- `checkpoints/final/`: 제출 가중치 2개(`seed101/` · `seed111/`, 폴더마다 학습 설정 사본 `config.json`) · 출처 메모 `RUN_FOLDER.txt`.
 - 데이터(git 밖, `~/IsaacLab_RS/datasets/`): 조교 데이터와 파생물은 `datasets/ta_ref/`, 팀 데이터는 `datasets/team12_kgh/`. `record_demos.py` 에 기존 파일 이름을 주면 덮어쓰므로 세션마다 새 이름을 쓴다.
 - 기계: 학습 · 평가는 워크스테이션 RTX 6000 (NVIDIA RTX 6000 Ada, Isaac Sim 5.1 렌더링 불가 — 렌더는 DGX Spark gx10-2). 일부 문서와 결과 파일 이름의 "A6000" 은 같은 기계다.

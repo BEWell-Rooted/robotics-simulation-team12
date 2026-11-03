@@ -1,10 +1,11 @@
 # Repo : git clone https://github.com/BEWell-Rooted/robotics-simulation-team12.git
-# REPO = the folder you cloned it into (e.g. ~/robotics-simulation-team12) — set it in the command below
+# REPO = the folder you cloned it into (e.g. ~/robotics-simulation-team12) — set it in the commands below
 #
-# Team 12 — Assignment 2 (Agibot Toy2Box imitation learning): evaluation command
+# Team 12 — Assignment 2 (Agibot Toy2Box imitation learning): evaluation commands
 #
-# Final checkpoint : assignment2_toy2box/checkpoints/final/model_epoch_2000.pth
-#                    arm A-T, training seed 101, epoch 2000, md5 aca48edb71abbe9e8e2181715fc197d0
+# Final checkpoints (arm A-T, epoch 2000; same data and config, only the training seed differs):
+#   training seed 101 : assignment2_toy2box/checkpoints/final/seed101/model_epoch_2000.pth   md5 aca48edb71abbe9e8e2181715fc197d0
+#   training seed 111 : assignment2_toy2box/checkpoints/final/seed111/model_epoch_2000.pth   md5 fc88573fa422ac39310e2ffca5d90620
 # Task             : Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0   (course task, unchanged)
 # Script           : the course robomimic play.py, unmodified. No extra package is needed.
 #
@@ -14,12 +15,22 @@
 
 cd ~/IsaacLab_RS
 REPO=~/robotics-simulation-team12
+
+# (1) training seed 101
 ./isaaclab.sh -p scripts/imitation_learning/robomimic/play.py \
     --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 \
-    --checkpoint $REPO/assignment2_toy2box/checkpoints/final/model_epoch_2000.pth \
+    --checkpoint $REPO/assignment2_toy2box/checkpoints/final/seed101/model_epoch_2000.pth \
+    --num_rollouts 100 --horizon 800 --seed 42 --headless
+
+# (2) training seed 111
+./isaaclab.sh -p scripts/imitation_learning/robomimic/play.py \
+    --task Isaac-Place-Toy2Box-Agibot-Right-Arm-RmpFlow-v0 \
+    --checkpoint $REPO/assignment2_toy2box/checkpoints/final/seed111/model_epoch_2000.pth \
     --num_rollouts 100 --horizon 800 --seed 42 --headless
 
 # --headless is optional (we evaluated without rendering).
-# Our result with this exact command (NVIDIA RTX 6000 Ada, eval seed 42): Successful trials: 84, out of 100 trials
-# Our reported numbers (eval seed 42, training seeds 101 / 111, mean ± population std; the submitted file is seed 101):
+# Our results with these exact commands (NVIDIA RTX 6000 Ada, eval seed 42):
+#   (1) seed 101 : Successful trials: 84, out of 100 trials
+#   (2) seed 111 : Successful trials: 92, out of 100 trials
+# Reported number = mean ± population std over the two training seeds (eval seed 42):
 #   baseline 66.0 ± 3.0 %  ->  A-T 88.0 ± 4.0 %
